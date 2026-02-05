@@ -154,12 +154,12 @@ return {
     },
 
     -- ===== 模糊匹配配置 =====
-    fuzzy = {
-      use_typo_resistance = true,
-      use_frecency = true,
-      use_proximity = true,
-      max_items = 200,
-      sorts = { "label", "kind", "score" },
-    },
+  --  fuzzy = {
+  --    use_typo_resistance = true,
+  --    use_frecency = true,
+  --    use_proximity = true,
+  --    max_items = 200,
+  --    sorts = { "label", "kind", "score" },
+  --  },
   },
 }
