@@ -164,11 +164,21 @@ local plugins = {
   require("plugins.configs.lsp"),        -- Mason + LSP 系统
 
   -- ========================================================================
+  -- 阶段 5：工具增强
+  -- ========================================================================
+  require("plugins.configs.markdown"),      -- Markdown 增强
+  require("plugins.configs.lazygit"),       -- LazyGit
+  require("plugins.configs.conform"),       -- 格式化工具
+  require("plugins.configs.lint"),          -- Linting 工具
+  require("plugins.configs.todo-comments"), -- TODO 高亮
+  require("plugins.configs.trouble"),       -- 诊断列表
+  require("plugins.configs.which-key"),     -- 快捷键提示
+
+  -- ========================================================================
   -- 说明
   -- ========================================================================
-  -- 更多插件将在后续阶段添加：
-  -- - 阶段 5: Markdown + LazyGit + 格式化工具
-  -- - 阶段 6: 最终优化与测试
+  -- 最后阶段：
+  -- - 阶段 6: 最终优化、性能调整、文档完善
 }
 
 -- ============================================================================
