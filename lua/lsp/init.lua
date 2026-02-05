@@ -107,6 +107,14 @@ function M.setup()
   vim.api.nvim_create_user_command("FormatToggle", function()
     require("lsp.utils").toggle_format_on_save()
   end, { desc = "切换自动格式化" })
+
+  -- ========================================================================
+  -- Conform 集成
+  -- ========================================================================
+  local has_conform_integration, conform_integration = pcall(require, "lsp.conform_integration")
+  if has_conform_integration then
+    conform_integration.setup()
+  end
 end
 
 return M
