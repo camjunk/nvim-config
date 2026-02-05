@@ -54,7 +54,12 @@ return {
       require("mini.comment").setup({
         options = {
           custom_commentstring = function()
-            return require("ts_context_commentstring.internal").calculate_commentstring() or vim.bo.commentstring
+            -- 仅在 treesitter 可用时使用（将在阶段 3 添加）
+            local has_ts_context, ts_context = pcall(require, "ts_context_commentstring.internal")
+            if has_ts_context then
+              return ts_context.calculate_commentstring() or vim.bo.commentstring
+            end
+            return vim.bo.commentstring
           end,
           ignore_blank_line = true,
           start_of_line = false,
@@ -68,7 +73,11 @@ return {
         },
         hooks = {
           pre = function()
-            require("ts_context_commentstring.internal").update_commentstring({})
+            -- 仅在 treesitter 可用时更新 commentstring
+            local has_ts_context, ts_context = pcall(require, "ts_context_commentstring.internal")
+            if has_ts_context then
+              ts_context.update_commentstring({})
+            end
           end,
         },
       })
@@ -76,22 +85,9 @@ return {
       -- ======================================================================
       -- mini.ai - 文本对象增强
       -- ======================================================================
-      require("mini.ai").setup({
+      local ai_config = {
         n_lines = 500,
         custom_textobjects = {
-          -- 函数调用
-          f = require("mini.ai").gen_spec.treesitter({ a = "@function.outer", i = "@function.inner" }, {}),
-          -- 类
-          c = require("mini.ai").gen_spec.treesitter({ a = "@class.outer", i = "@class.inner" }, {}),
-          -- 条件语句
-          i = require("mini.ai").gen_spec.treesitter({
-            a = "@conditional.outer",
-            i = "@conditional.inner",
-          }, {}),
-          -- 循环
-          l = require("mini.ai").gen_spec.treesitter({ a = "@loop.outer", i = "@loop.inner" }, {}),
-          -- 参数
-          a = require("mini.ai").gen_spec.treesitter({ a = "@parameter.outer", i = "@parameter.inner" }, {}),
           -- 整个文件
           g = function()
             local from = { line = 1, col = 1 }
@@ -112,7 +108,19 @@ return {
           goto_left = "g[",
           goto_right = "g]",
         },
-      })
+      }
+
+      -- 仅在 treesitter 可用时添加 treesitter 文本对象（将在阶段 3 添加）
+      local has_treesitter = pcall(require, "nvim-treesitter")
+      if has_treesitter then
+        ai_config.custom_textobjects.f = require("mini.ai").gen_spec.treesitter({ a = "@function.outer", i = "@function.inner" }, {})
+        ai_config.custom_textobjects.c = require("mini.ai").gen_spec.treesitter({ a = "@class.outer", i = "@class.inner" }, {})
+        ai_config.custom_textobjects.i = require("mini.ai").gen_spec.treesitter({ a = "@conditional.outer", i = "@conditional.inner" }, {})
+        ai_config.custom_textobjects.l = require("mini.ai").gen_spec.treesitter({ a = "@loop.outer", i = "@loop.inner" }, {})
+        ai_config.custom_textobjects.a = require("mini.ai").gen_spec.treesitter({ a = "@parameter.outer", i = "@parameter.inner" }, {})
+      end
+
+      require("mini.ai").setup(ai_config)
 
       -- ======================================================================
       -- mini.diff - Git diff 可视化覆盖层

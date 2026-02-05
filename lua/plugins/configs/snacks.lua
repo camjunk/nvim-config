@@ -15,7 +15,7 @@ return {
     bigfile = {
       enabled = true,
       notify = true,
-      size = 1024 * 1024, -- 1MB
+      size = 1024 * 1024, -- 1 MB
       -- 自动禁用以下功能以提升性能
       setup = function(ctx)
         vim.b.minianimate_disable = true
