@@ -1,39 +1,23 @@
 -- ============================================================================
 -- UI 组件配置（lualine + bufferline）
--- 状态栏和标签栏美化
 -- ============================================================================
 
 return {
-  -- ========================================================================
-  -- lualine.nvim - 状态栏
-  -- ========================================================================
+  -- ===== 1. lualine - 状态栏 =====
   {
     "nvim-lualine/lualine.nvim",
-    event = "VeryLazy",
     dependencies = { "nvim-tree/nvim-web-devicons" },
+    event = "VeryLazy",
     opts = function()
-      -- 自动获取当前主题
-      local function get_theme()
-        local colorscheme = vim.g.colors_name or "auto"
-        local ok, theme = pcall(require, "lualine.themes." .. colorscheme)
-        if ok then
-          return theme
-        end
-        return "auto"
-      end
-
       return {
         options = {
-          theme = get_theme(),
-          icons_enabled = true,
+          theme = "auto", -- 自动适配主题
           component_separators = { left = "", right = "" },
           section_separators = { left = "", right = "" },
           disabled_filetypes = {
-            statusline = { "dashboard", "alpha", "starter" },
+            statusline = { "alpha", "dashboard", "snacks_dashboard" },
             winbar = {},
           },
-          ignore_focus = {},
-          always_divide_middle = true,
           globalstatus = true,
           refresh = {
             statusline = 1000,
@@ -47,19 +31,21 @@ return {
           lualine_c = {
             {
               "filename",
-              path = 1,
-              symbols = {
-                modified = "●",
-                readonly = "",
-                unnamed = "[No Name]",
-              },
+              path = 1, -- 0 = 仅文件名，1 = 相对路径，2 = 绝对路径
+              shorting_target = 40,
             },
           },
           lualine_x = {
-            -- Copilot 状态（预留位置）
+            -- Copilot 状态（阶段 3 启用）
             -- function()
-            --   local icon = require("copilot.api").status.data.status
-            --   return icon
+            --   local status = vim.g.copilot_status or ""
+            --   if status == "Normal" then
+            --     return ""
+            --   elseif status == "InProgress" then
+            --     return "󰚩"
+            --   else
+            --     return ""
+            --   end
             -- end,
             "encoding",
             "fileformat",
@@ -82,21 +68,21 @@ return {
         extensions = { "lazy", "oil", "quickfix" },
       }
     end,
+    config = function(_, opts)
+      require("lualine").setup(opts)
+    end,
   },
 
-  -- ========================================================================
-  -- bufferline.nvim - 标签栏
-  -- ========================================================================
+  -- ===== 2. bufferline - 标签栏 =====
   {
     "akinsho/bufferline.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
     event = "VeryLazy",
     version = "*",
-    dependencies = "nvim-tree/nvim-web-devicons",
     opts = {
       options = {
         mode = "buffers",
-        style_preset = require("bufferline").style_preset.default,
-        themable = true,
+        themable = true, -- 允许主题自定义
         numbers = "none",
         close_command = "bdelete! %d",
         right_mouse_command = "bdelete! %d",
@@ -121,18 +107,21 @@ return {
           local icon = level:match("error") and " " or " "
           return " " .. icon .. count
         end,
+        offsets = {
+          {
+            filetype = "oil",
+            text = "File Explorer",
+            text_align = "center",
+            separator = true,
+          },
+        },
         color_icons = true,
-        get_element_icon = function(element)
-          local icon, hl = require("nvim-web-devicons").get_icon_by_filetype(element.filetype, { default = false })
-          return icon, hl
-        end,
         show_buffer_icons = true,
         show_buffer_close_icons = true,
         show_close_icon = true,
         show_tab_indicators = true,
         show_duplicate_prefix = true,
         persist_buffer_sort = true,
-        move_wraps_at_ends = false,
         separator_style = "thin",
         enforce_regular_tabs = false,
         always_show_bufferline = true,
@@ -142,16 +131,10 @@ return {
           reveal = { "close" },
         },
         sort_by = "insert_after_current",
-        -- Oil.nvim 文件树偏移
-        offsets = {
-          {
-            filetype = "oil",
-            text = "File Explorer",
-            text_align = "center",
-            separator = true,
-          },
-        },
       },
     },
+    config = function(_, opts)
+      require("bufferline").setup(opts)
+    end,
   },
 }
