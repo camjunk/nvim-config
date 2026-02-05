@@ -131,17 +131,20 @@ local plugins = {
   },
 
   -- ========================================================================
-  -- 核心插件（第一阶段仅包含必要的基础插件）
+  -- 基础依赖
   -- ========================================================================
+  { "nvim-lua/plenary.nvim", lazy = true },
+  { "nvim-tree/nvim-web-devicons", lazy = true },
 
-  -- 注意：更多插件（snacks.nvim、mini.nvim、treesitter 等）
-  -- 将在后续阶段（阶段 2-4）中添加
-  --
-  -- 第一阶段重点：
-  -- 1. 建立项目结构
-  -- 2. 配置主题系统
-  -- 3. 设置基础选项和快捷键
-  -- 4. 确保配置可以正常加载
+  -- ========================================================================
+  -- 阶段 2：核心插件配置
+  -- ========================================================================
+  require("plugins.configs.snacks"),     -- snacks.nvim 多功能工具集
+  require("plugins.configs.mini"),       -- mini.nvim 编辑增强套件
+  require("plugins.configs.oil"),        -- Oil.nvim 文件系统编辑器
+  require("plugins.configs.flash"),      -- Flash.nvim 快速跳转
+  require("plugins.configs.colors"),     -- nvim-highlight-colors 颜色可视化
+  require("plugins.configs.ui"),         -- lualine + bufferline UI 组件
 }
 
 -- ============================================================================
@@ -155,12 +158,6 @@ require("lazy").setup(plugins, lazy_config)
 -- ============================================================================
 
 --[[
-阶段 2（编辑器增强）将添加：
-- snacks.nvim（搜索、文件树、终端、Dashboard）
-- mini.nvim 套件（ai, comment, surround, pairs, indent-scope）
-- oil.nvim（文件系统编辑器）
-- flash.nvim（快速跳转）
-
 阶段 3（LSP 和补全）将添加：
 - blink.cmp（补全引擎）
 - nvim-treesitter（语法高亮）
