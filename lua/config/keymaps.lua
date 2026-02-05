@@ -87,15 +87,16 @@ map("n", "]<space>", "o<Esc>k", { desc = "Insert line below" })
 -- 文件操作（预留位置，由插件实现）
 -- ============================================================================
 
--- 文件浏览器（将由 snacks.nvim 或 oil.nvim 实现）
-map("n", "<leader>e", ":echo 'File explorer not configured yet'<CR>", { desc = "Toggle file explorer" })
-map("n", "-", ":echo 'Oil.nvim not configured yet'<CR>", { desc = "Open parent directory" })
+-- 文件浏览器（由 Oil.nvim 实现，快捷键在插件配置中定义）
+-- map("n", "-", ":Oil<CR>", { desc = "Open parent directory" })
+-- map("n", "<leader>-", function() require("oil").toggle_float() end, { desc = "Open parent directory (float)" })
 
--- 文件查找（将由 snacks.nvim 实现）
-map("n", "<leader>ff", ":echo 'File finder not configured yet'<CR>", { desc = "Find files" })
-map("n", "<leader>fg", ":echo 'Grep not configured yet'<CR>", { desc = "Live grep" })
-map("n", "<leader>fb", ":echo 'Buffer finder not configured yet'<CR>", { desc = "Find buffers" })
-map("n", "<leader>fr", ":echo 'Recent files not configured yet'<CR>", { desc = "Recent files" })
+-- 文件查找（由 snacks.nvim 实现，快捷键在插件配置中定义）
+-- map("n", "<leader>ff", function() Snacks.picker.files() end, { desc = "Find files" })
+-- map("n", "<leader>fg", function() Snacks.picker.grep() end, { desc = "Live grep" })
+-- map("n", "<leader>fb", function() Snacks.picker.buffers() end, { desc = "Find buffers" })
+-- map("n", "<leader>fr", function() Snacks.picker.recent() end, { desc = "Recent files" })
+
 
 -- ============================================================================
 -- Git 操作（预留位置，由插件实现）
@@ -148,5 +149,5 @@ map("n", "]d", vim.diagnostic.goto_next, { desc = "Next diagnostic" })
 map("t", "<Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 map("t", "jk", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
--- 打开终端（将由 snacks.nvim 实现）
-map("n", "<leader>tt", ":echo 'Terminal not configured yet'<CR>", { desc = "Toggle terminal" })
+-- 打开终端（由 snacks.nvim 实现，快捷键在插件配置中定义）
+-- map("n", "<leader>ft", function() Snacks.terminal.toggle() end, { desc = "Toggle terminal" })
