@@ -141,7 +141,7 @@ local plugins = {
   -- ========================================================================
   require("plugins.configs.snacks"),     -- snacks.nvim 多功能工具集
   require("plugins.configs.mini"),       -- mini.nvim 编辑增强套件
-  require("plugins.configs.oil"),        -- Oil.nvim 文件系统编辑器（主文件树）✅ 已更新
+  -- require("plugins.configs.oil"),        -- Oil.nvim 文件系统编辑器（已禁用，使用 Snacks Explorer）
   require("plugins.configs.flash"),      -- Flash.nvim 快速跳转
   require("plugins.configs.colors"),     -- nvim-highlight-colors 颜色可视化
   require("plugins.configs.ui"),         -- lualine + bufferline UI 组件

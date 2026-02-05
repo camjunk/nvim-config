@@ -119,8 +119,8 @@ opt.hidden = true
 -- 性能优化
 -- ============================================================================
 
--- 减少重绘
-opt.lazyredraw = true
+-- 禁用 lazyredraw（与 Noice 冲突）
+opt.lazyredraw = false
 
 -- 更快的宏执行
 opt.regexpengine = 1

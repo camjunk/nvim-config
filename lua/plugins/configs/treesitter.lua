@@ -5,8 +5,6 @@
 return {
   "nvim-treesitter/nvim-treesitter",
   build = ":TSUpdate",
-   branch = "master", --新添加
-	main = "nvim-treesitter.config", --新添加
   event = { "BufReadPost", "BufNewFile" },
   dependencies = {
     "nvim-treesitter/nvim-treesitter-textobjects",
@@ -140,8 +138,9 @@ return {
   },
 
   config = function(_, opts)
-    require("nvim-treesitter.config").setup(opts)
+    require("nvim-treesitter.configs").setup(opts)
 
+    -- ===== 折叠配置 =====
     vim.opt.foldmethod = "expr"
     vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
     vim.opt.foldenable = false

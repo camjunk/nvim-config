@@ -44,7 +44,7 @@ return {
 
     -- ===== 补全源配置 =====
     sources = {
-      default = { "lsp", "path", "snippets", "buffer" },
+      default = { "lsp", "path", "snippets", "buffer", "copilot" },
       providers = {
         lsp = {
           name = "LSP",
@@ -89,6 +89,13 @@ return {
               return vim.tbl_keys(bufs)
             end,
           },
+        },
+        copilot = {
+          name = "Copilot",
+          module = "blink-copilot",
+          score_offset = 90,
+          async = true,
+          opts = {},
         },
       },
     },

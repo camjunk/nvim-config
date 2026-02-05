@@ -20,82 +20,87 @@ return {
       desc = "Format file or range",
     },
   },
-  config = function()
-    local conform = require("conform")
+  opts = {
+    formatters_by_ft = {
+      -- JavaScript / TypeScript / Vue
+      javascript = { "prettier" },
+      javascriptreact = { "prettier" },
+      typescript = { "prettier" },
+      typescriptreact = { "prettier" },
+      vue = { "prettier" },
+      css = { "prettier" },
+      scss = { "prettier" },
+      less = { "prettier" },
+      html = { "prettier" },
+      json = { "prettier" },
+      jsonc = { "prettier" },
+      yaml = { "prettier" },
+      markdown = { "prettier" },
+      graphql = { "prettier" },
 
-    -- ========================================================================
+      -- Lua
+      lua = { "stylua" },
+
+      -- Rust
+      rust = { "rustfmt" },
+
+      -- C / C++
+      c = { "clang_format" },
+      cpp = { "clang_format" },
+
+      -- Shell
+      sh = { "shfmt" },
+      bash = { "shfmt" },
+
+      -- Python
+      python = { "isort", "black" },
+
+      -- Go
+      go = { "goimports", "gofmt" },
+    },
+
     -- 格式化器配置
-    -- ========================================================================
-    conform.setup({
-      formatters_by_ft = {
-        -- JavaScript / TypeScript / Vue
-        javascript = { "prettier" },
-        javascriptreact = { "prettier" },
-        typescript = { "prettier" },
-        typescriptreact = { "prettier" },
-        vue = { "prettier" },
-        css = { "prettier" },
-        scss = { "prettier" },
-        less = { "prettier" },
-        html = { "prettier" },
-        json = { "prettier" },
-        jsonc = { "prettier" },
-        yaml = { "prettier" },
-        markdown = { "prettier" },
-        graphql = { "prettier" },
-
-        -- Lua
-        lua = { "stylua" },
-
-        -- Rust
-        rust = { "rustfmt" },
-
-        -- C / C++
-        c = { "clang_format" },
-        cpp = { "clang_format" },
-
-        -- Shell
-        sh = { "shfmt" },
-        bash = { "shfmt" },
-
-        -- Python
-        python = { "isort", "black" },
-
-        -- Go
-        go = { "goimports", "gofmt" },
+    formatters = {
+      shfmt = {
+        prepend_args = { "-i", "2" }, -- 2 spaces indent
       },
+      prettier = {
+        prepend_args = { "--tab-width", "2" },
+      },
+    },
 
-      -- 格式化选项
-      format_on_save = function(bufnr)
+    -- 通知设置
+    notify_on_error = true,
+  },
+
+  config = function(_, opts)
+    local conform = require("conform")
+    conform.setup(opts)
+
+    -- ========================================================================
+    -- 保存时自动格式化（使用 autocmd）
+    -- ========================================================================
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      callback = function(args)
+        local bufnr = args.buf
+
         -- 禁用特定文件类型的自动格式化
         local disable_filetypes = { c = true, cpp = true }
         if disable_filetypes[vim.bo[bufnr].filetype] then
           return
         end
 
-        -- 如果全局禁用了自动格式化，则跳过
+        -- 如果全局或局部禁用了自动格式化，则跳过
         if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
           return
         end
 
-        return {
-          timeout_ms = 1000,
+        conform.format({
+          bufnr = bufnr,
+          timeout_ms = 500,
           lsp_fallback = true,
-        }
+        })
       end,
-
-      -- 格式化器配置
-      formatters = {
-        shfmt = {
-          prepend_args = { "-i", "2" }, -- 2 spaces indent
-        },
-        prettier = {
-          prepend_args = { "--tab-width", "2" },
-        },
-      },
-
-      -- 通知设置
-      notify_on_error = true,
     })
 
     -- ========================================================================
