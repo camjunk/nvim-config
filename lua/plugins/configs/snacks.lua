@@ -20,7 +20,7 @@ return {
       end,
     },
 
-    -- ===== 2. 启动页（Dashboard）=====
+    -- ===== 2. 启动页（Dashboard - Advanced 双窗格风格）=====
     dashboard = {
       enabled = true,
       preset = {
@@ -42,14 +42,31 @@ return {
           { icon = " ", key = "q", desc = "退出", action = ":qa" },
         },
       },
+      -- Advanced 双窗格布局
       sections = {
         { section = "header" },
+        {
+          pane = 2,
+          section = "terminal",
+          cmd = "git --no-pager status --short --branch --untracked-files=all 2>/dev/null || echo 'Not a git repository'",
+          height = 8,
+          padding = 1,
+          ttl = 5 * 60,
+          indent = 3,
+        },
         { section = "keys", gap = 1, padding = 1 },
+        { pane = 2, icon = " ", title = "Recent Files", section = "recent_files", indent = 2, padding = 1 },
+        { pane = 2, icon = " ", title = "Projects", section = "projects", indent = 2, padding = 1 },
         { section = "startup" },
       },
     },
 
-    -- ===== 3. 缩进可视化 =====
+    -- ===== 3. 文件树（Explorer）=====
+    explorer = {
+      enabled = true,
+    },
+
+    -- ===== 4. 缩进可视化 =====
     indent = {
       enabled = true,
       indent = {
@@ -62,28 +79,28 @@ return {
       },
     },
 
-    -- ===== 4. 快速文件操作 =====
+    -- ===== 5. 快速文件操作 =====
     quickfile = {
       enabled = true,
     },
 
-    -- ===== 5. 平滑滚动 =====
+    -- ===== 6. 平滑滚动 =====
     scroll = {
       enabled = true,
     },
 
-    -- ===== 6. 状态栏列 =====
+    -- ===== 7. 状态栏列 =====
     statuscolumn = {
       enabled = false, -- 使用默认状态列
     },
 
-    -- ===== 7. 光标下单词引用高亮 =====
+    -- ===== 8. 光标下单词引用高亮 =====
     words = {
       enabled = true,
       debounce = 200,
     },
 
-    -- ===== 8. 样式配置 =====
+    -- ===== 9. 样式配置 =====
     styles = {
       notification = {
         wo = { wrap = true },
@@ -93,6 +110,21 @@ return {
 
   -- ===== 快捷键配置 =====
   keys = {
+    -- 文件树
+    {
+      "<leader>e",
+      function()
+        Snacks.explorer()
+      end,
+      desc = "文件树（Explorer）",
+    },
+    {
+      "<leader>E",
+      function()
+        Snacks.explorer({ cwd = vim.fn.getcwd() })
+      end,
+      desc = "文件树（当前工作目录）",
+    },
     -- 文件搜索
     {
       "<leader>ff",

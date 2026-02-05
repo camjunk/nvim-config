@@ -12,7 +12,7 @@ return {
       return {
         options = {
           theme = "auto", -- 自动适配主题
-          component_separators = { left = "", right = "" },
+          component_separators = "|",
           section_separators = { left = "", right = "" },
           disabled_filetypes = {
             statusline = { "alpha", "dashboard", "snacks_dashboard" },
@@ -36,17 +36,27 @@ return {
             },
           },
           lualine_x = {
-            -- Copilot 状态（阶段 3 启用）
-            -- function()
-            --   local status = vim.g.copilot_status or ""
-            --   if status == "Normal" then
-            --     return ""
-            --   elseif status == "InProgress" then
-            --     return "󰚩"
-            --   else
-            --     return ""
-            --   end
-            -- end,
+            -- Copilot 状态指示器
+            {
+              function()
+                local ok, copilot_api = pcall(require, "copilot.api")
+                if not ok then
+                  return ""
+                end
+                local status = copilot_api.status.data
+                if not status or not status.status then
+                  return ""
+                end
+                if status.status == "Normal" then
+                  return " "
+                elseif status.status == "InProgress" then
+                  return " "
+                else
+                  return ""
+                end
+              end,
+              color = { fg = "#6CC644" },
+            },
             "encoding",
             "fileformat",
             "filetype",
@@ -65,7 +75,7 @@ return {
         tabline = {},
         winbar = {},
         inactive_winbar = {},
-        extensions = { "lazy", "oil", "quickfix" },
+        extensions = { "lazy", "quickfix" },
       }
     end,
     config = function(_, opts)
@@ -109,7 +119,7 @@ return {
         end,
         offsets = {
           {
-            filetype = "oil",
+            filetype = "snacks_explorer",
             text = "File Explorer",
             text_align = "center",
             separator = true,

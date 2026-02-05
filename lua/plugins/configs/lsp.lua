@@ -65,7 +65,7 @@ return {
       ensure_installed = {
         -- 前端
         "ts_ls",           -- TypeScript/JavaScript
-        "volar",           -- Vue 3
+        "vue-language-server", -- Vue 3 (正确的包名)
         "html",            -- HTML
         "cssls",           -- CSS/SCSS/LESS
         "eslint",          -- ESLint
@@ -82,6 +82,20 @@ return {
         
         -- 文档
         "marksman",        -- Markdown
+        
+        -- 格式化工具
+        "prettier",
+        "stylua",
+        "clang-format",
+        "rustfmt",
+        "shfmt",
+        "black",
+        "isort",
+        
+        -- Linters
+        "eslint_d",
+        "shellcheck",
+        "markdownlint",
       },
       
       -- 自动安装配置的服务器
