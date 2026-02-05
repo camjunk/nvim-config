@@ -78,9 +78,17 @@ return {
       ["g."] = "actions.toggle_hidden",
       ["g\\"] = "actions.toggle_trash",
 
-      -- 类似 vim-vinegar 的 hjkl 导航
-      ["h"] = "actions.parent",
-      ["l"] = "actions.select",
+      -- ✅ 完美 Vim 操作的 hjkl 导航
+      ["h"] = "actions.parent",         -- h = 返回上一级目录
+      ["l"] = "actions.select",         -- l = 进入目录 / 打开文件
+      -- j/k 使用默认行为（上下移动）
+
+      -- ✅ 文件管理操作
+      ["a"] = "actions.create",         -- a = 新建文件/目录
+      ["dd"] = "actions.delete",        -- dd = 删除文件/目录
+      ["r"] = "actions.rename",         -- r = 重命名
+      ["yy"] = "actions.copy_entry_path", -- yy = 复制文件名
+      ["yp"] = "actions.copy_entry_path", -- yp = 复制完整路径
     },
 
     -- ========================================================================
@@ -182,13 +190,19 @@ return {
       "<cmd>Oil<cr>",
       desc = "Open parent directory",
     },
+    -- 主文件树快捷键
+    {
+      "<leader>e",
+      "<cmd>Oil<cr>",
+      desc = "Open file explorer",
+    },
     -- 在浮动窗口打开 Oil
     {
-      "<leader>-",
+      "<leader>E",
       function()
         require("oil").toggle_float()
       end,
-      desc = "Open parent directory (float)",
+      desc = "Open file explorer (float)",
     },
   },
 }
