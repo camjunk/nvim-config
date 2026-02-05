@@ -110,65 +110,67 @@ return {
     wk.setup(opts)
 
     -- ========================================================================
-    -- 快捷键分组配置（使用 v3 API）
+    -- 快捷键分组配置（使用 v3 API + vim.schedule）
     -- ========================================================================
-    wk.add({
-      -- 基础分组
-      { "<leader>f", group = "Find/Telescope" },
-      { "<leader>g", group = "Git" },
-      { "<leader>x", group = "Diagnostics/Trouble" },
-      { "<leader>m", group = "Markdown" },
-      { "<leader>c", group = "Code" },
-      { "<leader>l", group = "LSP" },
-      { "<leader>s", group = "Search" },
-      { "<leader>t", group = "Terminal/Toggle" },
-      { "<leader>w", group = "Window" },
-      { "<leader>b", group = "Buffer" },
-      { "<leader>q", group = "Quit/Session" },
+    vim.schedule(function()
+      wk.add({
+        -- 基础分组
+        { "<leader>f", group = "Find/Telescope", mode = "n" },
+        { "<leader>g", group = "Git", mode = "n" },
+        { "<leader>x", group = "Diagnostics/Trouble", mode = "n" },
+        { "<leader>m", group = "Markdown", mode = "n" },
+        { "<leader>c", group = "Code", mode = "n" },
+        { "<leader>l", group = "LSP", mode = "n" },
+        { "<leader>s", group = "Search", mode = "n" },
+        { "<leader>t", group = "Terminal/Toggle", mode = "n" },
+        { "<leader>w", group = "Window", mode = "n" },
+        { "<leader>b", group = "Buffer", mode = "n" },
+        { "<leader>q", group = "Quit/Session", mode = "n" },
 
-      -- Git 子分组
-      { "<leader>gg", desc = "LazyGit" },
-      { "<leader>gf", desc = "LazyGit Current File" },
-      { "<leader>gc", desc = "LazyGit Config" },
+        -- Git 子分组
+        { "<leader>gg", desc = "LazyGit", mode = "n" },
+        { "<leader>gf", desc = "LazyGit Current File", mode = "n" },
+        { "<leader>gc", desc = "LazyGit Config", mode = "n" },
 
-      -- 查找子分组
-      { "<leader>ff", desc = "Find Files" },
-      { "<leader>fg", desc = "Live Grep" },
-      { "<leader>fb", desc = "Find Buffers" },
-      { "<leader>fh", desc = "Find Help" },
-      { "<leader>ft", desc = "Find TODOs" },
+        -- 查找子分组
+        { "<leader>ff", desc = "Find Files", mode = "n" },
+        { "<leader>fg", desc = "Live Grep", mode = "n" },
+        { "<leader>fb", desc = "Find Buffers", mode = "n" },
+        { "<leader>fh", desc = "Find Help", mode = "n" },
+        { "<leader>ft", desc = "Find TODOs", mode = "n" },
 
-      -- 诊断子分组
-      { "<leader>xx", desc = "Diagnostics List" },
-      { "<leader>xX", desc = "Buffer Diagnostics" },
-      { "<leader>xs", desc = "Symbols" },
-      { "<leader>xl", desc = "LSP Definitions/References" },
-      { "<leader>xL", desc = "Location List" },
-      { "<leader>xQ", desc = "Quickfix List" },
-      { "<leader>xt", desc = "TODOs" },
+        -- 诊断子分组
+        { "<leader>xx", desc = "Diagnostics List", mode = "n" },
+        { "<leader>xX", desc = "Buffer Diagnostics", mode = "n" },
+        { "<leader>xs", desc = "Symbols", mode = "n" },
+        { "<leader>xl", desc = "LSP Definitions/References", mode = "n" },
+        { "<leader>xL", desc = "Location List", mode = "n" },
+        { "<leader>xQ", desc = "Quickfix List", mode = "n" },
+        { "<leader>xt", desc = "TODOs", mode = "n" },
 
-      -- Markdown 子分组
-      { "<leader>mp", desc = "Markdown Preview" },
+        -- Markdown 子分组
+        { "<leader>mp", desc = "Markdown Preview", mode = "n" },
 
-      -- 代码子分组
-      { "<leader>f", desc = "Format", mode = { "n", "v" } },
+        -- 代码子分组
+        { "<leader>f", desc = "Format", mode = { "n", "v" } },
 
-      -- LSP 子分组
-      { "gd", desc = "Go to Definition" },
-      { "gD", desc = "Go to Declaration" },
-      { "gr", desc = "References" },
-      { "gi", desc = "Go to Implementation" },
-      { "K", desc = "Hover" },
-      { "<leader>ca", desc = "Code Action" },
-      { "<leader>rn", desc = "Rename" },
+        -- LSP 子分组
+        { "gd", desc = "Go to Definition", mode = "n" },
+        { "gD", desc = "Go to Declaration", mode = "n" },
+        { "gr", desc = "References", mode = "n" },
+        { "gi", desc = "Go to Implementation", mode = "n" },
+        { "K", desc = "Hover", mode = "n" },
+        { "<leader>ca", desc = "Code Action", mode = "n" },
+        { "<leader>rn", desc = "Rename", mode = "n" },
 
-      -- TODO 导航
-      { "]t", desc = "Next TODO" },
-      { "[t", desc = "Previous TODO" },
+        -- TODO 导航
+        { "]t", desc = "Next TODO", mode = "n" },
+        { "[t", desc = "Previous TODO", mode = "n" },
 
-      -- 诊断导航
-      { "]d", desc = "Next Diagnostic" },
-      { "[d", desc = "Previous Diagnostic" },
-    })
+        -- 诊断导航
+        { "]d", desc = "Next Diagnostic", mode = "n" },
+        { "[d", desc = "Previous Diagnostic", mode = "n" },
+      })
+    end)
   end,
 }
