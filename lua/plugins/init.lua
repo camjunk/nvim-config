@@ -145,6 +145,15 @@ local plugins = {
   require("plugins.configs.flash"),      -- Flash.nvim 快速跳转
   require("plugins.configs.colors"),     -- nvim-highlight-colors 颜色可视化
   require("plugins.configs.ui"),         -- lualine + bufferline UI 组件
+
+  -- ========================================================================
+  -- 阶段 3：补全与 AI 系统
+  -- ========================================================================
+  require("plugins.configs.completion"),    -- blink.cmp 现代化补全引擎
+  require("plugins.configs.copilot"),       -- GitHub Copilot AI 补全
+  require("plugins.configs.snippets"),      -- LuaSnip 代码片段引擎
+  require("plugins.configs.treesitter"),    -- Treesitter 语法高亮与解析
+  require("plugins.configs.codecompanion"), -- CodeCompanion AI 助手
 }
 
 -- ============================================================================
@@ -158,21 +167,16 @@ require("lazy").setup(plugins, lazy_config)
 -- ============================================================================
 
 --[[
-阶段 3（LSP 和补全）将添加：
-- blink.cmp（补全引擎）
-- nvim-treesitter（语法高亮）
+阶段 4（原生 LSP 配置）将添加：
+- nvim-lspconfig（LSP 配置）
+- mason.nvim（LSP 管理器）
 - conform.nvim（格式化）
 - nvim-lint（代码检查）
-- lazydev.nvim（Lua LSP）
 
-阶段 4（Git 和 AI）将添加：
+阶段 5（Markdown + LazyGit）将添加：
+- render-markdown.nvim（Markdown 渲染）
 - gitsigns.nvim（Git 集成）
 - lazygit.nvim（LazyGit 集成）
-- diffview.nvim（Git diff 视图）
-- copilot.lua（GitHub Copilot）
-- codecompanion.nvim（AI 助手）
 
-阶段 5（Markdown）将添加：
-- render-markdown.nvim（Markdown 渲染）
-- markdown.nvim（Markdown 增强）
+阶段 6：最终优化与测试
 ]]
