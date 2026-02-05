@@ -1,0 +1,17 @@
+# Neovim 数据文件
+*.swp
+*.swo
+*~
+
+# Lazy.nvim 插件缓存
+lazy-lock.json
+
+# LSP 日志
+lsp.log
+
+# 调试文件
+.luarc.json
+
+# 操作系统文件
+.DS_Store
+Thumbs.db
