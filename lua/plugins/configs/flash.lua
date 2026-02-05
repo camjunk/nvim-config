@@ -101,6 +101,8 @@ return {
       char = {
         enabled = true,
         config = function(opts)
+          -- 自动隐藏：在 operator-pending 模式 ("no") 且操作是 yank 时启用
+          -- 这避免了在复制操作时显示不必要的标签
           opts.autohide = opts.autohide or (vim.fn.mode(true):find("no") and vim.v.operator == "y")
           opts.jump_labels = opts.jump_labels
               and vim.v.count == 0

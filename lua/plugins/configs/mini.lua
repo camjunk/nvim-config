@@ -115,7 +115,7 @@ return {
       if has_treesitter then
         ai_config.custom_textobjects.f = require("mini.ai").gen_spec.treesitter({ a = "@function.outer", i = "@function.inner" }, {})
         ai_config.custom_textobjects.c = require("mini.ai").gen_spec.treesitter({ a = "@class.outer", i = "@class.inner" }, {})
-        ai_config.custom_textobjects.i = require("mini.ai").gen_spec.treesitter({ a = "@conditional.outer", i = "@conditional.inner" }, {})
+        ai_config.custom_textobjects.o = require("mini.ai").gen_spec.treesitter({ a = "@conditional.outer", i = "@conditional.inner" }, {})
         ai_config.custom_textobjects.l = require("mini.ai").gen_spec.treesitter({ a = "@loop.outer", i = "@loop.inner" }, {})
         ai_config.custom_textobjects.a = require("mini.ai").gen_spec.treesitter({ a = "@parameter.outer", i = "@parameter.inner" }, {})
       end

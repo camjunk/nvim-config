@@ -265,7 +265,11 @@ return {
         diagnostics = {
           name = "Diagnostics",
           get = function()
-            return vim.diagnostic.is_enabled and vim.diagnostic.is_enabled()
+            if type(vim.diagnostic.is_enabled) == "function" then
+              return vim.diagnostic.is_enabled()
+            end
+            -- Fallback for older Neovim versions
+            return vim.diagnostic.is_disabled ~= true
           end,
           set = function(state)
             if state then
