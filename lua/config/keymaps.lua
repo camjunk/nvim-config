@@ -134,8 +134,9 @@ map("n", "<leader>ts", ":lua require('config.theme_switcher').select_theme()<CR>
 -- 诊断和调试
 -- ============================================================================
 
-map("n", "<leader>xx", ":Trouble<CR>", { desc = "Toggle Trouble" })
-map("n", "<leader>xd", ":Trouble diagnostics<CR>", { desc = "Document diagnostics" })
+-- Trouble plugin (will be added in later phases)
+map("n", "<leader>xx", ":echo 'Trouble plugin not configured yet'<CR>", { desc = "Toggle Trouble" })
+map("n", "<leader>xd", ":echo 'Trouble plugin not configured yet'<CR>", { desc = "Document diagnostics" })
 map("n", "[d", vim.diagnostic.goto_prev, { desc = "Previous diagnostic" })
 map("n", "]d", vim.diagnostic.goto_next, { desc = "Next diagnostic" })
 

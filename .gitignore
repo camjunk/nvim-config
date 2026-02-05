@@ -2,7 +2,6 @@
 *.swp
 *.swo
 *~
-.DS_Store
 
 # Lazy.nvim 插件缓存
 lazy-lock.json

@@ -170,7 +170,10 @@ autocmd("BufReadPre", {
       vim.opt_local.foldmethod = "manual"
       vim.opt_local.spell = false
       vim.cmd("syntax off")
-      vim.cmd("IlluminatePauseBuf") -- 如果使用 vim-illuminate
+      -- Disable vim-illuminate if available (will be added in later phases)
+      if vim.fn.exists(":IlluminatePauseBuf") == 2 then
+        vim.cmd("IlluminatePauseBuf")
+      end
     end
   end,
   desc = "Disable certain features for large files",
