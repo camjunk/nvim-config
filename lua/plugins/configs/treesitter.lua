@@ -18,6 +18,7 @@ return {
   },
   opts = {
     ensure_installed = {
+      -- 前端
       "javascript",
       "typescript",
       "tsx",
@@ -27,19 +28,30 @@ return {
       "scss",
       "json",
       "jsonc",
+
+      -- Lua
       "lua",
       "luadoc",
       "luap",
+
+      -- C/C++
       "c",
       "cpp",
+
+      -- Rust ✅ 新增
+      "rust",
+      "toml",  -- Cargo.toml
+
+      -- Markdown
       "markdown",
       "markdown_inline",
+
+      -- 其他
       "bash",
       "regex",
       "vim",
       "vimdoc",
       "yaml",
-      "toml",
       "git_config",
       "gitcommit",
       "gitignore",

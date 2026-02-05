@@ -137,14 +137,17 @@ local plugins = {
   { "nvim-tree/nvim-web-devicons", lazy = true },
 
   -- ========================================================================
-  -- 阶段 2：核心插件配置
+  -- 阶段 2：核心插件配置 + UI 增强
   -- ========================================================================
   require("plugins.configs.snacks"),     -- snacks.nvim 多功能工具集
   require("plugins.configs.mini"),       -- mini.nvim 编辑增强套件
-  require("plugins.configs.oil"),        -- Oil.nvim 文件系统编辑器
+  require("plugins.configs.oil"),        -- Oil.nvim 文件系统编辑器（主文件树）✅ 已更新
   require("plugins.configs.flash"),      -- Flash.nvim 快速跳转
   require("plugins.configs.colors"),     -- nvim-highlight-colors 颜色可视化
   require("plugins.configs.ui"),         -- lualine + bufferline UI 组件
+  require("plugins.configs.nui"),        -- ✅ 新增：nui.nvim UI 组件库
+  require("plugins.configs.notify"),     -- ✅ 新增：nvim-notify 通知系统
+  require("plugins.configs.noice"),      -- ✅ 新增：noice.nvim 美化系统
 
   -- ========================================================================
   -- 阶段 3：补全与 AI 系统
@@ -154,6 +157,18 @@ local plugins = {
   require("plugins.configs.snippets"),      -- LuaSnip 代码片段引擎
   require("plugins.configs.treesitter"),    -- Treesitter 语法高亮与解析
   require("plugins.configs.codecompanion"), -- CodeCompanion AI 助手
+
+  -- ========================================================================
+  -- 阶段 4：原生 LSP 配置
+  -- ========================================================================
+  require("plugins.configs.lsp"),        -- Mason + LSP 系统
+
+  -- ========================================================================
+  -- 说明
+  -- ========================================================================
+  -- 更多插件将在后续阶段添加：
+  -- - 阶段 5: Markdown + LazyGit + 格式化工具
+  -- - 阶段 6: 最终优化与测试
 }
 
 -- ============================================================================
@@ -162,21 +177,3 @@ local plugins = {
 
 require("lazy").setup(plugins, lazy_config)
 
--- ============================================================================
--- 注释说明：后续阶段将添加的插件
--- ============================================================================
-
---[[
-阶段 4（原生 LSP 配置）将添加：
-- nvim-lspconfig（LSP 配置）
-- mason.nvim（LSP 管理器）
-- conform.nvim（格式化）
-- nvim-lint（代码检查）
-
-阶段 5（Markdown + LazyGit）将添加：
-- render-markdown.nvim（Markdown 渲染）
-- gitsigns.nvim（Git 集成）
-- lazygit.nvim（LazyGit 集成）
-
-阶段 6：最终优化与测试
-]]
