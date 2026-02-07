@@ -26,10 +26,10 @@ return {
     -- ========================================================================
     -- 启用的颜色格式
     -- ========================================================================
-    enable_named_colors = true,
-    enable_tailwind = true,
+    -- enable_named_colors = true,
+    -- enable_tailwind = true,
 
-    -- ========================================================================
+       -- ========================================================================
     -- 自定义颜色模式
     -- ========================================================================
     custom_colors = {
@@ -43,4 +43,34 @@ return {
     exclude_filetypes = {},
     exclude_buftypes = {},
   },
+--   require("nvim-highlight-colors").setup({
+--   -- 核心：添加 blink.cmp 补全窗口的文件类型/窗口匹配
+--   enable_named_colors = true, -- 渲染命名颜色（如 red/blue）
+--   enable_tailwind = true, -- 兼容 Tailwind 颜色
+--   -- 覆盖 blink.cmp 的补全弹窗窗口
+--   custom_highlights = {
+--     -- 匹配 blink.cmp 补全菜单的高亮组
+--     BlinkCmpMenu = { fg = "none", bg = "none" },
+--     BlinkCmpMenuSelection = { fg = "none", bg = "none" },
+--   },
+--   -- 强制高亮 blink.cmp 的补全窗口缓冲区
+--   filetypes = {
+--     "css", "scss", "less", "vue", "html", "javascript", "typescript",
+--     -- 新增 blink.cmp 补全窗口的虚拟缓冲区类型
+--     "blink-cmp",
+--   },
+--   -- 手动指定需要高亮的窗口（blink.cmp 补全窗口的 winhighlight 包含 BlinkCmpMenu）
+--   winhighlight = { "BlinkCmpMenu", "BlinkCmpMenuSelection" },
+-- })
+--
+-- -- 额外：自动触发 blink.cmp 补全窗口的颜色高亮
+-- vim.api.nvim_create_autocmd("WinEnter", {
+--   pattern = "*",
+--   callback = function()
+--     local winhl = vim.api.nvim_get_option_value("winhighlight", { win = 0 })
+--     if winhl:find("BlinkCmpMenu") then
+--       require("nvim-highlight-colors").turnOn()
+--     end
+--   end,
+-- })
 }

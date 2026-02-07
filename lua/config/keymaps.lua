@@ -50,8 +50,8 @@ map("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 -- ============================================================================
 
 -- Buffer 导航
-map("n", "<S-l>", ":bnext<CR>", { desc = "Next buffer" })
-map("n", "<S-h>", ":bprevious<CR>", { desc = "Previous buffer" })
+map("n", "<leader>bn", ":bnext<CR>", { desc = "Next buffer" })
+map("n", "<leader>bp", ":bprevious<CR>", { desc = "Previous buffer" })
 map("n", "<leader>bd", ":bdelete<CR>", { desc = "Delete buffer" })
 
 -- ============================================================================
@@ -97,7 +97,6 @@ map("n", "]<space>", "o<Esc>k", { desc = "Insert line below" })
 -- map("n", "<leader>fb", function() Snacks.picker.buffers() end, { desc = "Find buffers" })
 -- map("n", "<leader>fr", function() Snacks.picker.recent() end, { desc = "Recent files" })
 
-
 -- ============================================================================
 -- Git 操作（预留位置，由插件实现）
 -- ============================================================================
@@ -113,8 +112,8 @@ map("n", "<leader>gb", ":echo 'Git blame not configured yet'<CR>", { desc = "Git
 map("n", "gd", ":echo 'LSP not configured yet'<CR>", { desc = "Go to definition" })
 map("n", "gr", ":echo 'LSP not configured yet'<CR>", { desc = "References" })
 map("n", "K", ":echo 'LSP not configured yet'<CR>", { desc = "Hover" })
-map("n", "<leader>rn", ":echo 'LSP not configured yet'<CR>", { desc = "Rename" })
-map("n", "<leader>ca", ":echo 'LSP not configured yet'<CR>", { desc = "Code action" })
+-- map("n", "<leader>lr", ":echo 'LSP not configured yet'<CR>", { desc = "Rename" })
+-- map("n", "<leader>la", ":echo 'LSP not configured yet'<CR>", { desc = "Code action" })
 
 -- ============================================================================
 -- AI 助手（预留位置，由 Copilot/CodeCompanion 实现）
@@ -149,5 +148,24 @@ map("n", "]d", vim.diagnostic.goto_next, { desc = "Next diagnostic" })
 map("t", "<Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 map("t", "jk", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
+-- 工作目录
+map("n", "<leader>cd", ":cd %:p:h<CR>:pwd<CR>", { desc = "切换工作目录到当前文件目录" })
+
+-- 折叠/展开单个块（保留默认快捷键，新增更易记的）
+map("n", "<leader>zc", "zc", { desc = "[Z]折叠[c]当前块" })
+map("n", "<leader>zo", "zo", { desc = "[Z]展开[o]当前块" })
+map("n", "<leader>za", "za", { desc = "[Z]切换[a]当前块折叠状态" })
+
+-- 折叠/展开所有块（高频需求）
+map("n", "<leader>zC", "zM", { desc = "[Z]折叠[C]所有块" })
+map("n", "<leader>zO", "zR", { desc = "[Z]展开[O]所有块" })
+
+-- 折叠/展开当前层级（比如 HTML 嵌套标签）
+map("n", "<leader>z1", "z1", { desc = "[Z]折叠到层级 1" })
+map("n", "<leader>z9", "z9", { desc = "[Z]展开到层级 9" })
+
+-- 跳转到上/下一个折叠块
+map("n", "[z", ":foldprevious<CR>", { desc = "跳转到上一个折叠块" })
+map("n", "]z", ":foldnext<CR>", { desc = "跳转到下一个折叠块" })
 -- 打开终端（由 snacks.nvim 实现，快捷键在插件配置中定义）
 -- map("n", "<leader>ft", function() Snacks.terminal.toggle() end, { desc = "Toggle terminal" })

@@ -1,0 +1,5352 @@
+diff --git a/README.md b/README.md
+index 3d3a561..f149550 100644
+--- a/README.md
++++ b/README.md
+@@ -62,53 +62,53 @@ nvim
+ 
+ ### 基础操作
+ 
+-| 快捷键 | 功能 | 模式 |
+-|--------|------|------|
+-| `<Space>` | Leader 键 | - |
+-| `jk` | 退出插入模式 | Insert |
+-| `<leader>w` | 保存文件 | Normal |
+-| `<leader>qq` | 关闭窗口 | Normal |
++| 快捷键       | 功能         | 模式   |
++| ------------ | ------------ | ------ |
++| `<Space>`    | Leader 键    | -      |
++| `jk`         | 退出插入模式 | Insert |
++| `<leader>w`  | 保存文件     | Normal |
++| `<leader>qq` | 关闭窗口     | Normal |
+ 
+ ### 文件管理
+ 
+-| 快捷键 | 功能 |
+-|--------|------|
+-| `<leader>e` | 切换文件树（snacks） |
+-| `-` | Oil.nvim 编辑目录 |
+-| `<leader>ff` | 查找文件 |
+-| `<leader>fg` | 全局搜索 |
+-| `<leader>fb` | 查找 Buffer |
++| 快捷键       | 功能                 |
++| ------------ | -------------------- |
++| `<leader>e`  | 切换文件树（snacks） |
++| `-`          | Oil.nvim 编辑目录    |
++| `<leader>ff` | 查找文件             |
++| `<leader>fg` | 全局搜索             |
++| `<leader>fb` | 查找 Buffer          |
+ 
+ ### Git 操作
+ 
+-| 快捷键 | 功能 |
+-|--------|------|
+-| `<leader>gg` | 打开 LazyGit |
++| 快捷键       | 功能            |
++| ------------ | --------------- |
++| `<leader>gg` | 打开 LazyGit    |
+ | `<leader>gd` | Git diff 覆盖层 |
+-| `<leader>gb` | Git blame |
++| `<leader>gb` | Git blame       |
+ 
+ ### 主题切换
+ 
+-| 快捷键 | 功能 |
+-|--------|------|
++| 快捷键       | 功能       |
++| ------------ | ---------- |
+ | `<leader>tn` | 下一个主题 |
+ | `<leader>tp` | 上一个主题 |
+-| `<leader>ts` | 选择主题 |
++| `<leader>ts` | 选择主题   |
+ 
+ ### LSP 快捷键
+ 
+-| 快捷键 | 功能 |
+-|--------|------|
+-| `gd` | 跳转到定义 |
+-| `gr` | 查找引用 |
+-| `K` | 悬停文档 |
+-| `<leader>rn` | 重命名 |
+-| `<leader>ca` | 代码操作 |
++| 快捷键       | 功能       |
++| ------------ | ---------- |
++| `gd`         | 跳转到定义 |
++| `gr`         | 查找引用   |
++| `K`          | 悬停文档   |
++| `<leader>rn` | 重命名     |
++| `<leader>ca` | 代码操作   |
+ 
+ ### AI 助手
+ 
+-| 快捷键 | 功能 |
+-|--------|------|
++| 快捷键       | 功能         |
++| ------------ | ------------ |
+ | `<leader>aa` | 打开 AI 对话 |
+ | `<leader>at` | 切换 AI 建议 |
+ 
+@@ -165,8 +165,9 @@ map("n", "<leader>custom", ":YourCommand<CR>", { desc = "Custom command" })
+ 
+ ## 🤝 贡献
+ 
+-欢迎提交 Issue 和 Pull Request！
++e迎提交 Issue 和 Pull Request！
+ 
+ ## 📄 许可证
+ 
+-MIT License
+\ No newline at end of file
++MIT License
++
+diff --git a/lua/config/keymaps.lua b/lua/config/keymaps.lua
+index 84d5691..e8d0e71 100644
+--- a/lua/config/keymaps.lua
++++ b/lua/config/keymaps.lua
+@@ -50,8 +50,8 @@ map("n", "<C-Right>", ":vertical resize +2<CR>", opts)
+ -- ============================================================================
+ 
+ -- Buffer 导航
+-map("n", "<S-l>", ":bnext<CR>", { desc = "Next buffer" })
+-map("n", "<S-h>", ":bprevious<CR>", { desc = "Previous buffer" })
++map("n", "<leader>bn", ":bnext<CR>", { desc = "Next buffer" })
++map("n", "<leader>bp", ":bprevious<CR>", { desc = "Previous buffer" })
+ map("n", "<leader>bd", ":bdelete<CR>", { desc = "Delete buffer" })
+ 
+ -- ============================================================================
+@@ -97,7 +97,6 @@ map("n", "]<space>", "o<Esc>k", { desc = "Insert line below" })
+ -- map("n", "<leader>fb", function() Snacks.picker.buffers() end, { desc = "Find buffers" })
+ -- map("n", "<leader>fr", function() Snacks.picker.recent() end, { desc = "Recent files" })
+ 
+-
+ -- ============================================================================
+ -- Git 操作（预留位置，由插件实现）
+ -- ============================================================================
+@@ -113,8 +112,8 @@ map("n", "<leader>gb", ":echo 'Git blame not configured yet'<CR>", { desc = "Git
+ map("n", "gd", ":echo 'LSP not configured yet'<CR>", { desc = "Go to definition" })
+ map("n", "gr", ":echo 'LSP not configured yet'<CR>", { desc = "References" })
+ map("n", "K", ":echo 'LSP not configured yet'<CR>", { desc = "Hover" })
+-map("n", "<leader>rn", ":echo 'LSP not configured yet'<CR>", { desc = "Rename" })
+-map("n", "<leader>ca", ":echo 'LSP not configured yet'<CR>", { desc = "Code action" })
++-- map("n", "<leader>lr", ":echo 'LSP not configured yet'<CR>", { desc = "Rename" })
++-- map("n", "<leader>la", ":echo 'LSP not configured yet'<CR>", { desc = "Code action" })
+ 
+ -- ============================================================================
+ -- AI 助手（预留位置，由 Copilot/CodeCompanion 实现）
+@@ -149,5 +148,24 @@ map("n", "]d", vim.diagnostic.goto_next, { desc = "Next diagnostic" })
+ map("t", "<Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+ map("t", "jk", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+ 
++-- 工作目录
++map("n", "<leader>cd", ":cd %:p:h<CR>:pwd<CR>", { desc = "切换工作目录到当前文件目录" })
++
++-- 折叠/展开单个块（保留默认快捷键，新增更易记的）
++map("n", "<leader>zc", "zc", { desc = "[Z]折叠[c]当前块" })
++map("n", "<leader>zo", "zo", { desc = "[Z]展开[o]当前块" })
++map("n", "<leader>za", "za", { desc = "[Z]切换[a]当前块折叠状态" })
++
++-- 折叠/展开所有块（高频需求）
++map("n", "<leader>zC", "zM", { desc = "[Z]折叠[C]所有块" })
++map("n", "<leader>zO", "zR", { desc = "[Z]展开[O]所有块" })
++
++-- 折叠/展开当前层级（比如 HTML 嵌套标签）
++map("n", "<leader>z1", "z1", { desc = "[Z]折叠到层级 1" })
++map("n", "<leader>z9", "z9", { desc = "[Z]展开到层级 9" })
++
++-- 跳转到上/下一个折叠块
++map("n", "[z", ":foldprevious<CR>", { desc = "跳转到上一个折叠块" })
++map("n", "]z", ":foldnext<CR>", { desc = "跳转到下一个折叠块" })
+ -- 打开终端（由 snacks.nvim 实现，快捷键在插件配置中定义）
+ -- map("n", "<leader>ft", function() Snacks.terminal.toggle() end, { desc = "Toggle terminal" })
+diff --git a/lua/config/options.lua b/lua/config/options.lua
+index b6527d0..9bcca0e 100644
+--- a/lua/config/options.lua
++++ b/lua/config/options.lua
+@@ -53,15 +53,15 @@ opt.cmdheight = 1
+ -- 显示不可见字符
+ opt.list = true
+ opt.listchars = {
+-  tab = "→ ",
+-  trail = "·",
+-  extends = "»",
+-  precedes = "«",
+-  nbsp = "␣",
++	tab = "→ ",
++	trail = "·",
++	extends = "»",
++	precedes = "«",
++	nbsp = "␣",
+ }
+ 
+ -- 始终显示状态栏
+-opt.laststatus = 3  -- 全局状态栏
++opt.laststatus = 3 -- 全局状态栏
+ 
+ -- 更好的补全体验
+ opt.completeopt = "menu,menuone,noselect"
+@@ -76,29 +76,29 @@ opt.splitbelow = true
+ -- 折叠设置
+ opt.foldmethod = "expr"
+ opt.foldexpr = "nvim_treesitter#foldexpr()"
+-opt.foldenable = false  -- 默认不折叠
++opt.foldenable = false -- 默认不折叠
+ 
+ -- ============================================================================
+ -- 编辑行为
+ -- ============================================================================
+ 
+ -- 缩进设置
+-opt.tabstop = 4         -- Tab 宽度
+-opt.shiftwidth = 4      -- 自动缩进宽度
+-opt.expandtab = true    -- 使用空格替代 Tab
+-opt.smartindent = true  -- 智能缩进
+-opt.autoindent = true   -- 自动缩进
++opt.tabstop = 4 -- Tab 宽度
++opt.shiftwidth = 4 -- 自动缩进宽度
++opt.expandtab = true -- 使用空格替代 Tab
++opt.smartindent = true -- 智能缩进
++opt.autoindent = true -- 自动缩进
+ 
+ -- 搜索设置
+-opt.ignorecase = true   -- 搜索忽略大小写
+-opt.smartcase = true    -- 智能大小写（有大写字母时区分）
+-opt.hlsearch = true     -- 高亮搜索结果
+-opt.incsearch = true    -- 增量搜索
++opt.ignorecase = true -- 搜索忽略大小写
++opt.smartcase = true -- 智能大小写（有大写字母时区分）
++opt.hlsearch = true -- 高亮搜索结果
++opt.incsearch = true -- 增量搜索
+ 
+ -- 行为设置
+-opt.wrap = false        -- 不自动换行
+-opt.scrolloff = 8       -- 垂直滚动时保持 8 行边距
+-opt.sidescrolloff = 8   -- 水平滚动时保持 8 列边距
++opt.wrap = false -- 不自动换行
++opt.scrolloff = 8 -- 垂直滚动时保持 8 行边距
++opt.sidescrolloff = 8 -- 水平滚动时保持 8 列边距
+ 
+ -- 自动换行在单词边界
+ opt.linebreak = true
+@@ -120,7 +120,7 @@ opt.hidden = true
+ -- ============================================================================
+ 
+ -- 减少重绘
+-opt.lazyredraw = true
++opt.lazyredraw = false
+ 
+ -- 更快的宏执行
+ opt.regexpengine = 1
+diff --git a/lua/lsp/handlers.lua b/lua/lsp/handlers.lua
+index 56adb55..1b06d2c 100644
+--- a/lua/lsp/handlers.lua
++++ b/lua/lsp/handlers.lua
+@@ -10,10 +10,10 @@ local M = {}
+ -- ============================================================================
+ 
+ local signs = {
+-  { name = "DiagnosticSignError", text = "" },
+-  { name = "DiagnosticSignWarn", text = "" },
+-  { name = "DiagnosticSignHint", text = "" },
+-  { name = "DiagnosticSignInfo", text = "" },
++	{ name = "DiagnosticSignError", text = "" },
++	{ name = "DiagnosticSignWarn", text = "" },
++	{ name = "DiagnosticSignHint", text = "" },
++	{ name = "DiagnosticSignInfo", text = "" },
+ }
+ 
+ -- ============================================================================
+@@ -21,65 +21,65 @@ local signs = {
+ -- ============================================================================
+ 
+ function M.setup()
+-  -- 设置诊断符号
+-  for _, sign in ipairs(signs) do
+-    vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
+-  end
+-
+-  -- ========================================================================
+-  -- 诊断配置
+-  -- ========================================================================
+-  vim.diagnostic.config({
+-    -- 虚拟文本
+-    virtual_text = {
+-      spacing = 4,
+-      prefix = "●",
+-      severity = vim.diagnostic.severity.ERROR, -- 只显示错误
+-    },
+-    
+-    -- 符号列
+-    signs = true,
+-    
+-    -- 下划线
+-    underline = true,
+-    
+-    -- 更新时机
+-    update_in_insert = false,
+-    
+-    -- 严重程度排序
+-    severity_sort = true,
+-    
+-    -- 浮动窗口
+-    float = {
+-      focusable = false,
+-      style = "minimal",
+-      border = "rounded",
+-      source = "always",
+-      header = "",
+-      prefix = "",
+-      format = function(diagnostic)
+-        return string.format("[%s] %s", diagnostic.source or "LSP", diagnostic.message)
+-      end,
+-    },
+-  })
+-
+-  -- ========================================================================
+-  -- 悬停文档处理器
+-  -- ========================================================================
+-  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+-    border = "rounded",
+-    focusable = true,
+-    max_width = 80,
+-  })
+-
+-  -- ========================================================================
+-  -- 签名帮助处理器
+-  -- ========================================================================
+-  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+-    border = "rounded",
+-    focusable = false,
+-    close_events = { "CursorMoved", "BufHidden", "InsertCharPre" },
+-  })
++	-- 设置诊断符号
++	for _, sign in ipairs(signs) do
++		vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
++	end
++
++	-- ========================================================================
++	-- 诊断配置
++	-- ========================================================================
++	vim.diagnostic.config({
++		-- 虚拟文本
++		virtual_text = {
++			spacing = 4,
++			prefix = "●",
++			severity = vim.diagnostic.severity.ERROR, -- 只显示错误
++		},
++
++		-- 符号列
++		signs = true,
++
++		-- 下划线
++		underline = true,
++
++		-- 更新时机
++		update_in_insert = false,
++
++		-- 严重程度排序
++		severity_sort = true,
++
++		-- 浮动窗口
++		float = {
++			focusable = false,
++			style = "minimal",
++			border = "rounded",
++			source = "always",
++			header = "",
++			prefix = "",
++			format = function(diagnostic)
++				return string.format("[%s] %s", diagnostic.source or "LSP", diagnostic.message)
++			end,
++		},
++	})
++
++	-- ========================================================================
++	-- 悬停文档处理器
++	-- ========================================================================
++	vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
++		border = "rounded",
++		focusable = true,
++		max_width = 80,
++	})
++
++	-- ========================================================================
++	-- 签名帮助处理器
++	-- ========================================================================
++	vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
++		border = "rounded",
++		focusable = false,
++		close_events = { "CursorMoved", "BufHidden", "InsertCharPre" },
++	})
+ end
+ 
+ -- ============================================================================
+@@ -89,90 +89,87 @@ end
+ ---@param client table LSP 客户端
+ ---@param bufnr number Buffer 编号
+ function M.on_attach(client, bufnr)
+-  local utils = require("lsp.utils")
+-
+-  -- ========================================================================
+-  -- 快捷键映射
+-  -- ========================================================================
+-  utils.buf_keymaps(bufnr, {
+-    -- 跳转
+-    { "n", "gd", vim.lsp.buf.definition, { desc = "LSP: 跳转到定义" } },
+-    { "n", "gD", vim.lsp.buf.declaration, { desc = "LSP: 跳转到声明" } },
+-    { "n", "gr", vim.lsp.buf.references, { desc = "LSP: 查找引用" } },
+-    { "n", "gi", vim.lsp.buf.implementation, { desc = "LSP: 跳转到实现" } },
+-    { "n", "gt", vim.lsp.buf.type_definition, { desc = "LSP: 跳转到类型定义" } },
+-
+-    -- 文档
+-    { "n", "K", vim.lsp.buf.hover, { desc = "LSP: 显示悬停文档" } },
+-    { "n", "<C-k>", vim.lsp.buf.signature_help, { desc = "LSP: 显示签名帮助" } },
+-    { "i", "<C-k>", vim.lsp.buf.signature_help, { desc = "LSP: 显示签名帮助" } },
+-
+-    -- 编辑
+-    { "n", "<leader>rn", vim.lsp.buf.rename, { desc = "LSP: 重命名" } },
+-    { "n", "<leader>ca", vim.lsp.buf.code_action, { desc = "LSP: 代码操作" } },
+-    { "v", "<leader>ca", vim.lsp.buf.code_action, { desc = "LSP: 代码操作" } },
+-
+-    -- 格式化
+-    {
+-      "n",
+-      "<leader>f",
+-      function()
+-        utils.format(bufnr)
+-      end,
+-      { desc = "LSP: 格式化" },
+-    },
+-    {
+-      "v",
+-      "<leader>f",
+-      function()
+-        utils.format(bufnr)
+-      end,
+-      { desc = "LSP: 格式化选区" },
+-    },
+-
+-    -- 诊断
+-    { "n", "[d", utils.goto_prev_diagnostic, { desc = "LSP: 上一个诊断" } },
+-    { "n", "]d", utils.goto_next_diagnostic, { desc = "LSP: 下一个诊断" } },
+-    { "n", "<leader>e", vim.diagnostic.open_float, { desc = "LSP: 显示诊断" } },
+-    { "n", "<leader>q", vim.diagnostic.setloclist, { desc = "LSP: 诊断列表" } },
+-
+-    -- Inlay Hints
+-    {
+-      "n",
+-      "<leader>th",
+-      function()
+-        utils.toggle_inlay_hints(bufnr)
+-      end,
+-      { desc = "LSP: 切换 Inlay Hints" },
+-    },
+-  })
+-
+-  -- ========================================================================
+-  -- 设置文档符号高亮
+-  -- ========================================================================
+-  utils.setup_document_highlight(client, bufnr)
+-
+-  -- ========================================================================
+-  -- 设置自动格式化
+-  -- ========================================================================
+-  if client.server_capabilities.documentFormattingProvider then
+-    utils.setup_format_on_save(bufnr)
+-  end
+-
+-  -- ========================================================================
+-  -- 启用 Inlay Hints（如果支持）
+-  -- ========================================================================
+-  if client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
+-    vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+-  end
+-
+-  -- ========================================================================
+-  -- 日志
+-  -- ========================================================================
+-  vim.notify(
+-    string.format("LSP: %s attached to buffer %d", client.name, bufnr),
+-    vim.log.levels.DEBUG
+-  )
++	local utils = require("lsp.utils")
++
++	-- ========================================================================
++	-- 快捷键映射
++	-- ========================================================================
++	utils.buf_keymaps(bufnr, {
++		-- 跳转
++		{ "n", "gd", vim.lsp.buf.definition, { desc = "LSP: 跳转到定义" } },
++		{ "n", "gD", vim.lsp.buf.declaration, { desc = "LSP: 跳转到声明" } },
++		{ "n", "gr", vim.lsp.buf.references, { desc = "LSP: 查找引用" } },
++		{ "n", "gi", vim.lsp.buf.implementation, { desc = "LSP: 跳转到实现" } },
++		{ "n", "gt", vim.lsp.buf.type_definition, { desc = "LSP: 跳转到类型定义" } },
++
++		-- 文档
++		{ "n", "K", vim.lsp.buf.hover, { desc = "LSP: 显示悬停文档" } },
++		{ "n", "<C-k>", vim.lsp.buf.signature_help, { desc = "LSP: 显示签名帮助" } },
++		{ "i", "<C-k>", vim.lsp.buf.signature_help, { desc = "LSP: 显示签名帮助" } },
++
++		-- 编辑
++		-- { "n", "<leader>rn", vim.lsp.buf.rename, { desc = "LSP: 重命名" } },
++		-- { "n", "<leader>ca", vim.lsp.buf.code_action, { desc = "LSP: 代码操作" } },
++		-- { "v", "<leader>ca", vim.lsp.buf.code_action, { desc = "LSP: 代码操作" } },
++
++		-- 格式化
++		-- {
++		-- 	"n",
++		-- 	"<leader>cf",
++		-- 	function()
++		-- 		utils.format(bufnr)
++		-- 	end,
++		-- 	{ desc = "LSP: 格式化" },
++		-- },
++		-- {
++		-- 	"v",
++		-- 	"<leader>cf",
++		-- 	function()
++		-- 		utils.format(bufnr)
++		-- 	end,
++		-- 	{ desc = "LSP: 格式化选区" },
++		-- },
++
++		-- 诊断
++		{ "n", "[d", utils.goto_prev_diagnostic, { desc = "LSP: 上一个诊断" } },
++		{ "n", "]d", utils.goto_next_diagnostic, { desc = "LSP: 下一个诊断" } },
++		{ "n", "<leader>le", vim.diagnostic.open_float, { desc = "LSP: 显示诊断" } },
++		{ "n", "<leader>lq", vim.diagnostic.setloclist, { desc = "LSP: 诊断列表" } },
++
++		-- Inlay Hints
++		{
++			"n",
++			"<leader>lh",
++			function()
++				utils.toggle_inlay_hints(bufnr)
++			end,
++			{ desc = "LSP: 切换 Inlay Hints" },
++		},
++	})
++
++	-- ========================================================================
++	-- 设置文档符号高亮
++	-- ========================================================================
++	utils.setup_document_highlight(client, bufnr)
++
++	-- ========================================================================
++	-- 设置自动格式化
++	-- ========================================================================
++	if client.server_capabilities.documentFormattingProvider then
++		utils.setup_format_on_save(bufnr)
++	end
++
++	-- ========================================================================
++	-- 启用 Inlay Hints（如果支持）
++	-- ========================================================================
++	if client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
++		vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
++	end
++
++	-- ========================================================================
++	-- 日志
++	-- ========================================================================
++	vim.notify(string.format("LSP: %s attached to buffer %d", client.name, bufnr), vim.log.levels.DEBUG)
+ end
+ 
+ -- ============================================================================
+@@ -180,38 +177,38 @@ end
+ -- ============================================================================
+ 
+ function M.capabilities()
+-  local capabilities = vim.lsp.protocol.make_client_capabilities()
+-
+-  -- ========================================================================
+-  -- 补全能力（适配 blink.cmp）
+-  -- ========================================================================
+-  capabilities.textDocument.completion.completionItem = {
+-    documentationFormat = { "markdown", "plaintext" },
+-    snippetSupport = true,
+-    preselectSupport = true,
+-    insertReplaceSupport = true,
+-    labelDetailsSupport = true,
+-    deprecatedSupport = true,
+-    commitCharactersSupport = true,
+-    tagSupport = { valueSet = { 1 } },
+-    resolveSupport = {
+-      properties = {
+-        "documentation",
+-        "detail",
+-        "additionalTextEdits",
+-      },
+-    },
+-  }
+-
+-  -- ========================================================================
+-  -- 折叠能力
+-  -- ========================================================================
+-  capabilities.textDocument.foldingRange = {
+-    dynamicRegistration = false,
+-    lineFoldingOnly = true,
+-  }
+-
+-  return capabilities
++	local capabilities = vim.lsp.protocol.make_client_capabilities()
++
++	-- ========================================================================
++	-- 补全能力（适配 blink.cmp）
++	-- ========================================================================
++	capabilities.textDocument.completion.completionItem = {
++		documentationFormat = { "markdown", "plaintext" },
++		snippetSupport = true,
++		preselectSupport = true,
++		insertReplaceSupport = true,
++		labelDetailsSupport = true,
++		deprecatedSupport = true,
++		commitCharactersSupport = true,
++		tagSupport = { valueSet = { 1 } },
++		resolveSupport = {
++			properties = {
++				"documentation",
++				"detail",
++				"additionalTextEdits",
++			},
++		},
++	}
++
++	-- ========================================================================
++	-- 折叠能力
++	-- ========================================================================
++	capabilities.textDocument.foldingRange = {
++		dynamicRegistration = false,
++		lineFoldingOnly = true,
++	}
++
++	return capabilities
+ end
+ 
+ return M
+diff --git a/lua/plugins/configs/colors.lua b/lua/plugins/configs/colors.lua
+index f27ecb4..37ab316 100644
+--- a/lua/plugins/configs/colors.lua
++++ b/lua/plugins/configs/colors.lua
+@@ -26,10 +26,10 @@ return {
+     -- ========================================================================
+     -- 启用的颜色格式
+     -- ========================================================================
+-    enable_named_colors = true,
+-    enable_tailwind = true,
++    -- enable_named_colors = true,
++    -- enable_tailwind = true,
+ 
+-    -- ========================================================================
++       -- ========================================================================
+     -- 自定义颜色模式
+     -- ========================================================================
+     custom_colors = {
+@@ -43,4 +43,34 @@ return {
+     exclude_filetypes = {},
+     exclude_buftypes = {},
+   },
++--   require("nvim-highlight-colors").setup({
++--   -- 核心：添加 blink.cmp 补全窗口的文件类型/窗口匹配
++--   enable_named_colors = true, -- 渲染命名颜色（如 red/blue）
++--   enable_tailwind = true, -- 兼容 Tailwind 颜色
++--   -- 覆盖 blink.cmp 的补全弹窗窗口
++--   custom_highlights = {
++--     -- 匹配 blink.cmp 补全菜单的高亮组
++--     BlinkCmpMenu = { fg = "none", bg = "none" },
++--     BlinkCmpMenuSelection = { fg = "none", bg = "none" },
++--   },
++--   -- 强制高亮 blink.cmp 的补全窗口缓冲区
++--   filetypes = {
++--     "css", "scss", "less", "vue", "html", "javascript", "typescript",
++--     -- 新增 blink.cmp 补全窗口的虚拟缓冲区类型
++--     "blink-cmp",
++--   },
++--   -- 手动指定需要高亮的窗口（blink.cmp 补全窗口的 winhighlight 包含 BlinkCmpMenu）
++--   winhighlight = { "BlinkCmpMenu", "BlinkCmpMenuSelection" },
++-- })
++--
++-- -- 额外：自动触发 blink.cmp 补全窗口的颜色高亮
++-- vim.api.nvim_create_autocmd("WinEnter", {
++--   pattern = "*",
++--   callback = function()
++--     local winhl = vim.api.nvim_get_option_value("winhighlight", { win = 0 })
++--     if winhl:find("BlinkCmpMenu") then
++--       require("nvim-highlight-colors").turnOn()
++--     end
++--   end,
++-- })
+ }
+diff --git a/lua/plugins/configs/completion.lua b/lua/plugins/configs/completion.lua
+index 52b38ef..8188b76 100644
+--- a/lua/plugins/configs/completion.lua
++++ b/lua/plugins/configs/completion.lua
+@@ -3,163 +3,179 @@
+ -- ============================================================================
+ 
+ return {
+-  "saghen/blink.cmp",
+-  lazy = false,
+-  dependencies = {
+-    "rafamadriz/friendly-snippets",
+-  },
+-  version = "v0.*",
+-  opts = {
+-    -- ===== 补全触发配置 =====
+-    keymap = {
+-      preset = "default",
+-      ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
+-      ["<C-e>"] = { "hide", "fallback" },
+-      ["<CR>"] = { "accept", "fallback" },
++	"saghen/blink.cmp",
++	lazy = false,
++	dependencies = {
++		"rafamadriz/friendly-snippets",
++		"fang2hou/blink-copilot",
++		"j-hui/fidget.nvim",
++		"folke/lazydev.nvim",
++	},
++	version = "v0.*",
++	opts = {
++		-- ===== 补全触发配置 =====
++		keymap = {
++			preset = "default",
++			["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
++			["<C-e>"] = { "hide", "fallback" },
++			["<CR>"] = { "accept", "fallback" },
+ 
+-      ["<Tab>"] = {
+-        function(cmp)
+-          if cmp.snippet_active() then
+-            return cmp.accept()
+-          else
+-            return cmp.select_next()
+-          end
+-        end,
+-        "snippet_forward",
+-        "fallback",
+-      },
++			["<Tab>"] = {
++				function(cmp)
++					if cmp.snippet_active() then
++						return cmp.accept()
++					else
++						return cmp.select_next()
++					end
++				end,
++				"snippet_forward",
++				"fallback",
++			},
+ 
+-      ["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
+-      ["<C-j>"] = { "select_next", "fallback" },
+-      ["<C-k>"] = { "select_prev", "fallback" },
+-      ["<C-b>"] = { "scroll_documentation_up", "fallback" },
+-      ["<C-f>"] = { "scroll_documentation_down", "fallback" },
+-    },
++			["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
++			["<C-j>"] = { "select_next", "fallback" },
++			["<C-k>"] = { "select_prev", "fallback" },
++			["<C-b>"] = { "scroll_documentation_up", "fallback" },
++			["<C-f>"] = { "scroll_documentation_down", "fallback" },
++		},
+ 
+-    -- ===== 补全外观配置 =====
+-    appearance = {
+-      use_nvim_cmp_as_default = true,
+-      nerd_font_variant = "mono",
+-    },
++		-- ===== 补全外观配置 =====
++		appearance = {
++			use_nvim_cmp_as_default = true,
++			nerd_font_variant = "mono",
++		},
+ 
+-    -- ===== 补全源配置 =====
+-    sources = {
+-      default = { "lsp", "path", "snippets", "buffer" },
+-      providers = {
+-        lsp = {
+-          name = "LSP",
+-          module = "blink.cmp.sources.lsp",
+-          score_offset = 100,
+-        },
+-        path = {
+-          name = "Path",
+-          module = "blink.cmp.sources.path",
+-          score_offset = 3,
+-          opts = {
+-            trailing_slash = false,
+-            label_trailing_slash = true,
+-            get_cwd = function(context)
+-              return vim.fn.expand(("#%d:p:h"):format(context.bufnr))
+-            end,
+-            show_hidden_files_by_default = false,
+-          },
+-        },
+-        snippets = {
+-          name = "Snippets",
+-          module = "blink.cmp.sources.snippets",
+-          score_offset = 80,
+-          opts = {
+-            friendly_snippets = true,
+-            search_paths = { vim.fn.stdpath("config") .. "/snippets" },
+-            global_snippets = { "all" },
+-            extended_filetypes = {},
+-            ignored_filetypes = {},
+-          },
+-        },
+-        buffer = {
+-          name = "Buffer",
+-          module = "blink.cmp.sources.buffer",
+-          score_offset = 5,
+-          opts = {
+-            get_bufnrs = function()
+-              local bufs = {}
+-              for _, win in ipairs(vim.api.nvim_list_wins()) do
+-                bufs[vim.api.nvim_win_get_buf(win)] = true
+-              end
+-              return vim.tbl_keys(bufs)
+-            end,
+-          },
+-        },
+-      },
+-    },
++		-- ===== 补全源配置 =====
++		sources = {
++			default = { "lsp", "path", "snippets", "buffer", "lazydev", "copilot" },
++			providers = {
++				lsp = {
++					name = "LSP",
++					module = "blink.cmp.sources.lsp",
++					-- 核心配置：启用颜色图标，并自定义色块样式（支持 emoji/nerd font/纯文本）
++					opts = { tailwind_color_icon = "██" }, -- "██" 是色块，也可以用 "🟥" 等 emoji
++					score_offset = 100,
++				},
++				path = {
++					name = "Path",
++					module = "blink.cmp.sources.path",
++					score_offset = 3,
++					opts = {
++						trailing_slash = false,
++						label_trailing_slash = true,
++						get_cwd = function(context)
++							return vim.fn.expand(("#%d:p:h"):format(context.bufnr))
++						end,
++						show_hidden_files_by_default = false,
++					},
++				},
++				snippets = {
++					name = "Snippets",
++					module = "blink.cmp.sources.snippets",
++					score_offset = 80,
++					opts = {
++						friendly_snippets = true,
++						search_paths = { vim.fn.stdpath("config") .. "/snippets" },
++						global_snippets = { "all" },
++						extended_filetypes = {},
++						ignored_filetypes = {},
++					},
++				},
++				buffer = {
++					name = "Buffer",
++					module = "blink.cmp.sources.buffer",
++					score_offset = 5,
++					opts = {
++						get_bufnrs = function()
++							local bufs = {}
++							for _, win in ipairs(vim.api.nvim_list_wins()) do
++								bufs[vim.api.nvim_win_get_buf(win)] = true
++							end
++							return vim.tbl_keys(bufs)
++						end,
++					},
++				},
++				lazydev = { module = "lazydev.integrations.blink", score_offset = 85 },
++				copilot = {
++					name = "copilot",
++					module = "blink-copilot",
++					score_offset = 90,
++					async = true,
++					opts = {
++						kind_icon = "",
++						kind_hl = "DevIconCopilot",
++					},
++				},
++			},
++		},
+ 
+-    -- ===== 补全窗口配置 =====
+-    completion = {
+-      accept = {
+-        auto_brackets = {
+-          enabled = true,
+-        },
+-      },
++		-- ===== 补全窗口配置 =====
++		completion = {
++			accept = {
++				auto_brackets = {
++					enabled = true,
++				},
++			},
+ 
+-      menu = {
+-        enabled = true,
+-        min_width = 15,
+-        max_height = 10,
+-        border = "rounded",
+-        winblend = 0,
+-        scrolloff = 2,
+-        scrollbar = true,
+-        direction_priority = { "s", "n" },
++			menu = {
++				enabled = true,
++				min_width = 15,
++				max_height = 10,
++				border = "rounded",
++				winblend = 0,
++				scrolloff = 2,
++				scrollbar = true,
++				direction_priority = { "s", "n" },
+ 
+-        draw = {
+-          columns = {
+-            { "kind_icon" },
+-            { "label", "label_description", gap = 1 },
+-            { "kind" },
+-          },
+-        },
+-      },
++				draw = {
++					columns = {
++						{ "kind_icon" },
++						{ "label", "label_description", gap = 1 },
++						{ "kind" },
++					},
++				},
++			},
+ 
+-      documentation = {
+-        auto_show = true,
+-        auto_show_delay_ms = 500,
+-        update_delay_ms = 50,
+-        treesitter_highlighting = true,
+-        window = {
+-          min_width = 10,
+-          max_width = 60,
+-          max_height = 20,
+-          border = "rounded",
+-          winblend = 0,
+-          scrollbar = true,
+-          direction_priority = {
+-            menu_north = { "e", "w", "n", "s" },
+-            menu_south = { "e", "w", "s", "n" },
+-          },
+-        },
+-      },
++			documentation = {
++				auto_show = true,
++				auto_show_delay_ms = 500,
++				update_delay_ms = 50,
++				treesitter_highlighting = true,
++				window = {
++					min_width = 10,
++					max_width = 60,
++					max_height = 20,
++					border = "rounded",
++					winblend = 0,
++					scrollbar = true,
++					direction_priority = {
++						menu_north = { "e", "w", "n", "s" },
++						menu_south = { "e", "w", "s", "n" },
++					},
++				},
++			},
+ 
+-      ghost_text = {
+-        enabled = false, -- 禁用（与 Copilot 冲突）
+-      },
+-    },
++			ghost_text = {
++				enabled = false, -- 禁用（与 Copilot 冲突）
++			},
++		},
+ 
+-    -- ===== 签名帮助配置 =====
+-    signature = {
+-      enabled = true,
+-      window = {
+-        border = "rounded",
+-        scrollbar = false,
+-      },
+-    },
++		-- ===== 签名帮助配置 =====
++		signature = {
++			enabled = true,
++			window = {
++				border = "rounded",
++				scrollbar = false,
++			},
++		},
+ 
+-    -- ===== 模糊匹配配置 =====
+-  --  fuzzy = {
+-  --    use_typo_resistance = true,
+-  --    use_frecency = true,
+-  --    use_proximity = true,
+-  --    max_items = 200,
+-  --    sorts = { "label", "kind", "score" },
+-  --  },
+-  },
++		-- ===== 模糊匹配配置 =====
++		--  fuzzy = {
++		--    use_typo_resistance = true,
++		--    use_frecency = true,
++		--    use_proximity = true,
++		--    max_items = 200,
++		--    sorts = { "label", "kind", "score" },
++		--  },
++	},
+ }
+diff --git a/lua/plugins/configs/conform.lua b/lua/plugins/configs/conform.lua
+index 94e7f65..e670449 100644
+--- a/lua/plugins/configs/conform.lua
++++ b/lua/plugins/configs/conform.lua
+@@ -3,152 +3,152 @@
+ -- ============================================================================
+ 
+ return {
+-  "stevearc/conform.nvim",
+-  event = { "BufReadPre", "BufNewFile" },
+-  cmd = { "ConformInfo", "Format", "FormatToggle" },
+-  keys = {
+-    {
+-      "<leader>f",
+-      function()
+-        require("conform").format({
+-          async = true,
+-          lsp_fallback = true,
+-          timeout_ms = 1000,
+-        })
+-      end,
+-      mode = { "n", "v" },
+-      desc = "Format file or range",
+-    },
+-  },
+-  config = function()
+-    local conform = require("conform")
+-
+-    -- ========================================================================
+-    -- 格式化器配置
+-    -- ========================================================================
+-    conform.setup({
+-      formatters_by_ft = {
+-        -- JavaScript / TypeScript / Vue
+-        javascript = { "prettier" },
+-        javascriptreact = { "prettier" },
+-        typescript = { "prettier" },
+-        typescriptreact = { "prettier" },
+-        vue = { "prettier" },
+-        css = { "prettier" },
+-        scss = { "prettier" },
+-        less = { "prettier" },
+-        html = { "prettier" },
+-        json = { "prettier" },
+-        jsonc = { "prettier" },
+-        yaml = { "prettier" },
+-        markdown = { "prettier" },
+-        graphql = { "prettier" },
+-
+-        -- Lua
+-        lua = { "stylua" },
+-
+-        -- Rust
+-        rust = { "rustfmt" },
+-
+-        -- C / C++
+-        c = { "clang_format" },
+-        cpp = { "clang_format" },
+-
+-        -- Shell
+-        sh = { "shfmt" },
+-        bash = { "shfmt" },
+-
+-        -- Python
+-        python = { "isort", "black" },
+-
+-        -- Go
+-        go = { "goimports", "gofmt" },
+-      },
+-
+-      -- 格式化选项
+-      format_on_save = function(bufnr)
+-        -- 禁用特定文件类型的自动格式化
+-        local disable_filetypes = { c = true, cpp = true }
+-        if disable_filetypes[vim.bo[bufnr].filetype] then
+-          return
+-        end
+-
+-        -- 如果全局禁用了自动格式化，则跳过
+-        if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+-          return
+-        end
+-
+-        return {
+-          timeout_ms = 1000,
+-          lsp_fallback = true,
+-        }
+-      end,
+-
+-      -- 格式化器配置
+-      formatters = {
+-        shfmt = {
+-          prepend_args = { "-i", "2" }, -- 2 spaces indent
+-        },
+-        prettier = {
+-          prepend_args = { "--tab-width", "2" },
+-        },
+-      },
+-
+-      -- 通知设置
+-      notify_on_error = true,
+-    })
+-
+-    -- ========================================================================
+-    -- 用户命令
+-    -- ========================================================================
+-
+-    -- 手动格式化命令
+-    vim.api.nvim_create_user_command("Format", function(args)
+-      local range = nil
+-      if args.count ~= -1 then
+-        local end_line = vim.api.nvim_buf_get_lines(0, args.line2 - 1, args.line2, true)[1]
+-        range = {
+-          start = { args.line1, 0 },
+-          ["end"] = { args.line2, end_line:len() },
+-        }
+-      end
+-
+-      conform.format({
+-        async = true,
+-        lsp_fallback = true,
+-        range = range,
+-        timeout_ms = 1000,
+-      }, function(err)
+-        if not err then
+-          vim.notify("Formatted successfully", vim.log.levels.INFO)
+-        else
+-          vim.notify("Format failed: " .. tostring(err), vim.log.levels.ERROR)
+-        end
+-      end)
+-    end, { range = true, desc = "Format file or range" })
+-
+-    -- 切换自动格式化命令
+-    vim.api.nvim_create_user_command("FormatToggle", function(args)
+-      if args.bang then
+-        -- Toggle for current buffer
+-        vim.b.disable_autoformat = not vim.b.disable_autoformat
+-        if vim.b.disable_autoformat then
+-          vim.notify("Auto-format disabled for this buffer", vim.log.levels.INFO)
+-        else
+-          vim.notify("Auto-format enabled for this buffer", vim.log.levels.INFO)
+-        end
+-      else
+-        -- Toggle globally
+-        vim.g.disable_autoformat = not vim.g.disable_autoformat
+-        if vim.g.disable_autoformat then
+-          vim.notify("Auto-format disabled globally", vim.log.levels.INFO)
+-        else
+-          vim.notify("Auto-format enabled globally", vim.log.levels.INFO)
+-        end
+-      end
+-    end, {
+-      desc = "Toggle auto-format on save (! for buffer-local)",
+-      bang = true,
+-    })
+-  end,
++	"stevearc/conform.nvim",
++	event = { "BufReadPre", "BufNewFile" },
++	cmd = { "ConformInfo", "Format", "FormatToggle" },
++	keys = {
++		{
++			"<leader>cf",
++			function()
++				require("conform").format({
++					async = true,
++					lsp_fallback = true,
++					timeout_ms = 1000,
++				})
++			end,
++			mode = { "n", "v" },
++			desc = "Format file or range",
++		},
++	},
++	config = function()
++		local conform = require("conform")
++
++		-- ========================================================================
++		-- 格式化器配置
++		-- ========================================================================
++		conform.setup({
++			formatters_by_ft = {
++				-- JavaScript / TypeScript / Vue
++				javascript = { "prettier" },
++				javascriptreact = { "prettier" },
++				typescript = { "prettier" },
++				typescriptreact = { "prettier" },
++				vue = { "prettier" },
++				css = { "prettier" },
++				scss = { "prettier" },
++				less = { "prettier" },
++				html = { "prettier" },
++				json = { "prettier" },
++				jsonc = { "prettier" },
++				yaml = { "prettier" },
++				markdown = { "prettier" },
++				graphql = { "prettier" },
++
++				-- Lua
++				lua = { "stylua" },
++
++				-- Rust
++				rust = { "rustfmt" },
++
++				-- C / C++
++				c = { "clang_format" },
++				cpp = { "clang_format" },
++
++				-- Shell
++				sh = { "shfmt" },
++				bash = { "shfmt" },
++
++				-- Python
++				python = { "isort", "black" },
++
++				-- Go
++				go = { "goimports", "gofmt" },
++			},
++
++			-- 格式化选项
++			format_on_save = function(bufnr)
++				-- 禁用特定文件类型的自动格式化
++				local disable_filetypes = { c = true, cpp = true }
++				if disable_filetypes[vim.bo[bufnr].filetype] then
++					return
++				end
++
++				-- 如果全局禁用了自动格式化，则跳过
++				if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
++					return
++				end
++
++				return {
++					timeout_ms = 1000,
++					lsp_fallback = true,
++				}
++			end,
++
++			-- 格式化器配置
++			formatters = {
++				shfmt = {
++					prepend_args = { "-i", "2" }, -- 2 spaces indent
++				},
++				prettier = {
++					prepend_args = { "--tab-width", "2" },
++				},
++			},
++
++			-- 通知设置
++			notify_on_error = true,
++		})
++
++		-- ========================================================================
++		-- 用户命令
++		-- ========================================================================
++
++		-- 手动格式化命令
++		vim.api.nvim_create_user_command("Format", function(args)
++			local range = nil
++			if args.count ~= -1 then
++				local end_line = vim.api.nvim_buf_get_lines(0, args.line2 - 1, args.line2, true)[1]
++				range = {
++					start = { args.line1, 0 },
++					["end"] = { args.line2, end_line:len() },
++				}
++			end
++
++			conform.format({
++				async = true,
++				lsp_fallback = true,
++				range = range,
++				timeout_ms = 1000,
++			}, function(err)
++				if not err then
++					vim.notify("Formatted successfully", vim.log.levels.INFO)
++				else
++					vim.notify("Format failed: " .. tostring(err), vim.log.levels.ERROR)
++				end
++			end)
++		end, { range = true, desc = "Format file or range" })
++
++		-- 切换自动格式化命令
++		vim.api.nvim_create_user_command("FormatToggle", function(args)
++			if args.bang then
++				-- Toggle for current buffer
++				vim.b.disable_autoformat = not vim.b.disable_autoformat
++				if vim.b.disable_autoformat then
++					vim.notify("Auto-format disabled for this buffer", vim.log.levels.INFO)
++				else
++					vim.notify("Auto-format enabled for this buffer", vim.log.levels.INFO)
++				end
++			else
++				-- Toggle globally
++				vim.g.disable_autoformat = not vim.g.disable_autoformat
++				if vim.g.disable_autoformat then
++					vim.notify("Auto-format disabled globally", vim.log.levels.INFO)
++				else
++					vim.notify("Auto-format enabled globally", vim.log.levels.INFO)
++				end
++			end
++		end, {
++			desc = "Toggle auto-format on save (! for buffer-local)",
++			bang = true,
++		})
++	end,
+ }
+diff --git a/lua/plugins/configs/copilot.lua b/lua/plugins/configs/copilot.lua
+index ebcdbbd..879da9c 100644
+--- a/lua/plugins/configs/copilot.lua
++++ b/lua/plugins/configs/copilot.lua
+@@ -3,81 +3,81 @@
+ -- ============================================================================
+ 
+ return {
+-  -- ===== 1. Copilot 核心引擎 =====
+-  {
+-    "zbirenbaum/copilot.lua",
+-    cmd = "Copilot",
+-    event = "InsertEnter",
+-    opts = {
+-      panel = {
+-        enabled = false,
+-        auto_refresh = false,
+-      },
+-      suggestion = {
+-        enabled = true,
+-        auto_trigger = true,
+-        debounce = 75,
+-        keymap = {
+-          accept = "<M-l>",
+-          accept_word = false,
+-          accept_line = false,
+-          next = "<M-]>",
+-          prev = "<M-[>",
+-          dismiss = "<C-]>",
+-        },
+-      },
+-      filetypes = {
+-        yaml = true,
+-        markdown = true,
+-        help = false,
+-        gitcommit = true,
+-        gitrebase = false,
+-        hgcommit = false,
+-        svn = false,
+-        cvs = false,
+-        ["."] = false,
+-      },
+-      copilot_node_command = "node",
+-      server_opts_overrides = {},
+-    },
+-    config = function(_, opts)
+-      require("copilot").setup(opts)
++	-- ===== 1. Copilot 核心引擎 =====
++	{
++		"zbirenbaum/copilot.lua",
++		cmd = "Copilot",
++		event = "InsertEnter",
++		opts = {
++			panel = {
++				enabled = false,
++				auto_refresh = false,
++			},
++			suggestion = {
++				enabled = true,
++				auto_trigger = true,
++				debounce = 75,
++				keymap = {
++					accept = "<M-l>",
++					accept_word = false,
++					accept_line = false,
++					next = "<M-]>",
++					prev = "<M-[>",
++					dismiss = "<C-]>",
++				},
++			},
++			filetypes = {
++				yaml = true,
++				markdown = true,
++				help = false,
++				gitcommit = true,
++				gitrebase = false,
++				hgcommit = false,
++				svn = false,
++				cvs = false,
++				["."] = false,
++			},
++			copilot_node_command = "node",
++			server_opts_overrides = {},
++		},
++		config = function(_, opts)
++			require("copilot").setup(opts)
+ 
+-      vim.api.nvim_set_hl(0, "CopilotSuggestion", {
+-        fg = "#555555",
+-        ctermfg = 8,
+-        italic = true,
+-      })
+-    end,
+-  },
++			vim.api.nvim_set_hl(0, "CopilotSuggestion", {
++				fg = "#555555",
++				ctermfg = 8,
++				italic = true,
++			})
++		end,
++	},
+ 
+-  -- ===== 2. Copilot 与 blink.cmp 桥接 =====
+-  {
+-    "giuxtaposition/blink-cmp-copilot",
+-    dependencies = {
+-      "zbirenbaum/copilot.lua",
+-      "saghen/blink.cmp",
+-    },
+-    event = "InsertEnter",
+-    config = function()
+-      local function register_copilot()
+-        local ok, blink = pcall(require, "blink.cmp")
+-        if not ok then
+-          return
+-        end
++	-- ===== 2. Copilot 与 blink.cmp 桥接 =====
++	{
++		"fang2hou/blink-copilot",
++		dependencies = {
++			"zbirenbaum/copilot.lua",
++			"saghen/blink.cmp",
++		},
++		event = "InsertEnter",
++		config = function()
++			local function register_copilot()
++				local ok, blink = pcall(require, "blink.cmp")
++				if not ok then
++					return
++				end
+ 
+-        if blink.config and blink.config.sources then
+-          table.insert(blink.config.sources.default, "copilot")
+-          blink.config.sources.providers.copilot = {
+-            name = "copilot",
+-            module = "blink-cmp-copilot",
+-            score_offset = 100,
+-            async = true,
+-          }
+-        end
+-      end
++				if blink.config and blink.config.sources then
++					table.insert(blink.config.sources.default, "copilot")
++					blink.config.sources.providers.copilot = {
++						name = "copilot",
++						module = "blink-copilot",
++						score_offset = 100,
++						async = true,
++					}
++				end
++			end
+ 
+-      vim.defer_fn(register_copilot, 100)
+-    end,
+-  },
++			vim.defer_fn(register_copilot, 100)
++		end,
++	},
+ }
+diff --git a/lua/plugins/configs/lazygit.lua b/lua/plugins/configs/lazygit.lua
+index 8f9c66d..93ee767 100644
+--- a/lua/plugins/configs/lazygit.lua
++++ b/lua/plugins/configs/lazygit.lua
+@@ -3,42 +3,49 @@
+ -- ============================================================================
+ 
+ return {
+-  "kdheepak/lazygit.nvim",
+-  cmd = {
+-    "LazyGit",
+-    "LazyGitConfig",
+-    "LazyGitCurrentFile",
+-    "LazyGitFilter",
+-    "LazyGitFilterCurrentFile",
+-  },
+-  dependencies = {
+-    "nvim-lua/plenary.nvim",
+-  },
+-  keys = {
+-    { "<leader>gg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
+-    { "<leader>gf", "<cmd>LazyGitCurrentFile<cr>", desc = "LazyGit Current File" },
+-    { "<leader>gc", "<cmd>LazyGitConfig<cr>", desc = "LazyGit Config" },
+-  },
+-  config = function()
+-    -- LazyGit 配置
+-    vim.g.lazygit_floating_window_winblend = 0 -- 透明度
+-    vim.g.lazygit_floating_window_scaling_factor = 0.9 -- 窗口大小比例
+-    vim.g.lazygit_floating_window_border_chars = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" } -- 边框字符
+-    vim.g.lazygit_floating_window_use_plenary = 0 -- 使用 plenary.nvim
+-    vim.g.lazygit_use_neovim_remote = 1 -- 使用 neovim-remote
+-    vim.g.lazygit_use_custom_config_file_path = 0 -- 使用自定义配置文件
++	"kdheepak/lazygit.nvim",
++	cmd = {
++		"LazyGit",
++		"LazyGitConfig",
++		"LazyGitCurrentFile",
++		"LazyGitFilter",
++		"LazyGitFilterCurrentFile",
++	},
++	dependencies = {
++		"nvim-lua/plenary.nvim",
++	},
++	keys = {
++		{ "<leader>gg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
++		{ "<leader>gf", "<cmd>LazyGitCurrentFile<cr>", desc = "LazyGit Current File" },
++		{ "<leader>gc", "<cmd>LazyGitConfig<cr>", desc = "LazyGit Config" },
++	},
++	config = function()
++		-- LazyGit 配置
++		vim.g.lazygit_floating_window_winblend = 10 -- 透明度
++		vim.g.lazygit_floating_window_scaling_factor = 0.9 -- 窗口大小比例
++		vim.g.lazygit_floating_window_border_chars = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" } -- 边框字符
++		vim.g.lazygit_floating_window_use_plenary = 1 -- 使用 plenary.nvim
++		vim.g.lazygit_use_neovim_remote = 1 -- 使用 neovim-remote
++		vim.g.lazygit_use_custom_config_file_path = 0 -- 使用自定义配置文件
+ 
+-    -- 设置 LazyGit 打开时的自动命令
+-    vim.api.nvim_create_autocmd("BufEnter", {
+-      pattern = "*",
+-      callback = function()
+-        if vim.bo.filetype == "lazygit" then
+-          -- 禁用行号
+-          vim.opt_local.number = false
+-          vim.opt_local.relativenumber = false
+-        end
+-      end,
+-      desc = "Disable line numbers in LazyGit",
+-    })
+-  end,
++		vim.g.lazygit_on_exit_callback = function()
++			-- 退出后刷新文件缓冲区（避免 Git 操作后内容不同步）
++			vim.cmd("checktime")
++			-- 可选：刷新 GitGutter/NeoGit 等插件的状态
++			-- pcall(vim.cmd, "GitGutterRefresh")
++		end
++
++		-- 设置 LazyGit 打开时的自动命令
++		vim.api.nvim_create_autocmd("BufEnter", {
++			pattern = "*",
++			callback = function()
++				if vim.bo.filetype == "lazygit" then
++					-- 禁用行号
++					vim.opt_local.number = false
++					vim.opt_local.relativenumber = false
++				end
++			end,
++			desc = "Disable line numbers in LazyGit",
++		})
++	end,
+ }
+diff --git a/lua/plugins/configs/lint.lua b/lua/plugins/configs/lint.lua
+index 15549d6..a63664d 100644
+--- a/lua/plugins/configs/lint.lua
++++ b/lua/plugins/configs/lint.lua
+@@ -1,5 +1,5 @@
+ -- ============================================================================
+--- nvim-lint 统一 Linting 系统
++-- nvim-lint - Linting 工具配置
+ -- ============================================================================
+ 
+ return {
+@@ -8,11 +8,9 @@ return {
+   config = function()
+     local lint = require("lint")
+ 
+-    -- ========================================================================
+     -- Linter 配置
+-    -- ========================================================================
+     lint.linters_by_ft = {
+-      -- JavaScript / TypeScript / Vue
++      -- JavaScript/TypeScript
+       javascript = { "eslint_d" },
+       javascriptreact = { "eslint_d" },
+       typescript = { "eslint_d" },
+@@ -22,7 +20,7 @@ return {
+       -- Markdown
+       markdown = { "markdownlint" },
+ 
+-      -- Shell
++      -- Bash
+       sh = { "shellcheck" },
+       bash = { "shellcheck" },
+ 
+@@ -32,79 +30,52 @@ return {
+       -- YAML
+       yaml = { "yamllint" },
+ 
+-      -- Dockerfile
++      -- Docker
+       dockerfile = { "hadolint" },
+     }
+ 
+-    -- ========================================================================
+-    -- 自动触发 Linting
+-    -- ========================================================================
++    -- ✅ 修复：不要在这里修改 linter 配置
++    -- eslint_d 会自动处理 stdin 文件名
+ 
+     -- 创建自动命令组
+     local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
+ 
+-    -- 定义触发 Linting 的函数（带错误处理）
+-    local function try_lint()
+-      local ok, err = pcall(function()
+-        lint.try_lint()
+-      end)
+-      
+-      if not ok then
+-        -- 静默处理错误，避免干扰用户
+-        vim.schedule(function()
+-          vim.notify(
+-            string.format("Linting error: %s", tostring(err)),
+-            vim.log.levels.DEBUG
+-          )
+-        end)
+-      end
+-    end
+-
+-    -- 在以下事件触发 Linting
++    -- 自动触发 lint（带错误处理）
+     vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
+       group = lint_augroup,
+       callback = function()
+-        try_lint()
++        -- 只在有 linter 的文件类型中运行
++        if lint.linters_by_ft[vim.bo.filetype] then
++          -- 添加错误处理
++          local ok, err = pcall(lint.try_lint)
++          if not ok then
++            -- 静默失败，不打扰用户
++            vim.notify(
++              string.format("Lint 失败: %s", err),
++              vim.log.levels.DEBUG,  -- ✅ 改为 DEBUG 级别
++              { title = "nvim-lint" }
++            )
++          end
++        end
+       end,
+-      desc = "Trigger linting",
+     })
+ 
+-    -- ========================================================================
+-    -- 用户命令
+-    -- ========================================================================
+-
+-    -- 手动运行 Linter
++    -- 创建命令
+     vim.api.nvim_create_user_command("Lint", function()
+-      local ok, err = pcall(function()
+-        lint.try_lint()
+-      end)
+-      
+-      if ok then
+-        vim.notify("Linting completed", vim.log.levels.INFO)
+-      else
+-        vim.notify(
+-          string.format("Linting failed: %s", tostring(err)),
+-          vim.log.levels.ERROR
+-        )
+-      end
+-    end, { desc = "Trigger linting for current file" })
++      lint.try_lint()
++    end, { desc = "手动运行 Linter" })
+ 
+-    -- 显示 Linter 信息
+     vim.api.nvim_create_user_command("LintInfo", function()
+-      local ft = vim.bo.filetype
+-      local linters = lint.linters_by_ft[ft] or {}
+-      
++      local filetype = vim.bo.filetype
++      local linters = lint.linters_by_ft[filetype] or {}
+       if #linters == 0 then
+-        vim.notify(
+-          string.format("No linters configured for filetype: %s", ft),
+-          vim.log.levels.INFO
+-        )
++        vim.notify(string.format("没有为文件类型 '%s' 配置 linter", filetype), vim.log.levels.INFO)
+       else
+         vim.notify(
+-          string.format("Linters for %s: %s", ft, table.concat(linters, ", ")),
++          string.format("文件类型 '%s' 的 linters: %s", filetype, table.concat(linters, ", ")),
+           vim.log.levels.INFO
+         )
+       end
+-    end, { desc = "Show linter info for current filetype" })
++    end, { desc = "显示当前文件的 Linter 信息" })
+   end,
+ }
+diff --git a/lua/plugins/configs/lsp.lua b/lua/plugins/configs/lsp.lua
+index e8c7f5b..2ab3e30 100644
+--- a/lua/plugins/configs/lsp.lua
++++ b/lua/plugins/configs/lsp.lua
+@@ -4,88 +4,89 @@
+ -- ============================================================================
+ 
+ return {
+-  -- ========================================================================
+-  -- Mason 核心插件
+-  -- ========================================================================
+-  {
+-    "williamboman/mason.nvim",
+-    cmd = "Mason",
+-    build = ":MasonUpdate",
+-    opts = {
+-      ui = {
+-        border = "rounded",
+-        width = 0.8,
+-        height = 0.8,
+-        icons = {
+-          package_installed = "✓",
+-          package_pending = "➜",
+-          package_uninstalled = "✗",
+-        },
+-      },
+-      max_concurrent_installers = 10,
+-    },
+-  },
++	-- ========================================================================
++	-- Mason 核心插件
++	-- ========================================================================
++	{
++		"williamboman/mason.nvim",
++		cmd = "Mason",
++		build = ":MasonUpdate",
++		opts = {
++			ui = {
++				border = "rounded",
++				width = 0.8,
++				height = 0.8,
++				icons = {
++					package_installed = "✓",
++					package_pending = "➜",
++					package_uninstalled = "✗",
++				},
++			},
++			max_concurrent_installers = 10,
++		},
++	},
+ 
+-  -- ========================================================================
+-  -- Schema Store（JSON/YAML Schema 支持）
+-  -- ========================================================================
+-  {
+-    "b0o/schemastore.nvim",
+-    lazy = true,
+-    version = false,
+-  },
++	-- ========================================================================
++	-- Schema Store（JSON/YAML Schema 支持）
++	-- ========================================================================
++	{
++		"b0o/schemastore.nvim",
++		lazy = true,
++		version = false,
++	},
+ 
+-  -- ========================================================================
+-  -- LSP 系统初始化
+-  -- ========================================================================
+-  {
+-    "neovim/nvim-lspconfig", -- 仅用于确保 LSP 相关的依赖加载
+-    event = { "BufReadPre", "BufNewFile" },
+-    dependencies = {
+-      "williamboman/mason.nvim",
+-      "b0o/schemastore.nvim",
+-    },
+-    config = function()
+-      -- 初始化原生 LSP 系统
+-      require("lsp").setup()
+-    end,
+-  },
++	-- ========================================================================
++	-- LSP 系统初始化
++	-- ========================================================================
++	{
++		"neovim/nvim-lspconfig", -- 仅用于确保 LSP 相关的依赖加载
++		event = { "BufReadPre", "BufNewFile" },
++		dependencies = {
++			"williamboman/mason.nvim",
++			"b0o/schemastore.nvim",
++		},
++		config = function()
++			-- 初始化原生 LSP 系统
++			require("lsp").setup()
++		end,
++	},
+ 
+-  -- ========================================================================
+-  -- Mason LSP 配置（自动安装 LSP 服务器）
+-  -- ========================================================================
+-  {
+-    "williamboman/mason-lspconfig.nvim",
+-    event = { "BufReadPre", "BufNewFile" },
+-    dependencies = {
+-      "williamboman/mason.nvim",
+-    },
+-    opts = {
+-      -- 自动安装的 LSP 服务器
+-      ensure_installed = {
+-        -- 前端
+-        "ts_ls",           -- TypeScript/JavaScript
+-        "volar",           -- Vue 3
+-        "html",            -- HTML
+-        "cssls",           -- CSS/SCSS/LESS
+-        "eslint",          -- ESLint
+-        
+-        -- 配置文件
+-        "jsonls",          -- JSON
+-        "yamlls",          -- YAML
+-        
+-        -- 编程语言
+-        "lua_ls",          -- Lua
+-        "clangd",          -- C/C++
+-        "rust_analyzer",   -- Rust
+-        "bashls",          -- Bash
+-        
+-        -- 文档
+-        "marksman",        -- Markdown
+-      },
+-      
+-      -- 自动安装配置的服务器
+-      automatic_installation = true,
+-    },
+-  },
++	-- ========================================================================
++	-- Mason LSP 配置（自动安装 LSP 服务器）
++	-- ========================================================================
++	{
++		"williamboman/mason-lspconfig.nvim",
++		event = { "BufReadPre", "BufNewFile" },
++		dependencies = {
++			"williamboman/mason.nvim",
++		},
++		opts = {
++			-- 自动安装的 LSP 服务器
++			ensure_installed = {
++				-- 前端
++				"ts_ls", -- TypeScript/JavaScript
++				-- "volar", -- Vue 3
++				"vuels", -- Vue 3
++				"html", -- HTML
++				"cssls", -- CSS/SCSS/LESS
++				"eslint", -- ESLint
++
++				-- 配置文件
++				"jsonls", -- JSON
++				"yamlls", -- YAML
++
++				-- 编程语言
++				"lua_ls", -- Lua
++				"clangd", -- C/C++
++				"rust_analyzer", -- Rust
++				"bashls", -- Bash
++
++				-- 文档
++				"marksman", -- Markdown
++			},
++
++			-- 自动安装配置的服务器
++			automatic_installation = true,
++		},
++	},
+ }
+diff --git a/lua/plugins/configs/markdown.lua b/lua/plugins/configs/markdown.lua
+index 91230c5..49c50b6 100644
+--- a/lua/plugins/configs/markdown.lua
++++ b/lua/plugins/configs/markdown.lua
+@@ -13,188 +13,190 @@ return {
+       "nvim-treesitter/nvim-treesitter",
+       "nvim-tree/nvim-web-devicons",
+     },
+-    opts = {
+-      -- 代码块配置
+-      code = {
+-        enabled = true,
+-        sign = true,
+-        style = "full",
+-        position = "left",
+-        language_pad = 0,
+-        disable_background = { "diff" },
+-        width = "full",
+-        left_pad = 0,
+-        right_pad = 0,
+-        min_width = 0,
+-        border = "thin",
+-        above = "▄",
+-        below = "▀",
+-        highlight = "RenderMarkdownCode",
+-        highlight_inline = "RenderMarkdownCodeInline",
+-      },
+-      -- 标题配置
+-      heading = {
+-        enabled = true,
+-        sign = true,
+-        position = "overlay",
+-        icons = { "󰲡 ", "󰲣 ", "󰲥 ", "󰲧 ", "󰲩 ", "󰲫 " },
+-        signs = { "󰫎 " },
+-        width = "full",
+-        left_pad = 0,
+-        right_pad = 0,
+-        min_width = 0,
+-        border = false,
+-        above = "▄",
+-        below = "▀",
+-        backgrounds = {
+-          "RenderMarkdownH1Bg",
+-          "RenderMarkdownH2Bg",
+-          "RenderMarkdownH3Bg",
+-          "RenderMarkdownH4Bg",
+-          "RenderMarkdownH5Bg",
+-          "RenderMarkdownH6Bg",
++    config = function()
++      require("render-markdown").setup({
++        -- 代码块配置
++        code = {
++          enabled = true,
++          sign = true,
++          style = "full",
++          position = "left",
++          language_pad = 0,
++          disable_background = { "diff" },
++          width = "full",
++          left_pad = 0,
++          right_pad = 0,
++          min_width = 0,
++          border = "thin",
++          above = "▄",
++          below = "▀",
++          highlight = "RenderMarkdownCode",
++          highlight_inline = "RenderMarkdownCodeInline",
+         },
+-        foregrounds = {
+-          "RenderMarkdownH1",
+-          "RenderMarkdownH2",
+-          "RenderMarkdownH3",
+-          "RenderMarkdownH4",
+-          "RenderMarkdownH5",
+-          "RenderMarkdownH6",
++        -- 标题配置
++        heading = {
++          enabled = true,
++          sign = true,
++          position = "overlay",
++          icons = { "󰲡 ", "󰲣 ", "󰲥 ", "󰲧 ", "󰲩 ", "󰲫 " },
++          signs = { "󰫎 " },
++          width = "full",
++          left_pad = 0,
++          right_pad = 0,
++          min_width = 0,
++          border = false,
++          above = "▄",
++          below = "▀",
++          backgrounds = {
++            "RenderMarkdownH1Bg",
++            "RenderMarkdownH2Bg",
++            "RenderMarkdownH3Bg",
++            "RenderMarkdownH4Bg",
++            "RenderMarkdownH5Bg",
++            "RenderMarkdownH6Bg",
++          },
++          foregrounds = {
++            "RenderMarkdownH1",
++            "RenderMarkdownH2",
++            "RenderMarkdownH3",
++            "RenderMarkdownH4",
++            "RenderMarkdownH5",
++            "RenderMarkdownH6",
++          },
+         },
+-      },
+-      -- 段落配置
+-      paragraph = {
+-        enabled = true,
+-        left_margin = 0,
+-        min_width = 0,
+-      },
+-      -- Checkbox 配置
+-      checkbox = {
+-        enabled = true,
+-        position = "inline",
+-        unchecked = {
+-          icon = "󰄱 ",
+-          highlight = "RenderMarkdownUnchecked",
++        -- 段落配置
++        paragraph = {
++          enabled = true,
++          left_margin = 0,
++          min_width = 0,
+         },
+-        checked = {
+-          icon = "󰱒 ",
+-          highlight = "RenderMarkdownChecked",
++        -- Checkbox 配置
++        checkbox = {
++          enabled = true,
++          position = "inline",
++          unchecked = {
++            icon = "󰄱 ",
++            highlight = "RenderMarkdownUnchecked",
++          },
++          checked = {
++            icon = "󰱒 ",
++            highlight = "RenderMarkdownChecked",
++          },
++          custom = {
++            todo = { raw = "[-]", rendered = "󰥔 ", highlight = "RenderMarkdownTodo" },
++          },
+         },
+-        custom = {
+-          todo = { raw = "[-]", rendered = "󰥔 ", highlight = "RenderMarkdownTodo" },
++        -- 引用块配置
++        quote = {
++          enabled = true,
++          icon = "▋",
++          repeat_linebreak = false,
++          highlight = "RenderMarkdownQuote",
+         },
+-      },
+-      -- 引用块配置
+-      quote = {
+-        enabled = true,
+-        icon = "▋",
+-        repeat_linebreak = false,
+-        highlight = "RenderMarkdownQuote",
+-      },
+-      -- 表格配置
+-      pipe_table = {
+-        enabled = true,
+-        preset = "round",
+-        style = "full",
+-        cell = "padded",
+-        alignment_indicator = "━",
+-        border = {
+-          "┌", "┬", "┐",
+-          "├", "┼", "┤",
+-          "└", "┴", "┘",
+-          "│", "─",
++        -- 表格配置
++        pipe_table = {
++          enabled = true,
++          preset = "round",
++          style = "full",
++          cell = "padded",
++          alignment_indicator = "━",
++          border = {
++            "┌", "┬", "┐",
++            "├", "┼", "┤",
++            "└", "┴", "┘",
++            "│", "─",
++          },
++          head = "RenderMarkdownTableHead",
++          row = "RenderMarkdownTableRow",
++          filler = "RenderMarkdownTableFill",
+         },
+-        head = "RenderMarkdownTableHead",
+-        row = "RenderMarkdownTableRow",
+-        filler = "RenderMarkdownTableFill",
+-      },
+-      -- Callout 配置
+-      callout = {
+-        note = { raw = "[!NOTE]", rendered = "󰋽 Note", highlight = "RenderMarkdownInfo" },
+-        tip = { raw = "[!TIP]", rendered = "󰌶 Tip", highlight = "RenderMarkdownSuccess" },
+-        important = { raw = "[!IMPORTANT]", rendered = "󰅾 Important", highlight = "RenderMarkdownHint" },
+-        warning = { raw = "[!WARNING]", rendered = "󰀪 Warning", highlight = "RenderMarkdownWarn" },
+-        caution = { raw = "[!CAUTION]", rendered = "󰳦 Caution", highlight = "RenderMarkdownError" },
+-        abstract = { raw = "[!ABSTRACT]", rendered = "󰨸 Abstract", highlight = "RenderMarkdownInfo" },
+-        summary = { raw = "[!SUMMARY]", rendered = "󰨸 Summary", highlight = "RenderMarkdownInfo" },
+-        tldr = { raw = "[!TLDR]", rendered = "󰨸 Tldr", highlight = "RenderMarkdownInfo" },
+-        info = { raw = "[!INFO]", rendered = "󰋽 Info", highlight = "RenderMarkdownInfo" },
+-        todo = { raw = "[!TODO]", rendered = "󰥔 Todo", highlight = "RenderMarkdownInfo" },
+-        hint = { raw = "[!HINT]", rendered = "󰌶 Hint", highlight = "RenderMarkdownSuccess" },
+-        success = { raw = "[!SUCCESS]", rendered = "󰄬 Success", highlight = "RenderMarkdownSuccess" },
+-        check = { raw = "[!CHECK]", rendered = "󰄬 Check", highlight = "RenderMarkdownSuccess" },
+-        done = { raw = "[!DONE]", rendered = "󰄬 Done", highlight = "RenderMarkdownSuccess" },
+-        question = { raw = "[!QUESTION]", rendered = "󰘥 Question", highlight = "RenderMarkdownWarn" },
+-        help = { raw = "[!HELP]", rendered = "󰘥 Help", highlight = "RenderMarkdownWarn" },
+-        faq = { raw = "[!FAQ]", rendered = "󰘥 Faq", highlight = "RenderMarkdownWarn" },
+-        attention = { raw = "[!ATTENTION]", rendered = "󰀪 Attention", highlight = "RenderMarkdownWarn" },
+-        failure = { raw = "[!FAILURE]", rendered = "󰅖 Failure", highlight = "RenderMarkdownError" },
+-        fail = { raw = "[!FAIL]", rendered = "󰅖 Fail", highlight = "RenderMarkdownError" },
+-        missing = { raw = "[!MISSING]", rendered = "󰅖 Missing", highlight = "RenderMarkdownError" },
+-        danger = { raw = "[!DANGER]", rendered = "󰳦 Danger", highlight = "RenderMarkdownError" },
+-        error = { raw = "[!ERROR]", rendered = "󰅖 Error", highlight = "RenderMarkdownError" },
+-        bug = { raw = "[!BUG]", rendered = "󰨰 Bug", highlight = "RenderMarkdownError" },
+-        example = { raw = "[!EXAMPLE]", rendered = "󰉹 Example", highlight = "RenderMarkdownHint" },
+-        quote = { raw = "[!QUOTE]", rendered = "󱆨 Quote", highlight = "RenderMarkdownQuote" },
+-        cite = { raw = "[!CITE]", rendered = "󱆨 Cite", highlight = "RenderMarkdownQuote" },
+-      },
+-      -- 链接配置
+-      link = {
+-        enabled = true,
+-        image = "󰥶 ",
+-        email = "󰀓 ",
+-        hyperlink = "󰖟 ",
+-        highlight = "RenderMarkdownLink",
+-        custom = {
+-          web = { pattern = "^http[s]?://", icon = "󰖟 ", highlight = "RenderMarkdownLink" },
++        -- Callout 配置
++        callout = {
++          note = { raw = "[!NOTE]", rendered = "󰋽 Note", highlight = "RenderMarkdownInfo" },
++          tip = { raw = "[!TIP]", rendered = "󰌶 Tip", highlight = "RenderMarkdownSuccess" },
++          important = { raw = "[!IMPORTANT]", rendered = "󰅾 Important", highlight = "RenderMarkdownHint" },
++          warning = { raw = "[!WARNING]", rendered = "󰀪 Warning", highlight = "RenderMarkdownWarn" },
++          caution = { raw = "[!CAUTION]", rendered = "󰳦 Caution", highlight = "RenderMarkdownError" },
++          abstract = { raw = "[!ABSTRACT]", rendered = "󰨸 Abstract", highlight = "RenderMarkdownInfo" },
++          summary = { raw = "[!SUMMARY]", rendered = "󰨸 Summary", highlight = "RenderMarkdownInfo" },
++          tldr = { raw = "[!TLDR]", rendered = "󰨸 Tldr", highlight = "RenderMarkdownInfo" },
++          info = { raw = "[!INFO]", rendered = "󰋽 Info", highlight = "RenderMarkdownInfo" },
++          todo = { raw = "[!TODO]", rendered = "󰥔 Todo", highlight = "RenderMarkdownInfo" },
++          hint = { raw = "[!HINT]", rendered = "󰌶 Hint", highlight = "RenderMarkdownSuccess" },
++          success = { raw = "[!SUCCESS]", rendered = "󰄬 Success", highlight = "RenderMarkdownSuccess" },
++          check = { raw = "[!CHECK]", rendered = "󰄬 Check", highlight = "RenderMarkdownSuccess" },
++          done = { raw = "[!DONE]", rendered = "󰄬 Done", highlight = "RenderMarkdownSuccess" },
++          question = { raw = "[!QUESTION]", rendered = "󰘥 Question", highlight = "RenderMarkdownWarn" },
++          help = { raw = "[!HELP]", rendered = "󰘥 Help", highlight = "RenderMarkdownWarn" },
++          faq = { raw = "[!FAQ]", rendered = "󰘥 Faq", highlight = "RenderMarkdownWarn" },
++          attention = { raw = "[!ATTENTION]", rendered = "󰀪 Attention", highlight = "RenderMarkdownWarn" },
++          failure = { raw = "[!FAILURE]", rendered = "󰅖 Failure", highlight = "RenderMarkdownError" },
++          fail = { raw = "[!FAIL]", rendered = "󰅖 Fail", highlight = "RenderMarkdownError" },
++          missing = { raw = "[!MISSING]", rendered = "󰅖 Missing", highlight = "RenderMarkdownError" },
++          danger = { raw = "[!DANGER]", rendered = "󰳦 Danger", highlight = "RenderMarkdownError" },
++          error = { raw = "[!ERROR]", rendered = "󰅖 Error", highlight = "RenderMarkdownError" },
++          bug = { raw = "[!BUG]", rendered = "󰨰 Bug", highlight = "RenderMarkdownError" },
++          example = { raw = "[!EXAMPLE]", rendered = "󰉹 Example", highlight = "RenderMarkdownHint" },
++          quote = { raw = "[!QUOTE]", rendered = "󱆨 Quote", highlight = "RenderMarkdownQuote" },
++          cite = { raw = "[!CITE]", rendered = "󱆨 Cite", highlight = "RenderMarkdownQuote" },
+         },
+-      },
+-      -- 符号配置
+-      sign = {
+-        enabled = true,
+-        highlight = "RenderMarkdownSign",
+-      },
+-      -- 行内代码配置
+-      inline_code = {
+-        enabled = true,
+-        highlight = "RenderMarkdownCodeInline",
+-      },
+-      -- Dash 配置
+-      dash = {
+-        enabled = true,
+-        icon = "─",
+-        width = "full",
+-        highlight = "RenderMarkdownDash",
+-      },
+-      -- Bullet 配置
+-      bullet = {
+-        enabled = true,
+-        icons = { "●", "○", "◆", "◇" },
+-        left_pad = 0,
+-        right_pad = 0,
+-        highlight = "RenderMarkdownBullet",
+-      },
+-      -- LaTeX 配置
+-      latex = {
+-        enabled = true,
+-        converter = "latex2text",
+-        highlight = "RenderMarkdownMath",
+-        top_pad = 0,
+-        bottom_pad = 0,
+-      },
+-      -- 高亮配置
+-      win_options = {
+-        conceallevel = {
+-          default = vim.api.nvim_get_option_value("conceallevel", {}),
+-          rendered = 3,
++        -- 链接配置
++        link = {
++          enabled = true,
++          image = "󰥶 ",
++          email = "󰀓 ",
++          hyperlink = "󰖟 ",
++          highlight = "RenderMarkdownLink",
++          custom = {
++            web = { pattern = "^http[s]?://", icon = "󰖟 ", highlight = "RenderMarkdownLink" },
++          },
+         },
+-        concealcursor = {
+-          default = vim.api.nvim_get_option_value("concealcursor", {}),
+-          rendered = "",
++        -- 符号配置
++        sign = {
++          enabled = true,
++          highlight = "RenderMarkdownSign",
+         },
+-      },
+-    },
++        -- 行内代码配置
++        inline_code = {
++          enabled = true,
++          highlight = "RenderMarkdownCodeInline",
++        },
++        -- Dash 配置
++        dash = {
++          enabled = true,
++          icon = "─",
++          width = "full",
++          highlight = "RenderMarkdownDash",
++        },
++        -- Bullet 配置
++        bullet = {
++          enabled = true,
++          icons = { "●", "○", "◆", "◇" },
++          left_pad = 0,
++          right_pad = 0,
++          highlight = "RenderMarkdownBullet",
++        },
++        -- LaTeX 配置
++        latex = {
++          enabled = true,
++          converter = "latex2text",
++          highlight = "RenderMarkdownMath",
++          top_pad = 0,
++          bottom_pad = 0,
++        },
++        -- 高亮配置
++        win_options = {
++          conceallevel = {
++            default = vim.api.nvim_get_option_value("conceallevel", {}),
++            rendered = 3,
++          },
++          concealcursor = {
++            default = vim.api.nvim_get_option_value("concealcursor", {}),
++            rendered = "",
++          },
++        },
++      })
++    end,
+   },
+ 
+   -- ========================================================================
+@@ -206,7 +208,7 @@ return {
+     build = function()
+       vim.fn["mkdp#util#install"]()
+     end,
+-    config = function()
++    init = function()
+       vim.g.mkdp_auto_start = 0
+       vim.g.mkdp_auto_close = 1
+       vim.g.mkdp_refresh_slow = 0
+@@ -245,60 +247,60 @@ return {
+   -- ========================================================================
+   -- 3. headlines.nvim - 标题美化
+   -- ========================================================================
+-  {
+-    "lukas-reineke/headlines.nvim",
+-    ft = { "markdown" },
+-    dependencies = "nvim-treesitter/nvim-treesitter",
+-    opts = {
+-      markdown = {
+-        query = vim.treesitter.query.parse(
+-          "markdown",
+-          [[
+-            (atx_heading [
+-                (atx_h1_marker)
+-                (atx_h2_marker)
+-                (atx_h3_marker)
+-                (atx_h4_marker)
+-                (atx_h5_marker)
+-                (atx_h6_marker)
+-            ] @headline)
+-
+-            (thematic_break) @dash
+-
+-            (fenced_code_block) @codeblock
+-
+-            (block_quote_marker) @quote
+-            (block_quote (paragraph (inline (block_continuation) @quote)))
+-            (block_quote (paragraph (block_continuation) @quote))
+-            (block_quote (block_continuation) @quote)
+-          ]]
+-        ),
+-        headline_highlights = {
+-          "Headline1",
+-          "Headline2",
+-          "Headline3",
+-          "Headline4",
+-          "Headline5",
+-          "Headline6",
+-        },
+-        bullet_highlights = {
+-          "@text.title.1.marker.markdown",
+-          "@text.title.2.marker.markdown",
+-          "@text.title.3.marker.markdown",
+-          "@text.title.4.marker.markdown",
+-          "@text.title.5.marker.markdown",
+-          "@text.title.6.marker.markdown",
+-        },
+-        bullets = { "◉", "○", "✸", "✿" },
+-        codeblock_highlight = "CodeBlock",
+-        dash_highlight = "Dash",
+-        dash_string = "-",
+-        quote_highlight = "Quote",
+-        quote_string = "┃",
+-        fat_headlines = true,
+-        fat_headline_upper_string = "▃",
+-        fat_headline_lower_string = "🬂",
+-      },
+-    },
+-  },
++--   {
++--     "lukas-reineke/headlines.nvim",
++--     ft = { "markdown" },
++--     dependencies = "nvim-treesitter/nvim-treesitter",
++--     opts = {
++--       markdown = {
++--         query = vim.treesitter.query.parse(
++--           "markdown",
++--           [[
++--             (atx_heading [
++--                 (atx_h1_marker)
++--                 (atx_h2_marker)
++--                 (atx_h3_marker)
++--                 (atx_h4_marker)
++--                 (atx_h5_marker)
++--                 (atx_h6_marker)
++--             ] @headline)
++--
++--             (thematic_break) @dash
++--
++--             (fenced_code_block) @codeblock
++--
++--             (block_quote_marker) @quote
++--             (block_quote (paragraph (inline (block_continuation) @quote)))
++--             (block_quote (paragraph (block_continuation) @quote))
++--             (block_quote (block_continuation) @quote)
++--           ]]
++--         ),
++--         headline_highlights = {
++--           "Headline1",
++--           "Headline2",
++--           "Headline3",
++--           "Headline4",
++--           "Headline5",
++--           "Headline6",
++--         },
++--         bullet_highlights = {
++--           "@text.title.1.marker.markdown",
++--           "@text.title.2.marker.markdown",
++--           "@text.title.3.marker.markdown",
++--           "@text.title.4.marker.markdown",
++--           "@text.title.5.marker.markdown",
++--           "@text.title.6.marker.markdown",
++--         },
++--         bullets = { "◉", "○", "✸", "✿" },
++--         codeblock_highlight = "CodeBlock",
++--         dash_highlight = "Dash",
++--         dash_string = "-",
++--         quote_highlight = "Quote",
++--         quote_string = "┃",
++--         fat_headlines = true,
++--         fat_headline_upper_string = "▃",
++--         fat_headline_lower_string = "🬂",
++--       },
++--     },
++--   },
+ }
+diff --git a/lua/plugins/configs/mini.lua b/lua/plugins/configs/mini.lua
+index 028a86e..99163a7 100644
+--- a/lua/plugins/configs/mini.lua
++++ b/lua/plugins/configs/mini.lua
+@@ -4,215 +4,230 @@
+ -- ============================================================================
+ 
+ return {
+-  -- ========================================================================
+-  -- mini.nvim 核心插件
+-  -- ========================================================================
+-  {
+-    "echasnovski/mini.nvim",
+-    version = false,
+-    event = "VeryLazy",
+-    config = function()
+-      -- ======================================================================
+-      -- mini.pairs - 括号/引号自动补全
+-      -- ======================================================================
+-      require("mini.pairs").setup({
+-        modes = { insert = true, command = false, terminal = false },
+-        mappings = {
+-          ["("] = { action = "open", pair = "()", neigh_pattern = "[^\\]." },
+-          ["["] = { action = "open", pair = "[]", neigh_pattern = "[^\\]." },
+-          ["{"] = { action = "open", pair = "{}", neigh_pattern = "[^\\]." },
+-          [")"] = { action = "close", pair = "()", neigh_pattern = "[^\\]." },
+-          ["]"] = { action = "close", pair = "[]", neigh_pattern = "[^\\]." },
+-          ["}"] = { action = "close", pair = "{}", neigh_pattern = "[^\\]." },
+-          ['"'] = { action = "closeopen", pair = '""', neigh_pattern = "[^\\].", register = { cr = false } },
+-          ["'"] = { action = "closeopen", pair = "''", neigh_pattern = "[^%a\\].", register = { cr = false } },
+-          ["`"] = { action = "closeopen", pair = "``", neigh_pattern = "[^\\].", register = { cr = false } },
+-        },
+-      })
++	-- ========================================================================
++	-- mini.nvim 核心插件
++	-- ========================================================================
++	{
++		"echasnovski/mini.nvim",
++		version = false,
++		event = "VeryLazy",
++		config = function()
++			-- ======================================================================
++			-- mini.pairs - 括号/引号自动补全
++			-- ======================================================================
++			require("mini.pairs").setup({
++				modes = { insert = true, command = false, terminal = false },
++				mappings = {
++					["("] = { action = "open", pair = "()", neigh_pattern = "[^\\]." },
++					["["] = { action = "open", pair = "[]", neigh_pattern = "[^\\]." },
++					["{"] = { action = "open", pair = "{}", neigh_pattern = "[^\\]." },
++					[")"] = { action = "close", pair = "()", neigh_pattern = "[^\\]." },
++					["]"] = { action = "close", pair = "[]", neigh_pattern = "[^\\]." },
++					["}"] = { action = "close", pair = "{}", neigh_pattern = "[^\\]." },
++					['"'] = { action = "closeopen", pair = '""', neigh_pattern = "[^\\].", register = { cr = false } },
++					["'"] = { action = "closeopen", pair = "''", neigh_pattern = "[^%a\\].", register = { cr = false } },
++					["`"] = { action = "closeopen", pair = "``", neigh_pattern = "[^\\].", register = { cr = false } },
++				},
++			})
+ 
+-      -- ======================================================================
+-      -- mini.surround - 符号环绕操作（sa/sd/sr）
+-      -- ======================================================================
+-      require("mini.surround").setup({
+-        mappings = {
+-          add = "sa",            -- 添加环绕: sa{motion}{char}
+-          delete = "sd",         -- 删除环绕: sd{char}
+-          find = "sf",           -- 查找右侧环绕: sf{char}
+-          find_left = "sF",      -- 查找左侧环绕: sF{char}
+-          highlight = "sh",      -- 高亮环绕: sh{char}
+-          replace = "sr",        -- 替换环绕: sr{char}{char}
+-          update_n_lines = "sn", -- 更新搜索行数: sn
+-        },
+-        n_lines = 50,
+-        respect_selection_type = true,
+-        search_method = "cover_or_next",
+-      })
++			-- ======================================================================
++			-- mini.surround - 符号环绕操作（sa/sd/sr）
++			-- ======================================================================
++			require("mini.surround").setup({
++				mappings = {
++					add = "gsa", -- 添加环绕: sa{motion}{char}
++					delete = "gsd", -- 删除环绕: sd{char}
++					find = "gsf", -- 查找右侧环绕: sf{char}
++					find_left = "gsF", -- 查找左侧环绕: sF{char}
++					highlight = "gsh", -- 高亮环绕: sh{char}
++					replace = "gsr", -- 替换环绕: sr{char}{char}
++					update_n_lines = "gsn", -- 更新搜索行数: sn
++				},
++				n_lines = 50,
++				respect_selection_type = true,
++				search_method = "cover_or_next",
++			})
+ 
+-      -- ======================================================================
+-      -- mini.comment - 快速注释（gcc/gc）
+-      -- ======================================================================
+-      require("mini.comment").setup({
+-        options = {
+-          custom_commentstring = function()
+-            -- 仅在 treesitter 可用时使用（将在阶段 3 添加）
+-            local has_ts_context, ts_context = pcall(require, "ts_context_commentstring.internal")
+-            if has_ts_context then
+-              return ts_context.calculate_commentstring() or vim.bo.commentstring
+-            end
+-            return vim.bo.commentstring
+-          end,
+-          ignore_blank_line = true,
+-          start_of_line = false,
+-          pad_comment_parts = true,
+-        },
+-        mappings = {
+-          comment = "gc",
+-          comment_line = "gcc",
+-          comment_visual = "gc",
+-          textobject = "gc",
+-        },
+-        hooks = {
+-          pre = function()
+-            -- 仅在 treesitter 可用时更新 commentstring
+-            local has_ts_context, ts_context = pcall(require, "ts_context_commentstring.internal")
+-            if has_ts_context then
+-              ts_context.update_commentstring({})
+-            end
+-          end,
+-        },
+-      })
++			-- ======================================================================
++			-- mini.comment - 快速注释（gcc/gc）
++			-- ======================================================================
++			require("mini.comment").setup({
++				options = {
++					custom_commentstring = function()
++						-- 仅在 treesitter 可用时使用（将在阶段 3 添加）
++						local has_ts_context, ts_context = pcall(require, "ts_context_commentstring.internal")
++						if has_ts_context then
++							return ts_context.calculate_commentstring() or vim.bo.commentstring
++						end
++						return vim.bo.commentstring
++					end,
++					ignore_blank_line = true,
++					start_of_line = false,
++					pad_comment_parts = true,
++				},
++				mappings = {
++					comment = "gc",
++					comment_line = "gcc",
++					comment_visual = "gc",
++					textobject = "gc",
++				},
++				hooks = {
++					pre = function()
++						-- 仅在 treesitter 可用时更新 commentstring
++						local has_ts_context, ts_context = pcall(require, "ts_context_commentstring.internal")
++						if has_ts_context then
++							ts_context.update_commentstring({})
++						end
++					end,
++				},
++			})
+ 
+-      -- ======================================================================
+-      -- mini.ai - 文本对象增强
+-      -- ======================================================================
+-      local ai_config = {
+-        n_lines = 500,
+-        custom_textobjects = {
+-          -- 整个文件
+-          g = function()
+-            local from = { line = 1, col = 1 }
+-            local to = {
+-              line = vim.fn.line("$"),
+-              col = math.max(vim.fn.getline("$"):len(), 1),
+-            }
+-            return { from = from, to = to }
+-          end,
+-        },
+-        mappings = {
+-          around = "a",
+-          inside = "i",
+-          around_next = "an",
+-          inside_next = "in",
+-          around_last = "al",
+-          inside_last = "il",
+-          goto_left = "g[",
+-          goto_right = "g]",
+-        },
+-      }
++			-- ======================================================================
++			-- mini.ai - 文本对象增强
++			-- ======================================================================
++			local ai_config = {
++				n_lines = 500,
++				custom_textobjects = {
++					-- 整个文件
++					g = function()
++						local from = { line = 1, col = 1 }
++						local to = {
++							line = vim.fn.line("$"),
++							col = math.max(vim.fn.getline("$"):len(), 1),
++						}
++						return { from = from, to = to }
++					end,
++				},
++				mappings = {
++					around = "a",
++					inside = "i",
++					around_next = "an",
++					inside_next = "in",
++					around_last = "al",
++					inside_last = "il",
++					goto_left = "g[",
++					goto_right = "g]",
++				},
++			}
+ 
+-      -- 仅在 treesitter 可用时添加 treesitter 文本对象（将在阶段 3 添加）
+-      local has_treesitter = pcall(require, "nvim-treesitter")
+-      if has_treesitter then
+-        ai_config.custom_textobjects.f = require("mini.ai").gen_spec.treesitter({ a = "@function.outer", i = "@function.inner" }, {})
+-        ai_config.custom_textobjects.c = require("mini.ai").gen_spec.treesitter({ a = "@class.outer", i = "@class.inner" }, {})
+-        ai_config.custom_textobjects.o = require("mini.ai").gen_spec.treesitter({ a = "@conditional.outer", i = "@conditional.inner" }, {})
+-        ai_config.custom_textobjects.l = require("mini.ai").gen_spec.treesitter({ a = "@loop.outer", i = "@loop.inner" }, {})
+-        ai_config.custom_textobjects.a = require("mini.ai").gen_spec.treesitter({ a = "@parameter.outer", i = "@parameter.inner" }, {})
+-      end
++			-- 仅在 treesitter 可用时添加 treesitter 文本对象（将在阶段 3 添加）
++			local has_treesitter = pcall(require, "nvim-treesitter")
++			if has_treesitter then
++				ai_config.custom_textobjects.f = require("mini.ai").gen_spec.treesitter(
++					{ a = "@function.outer", i = "@function.inner" },
++					{}
++				)
++				ai_config.custom_textobjects.c = require("mini.ai").gen_spec.treesitter(
++					{ a = "@class.outer", i = "@class.inner" },
++					{}
++				)
++				ai_config.custom_textobjects.o = require("mini.ai").gen_spec.treesitter(
++					{ a = "@conditional.outer", i = "@conditional.inner" },
++					{}
++				)
++				ai_config.custom_textobjects.l = require("mini.ai").gen_spec.treesitter(
++					{ a = "@loop.outer", i = "@loop.inner" },
++					{}
++				)
++				ai_config.custom_textobjects.a = require("mini.ai").gen_spec.treesitter(
++					{ a = "@parameter.outer", i = "@parameter.inner" },
++					{}
++				)
++			end
+ 
+-      require("mini.ai").setup(ai_config)
++			require("mini.ai").setup(ai_config)
+ 
+-      -- ======================================================================
+-      -- mini.diff - Git diff 可视化覆盖层
+-      -- ======================================================================
+-      require("mini.diff").setup({
+-        view = {
+-          style = "sign",
+-          signs = {
+-            add = "▎",
+-            change = "▎",
+-            delete = "▁",
+-          },
+-          priority = 199,
+-        },
+-        source = nil,
+-        delay = {
+-          text_change = 200,
+-        },
+-        mappings = {
+-          apply = "gh",
+-          reset = "gH",
+-          textobject = "gh",
+-          goto_first = "[H",
+-          goto_prev = "[h",
+-          goto_next = "]h",
+-          goto_last = "]H",
+-        },
+-        options = {
+-          algorithm = "histogram",
+-          indent_heuristic = true,
+-          linematch = 60,
+-        },
+-      })
++			-- ======================================================================
++			-- mini.diff - Git diff 可视化覆盖层
++			-- ======================================================================
++			require("mini.diff").setup({
++				view = {
++					style = "sign",
++					signs = {
++						add = "▎",
++						change = "▎",
++						delete = "▁",
++					},
++					priority = 199,
++				},
++				source = nil,
++				delay = {
++					text_change = 200,
++				},
++				mappings = {
++					apply = "gh",
++					reset = "gH",
++					textobject = "gh",
++					goto_first = "[H",
++					goto_prev = "[h",
++					goto_next = "]h",
++					goto_last = "]H",
++				},
++				options = {
++					algorithm = "histogram",
++					indent_heuristic = true,
++					linematch = 60,
++				},
++			})
+ 
+-      -- ======================================================================
+-      -- mini.git - Git 集成
+-      -- ======================================================================
+-      require("mini.git").setup({
+-        job = {
+-          git_executable = "git",
+-          timeout = 30000,
+-        },
+-        command = {
+-          split = "auto",
+-        },
+-      })
++			-- ======================================================================
++			-- mini.git - Git 集成
++			-- ======================================================================
++			require("mini.git").setup({
++				job = {
++					git_executable = "git",
++					timeout = 30000,
++				},
++				command = {
++					split = "auto",
++				},
++			})
+ 
+-      -- ======================================================================
+-      -- mini.bracketed - 增强跳转（[b]b [q]q [h]h）
+-      -- ======================================================================
+-      require("mini.bracketed").setup({
+-        buffer = { suffix = "b", options = {} },
+-        comment = { suffix = "c", options = {} },
+-        conflict = { suffix = "x", options = {} },
+-        diagnostic = { suffix = "d", options = {} },
+-        file = { suffix = "f", options = {} },
+-        indent = { suffix = "i", options = {} },
+-        jump = { suffix = "j", options = {} },
+-        location = { suffix = "l", options = {} },
+-        oldfile = { suffix = "o", options = {} },
+-        quickfix = { suffix = "q", options = {} },
+-        treesitter = { suffix = "t", options = {} },
+-        undo = { suffix = "u", options = {} },
+-        window = { suffix = "w", options = {} },
+-        yank = { suffix = "y", options = {} },
+-      })
++			-- ======================================================================
++			-- mini.bracketed - 增强跳转（[b]b [q]q [h]h）
++			-- ======================================================================
++			require("mini.bracketed").setup({
++				buffer = { suffix = "b", options = {} },
++				comment = { suffix = "c", options = {} },
++				conflict = { suffix = "x", options = {} },
++				diagnostic = { suffix = "d", options = {} },
++				file = { suffix = "f", options = {} },
++				indent = { suffix = "i", options = {} },
++				jump = { suffix = "j", options = {} },
++				location = { suffix = "l", options = {} },
++				oldfile = { suffix = "o", options = {} },
++				quickfix = { suffix = "q", options = {} },
++				treesitter = { suffix = "t", options = {} },
++				undo = { suffix = "u", options = {} },
++				window = { suffix = "w", options = {} },
++				yank = { suffix = "y", options = {} },
++			})
+ 
+-      -- ======================================================================
+-      -- mini.trailspace - 尾随空格管理
+-      -- ======================================================================
+-      require("mini.trailspace").setup({
+-        only_in_normal_buffers = true,
+-      })
++			-- ======================================================================
++			-- mini.trailspace - 尾随空格管理
++			-- ======================================================================
++			require("mini.trailspace").setup({
++				only_in_normal_buffers = true,
++			})
+ 
+-      -- 自动删除尾随空格（保存时）
+-      vim.api.nvim_create_autocmd("BufWritePre", {
+-        pattern = "*",
+-        callback = function()
+-          if not vim.b.large_file then
+-            require("mini.trailspace").trim()
+-            require("mini.trailspace").trim_last_lines()
+-          end
+-        end,
+-        desc = "Trim trailing whitespace and blank lines",
+-      })
++			-- 自动删除尾随空格（保存时）
++			vim.api.nvim_create_autocmd("BufWritePre", {
++				pattern = "*",
++				callback = function()
++					if not vim.b.large_file then
++						require("mini.trailspace").trim()
++						require("mini.trailspace").trim_last_lines()
++					end
++				end,
++				desc = "Trim trailing whitespace and blank lines",
++			})
+ 
+-      -- ======================================================================
+-      -- mini.hipatterns - 高亮模式（备用，已注释）
+-      -- ======================================================================
+-      -- 提供文本高亮功能，如 TODO、FIXME、颜色代码等
+-      -- 由于我们使用 nvim-highlight-colors 处理颜色，这里仅用于其他模式
+-      --[[
++			-- ======================================================================
++			-- mini.hipatterns - 高亮模式（备用，已注释）
++			-- ======================================================================
++			-- 提供文本高亮功能，如 TODO、FIXME、颜色代码等
++			-- 由于我们使用 nvim-highlight-colors 处理颜色，这里仅用于其他模式
++			--[[
+       require("mini.hipatterns").setup({
+         highlighters = {
+           fixme = { pattern = "%f[%w]()FIXME()%f[%W]", group = "MiniHipatternsFixme" },
+@@ -223,17 +238,17 @@ return {
+         },
+       })
+       ]]
+-    end,
+-  },
++		end,
++	},
+ 
+-  -- ========================================================================
+-  -- nvim-ts-context-commentstring - 依赖插件
+-  -- ========================================================================
+-  {
+-    "JoosepAlviste/nvim-ts-context-commentstring",
+-    lazy = true,
+-    opts = {
+-      enable_autocmd = false,
+-    },
+-  },
++	-- ========================================================================
++	-- nvim-ts-context-commentstring - 依赖插件
++	-- ========================================================================
++	{
++		"JoosepAlviste/nvim-ts-context-commentstring",
++		lazy = true,
++		opts = {
++			enable_autocmd = false,
++		},
++	},
+ }
+diff --git a/lua/plugins/configs/noice.lua b/lua/plugins/configs/noice.lua
+index dfb1c0f..b21724d 100644
+--- a/lua/plugins/configs/noice.lua
++++ b/lua/plugins/configs/noice.lua
+@@ -3,257 +3,269 @@
+ -- ============================================================================
+ 
+ return {
+-  "folke/noice.nvim",
+-  event = "VeryLazy",
+-  dependencies = {
+-    "MunifTanjim/nui.nvim",
+-    "rcarriga/nvim-notify",
+-  },
+-  opts = {
+-    -- ========================================================================
+-    -- LSP 配置
+-    -- ========================================================================
+-    lsp = {
+-      -- 覆盖 LSP 文档和签名的 markdown 渲染
+-      override = {
+-        ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+-        ["vim.lsp.util.stylize_markdown"] = true,
+-        ["cmp.entry.get_documentation"] = true,
+-      },
+-      
+-      -- 悬停文档
+-      hover = {
+-        enabled = true,
+-        silent = false,
+-      },
+-      
+-      -- 签名帮助
+-      signature = {
+-        enabled = true,
+-        auto_open = {
+-          enabled = true,
+-          trigger = true,
+-          luasnip = true,
+-          throttle = 50,
+-        },
+-      },
+-      
+-      -- 消息
+-      message = {
+-        enabled = true,
+-        view = "notify",
+-      },
+-      
+-      -- 文档
+-      documentation = {
+-        view = "hover",
+-        opts = {
+-          lang = "markdown",
+-          replace = true,
+-          render = "plain",
+-          format = { "{message}" },
+-          win_options = { concealcursor = "n", conceallevel = 3 },
+-        },
+-      },
+-    },
++	"folke/noice.nvim",
++	event = "VeryLazy",
++	dependencies = {
++		"MunifTanjim/nui.nvim",
++		"rcarriga/nvim-notify",
++	},
++	opts = {
++		-- ========================================================================
++		-- LSP 配置
++		-- ========================================================================
++		lsp = {
++			-- 覆盖 LSP 文档和签名的 markdown 渲染
++			override = {
++				["vim.lsp.util.convert_input_to_markdown_lines"] = true,
++				["vim.lsp.util.stylize_markdown"] = true,
++				["cmp.entry.get_documentation"] = true,
++			},
+ 
+-    -- ========================================================================
+-    -- 预设配置
+-    -- ========================================================================
+-    presets = {
+-      bottom_search = false,         -- 搜索不在底部
+-      command_palette = true,        -- 命令面板居中
+-      long_message_to_split = true,  -- 长消息发送到分割窗口
+-      inc_rename = false,            -- 不使用 inc_rename
+-      lsp_doc_border = true,         -- LSP 文档边框
+-    },
++			-- 悬停文档
++			hover = {
++				enabled = true,
++				silent = false,
++			},
+ 
+-    -- ========================================================================
+-    -- 命令行配置
+-    -- ========================================================================
+-    cmdline = {
+-      enabled = true,
+-      view = "cmdline_popup", -- 居中弹出式命令行
+-      format = {
+-        cmdline = { pattern = "^:", icon = "", lang = "vim" },
+-        search_down = { kind = "search", pattern = "^/", icon = " ", lang = "regex" },
+-        search_up = { kind = "search", pattern = "^%?", icon = " ", lang = "regex" },
+-        filter = { pattern = "^:%s*!", icon = "$", lang = "bash" },
+-        lua = { pattern = { "^:%s*lua%s+", "^:%s*lua%s*=%s*", "^:%s*=%s*" }, icon = "", lang = "lua" },
+-        help = { pattern = "^:%s*he?l?p?%s+", icon = "" },
+-      },
+-    },
++			-- 签名帮助
++			signature = {
++				enabled = true,
++				auto_open = {
++					enabled = true,
++					trigger = true,
++					luasnip = true,
++					throttle = 50,
++				},
++			},
+ 
+-    -- ========================================================================
+-    -- 消息配置
+-    -- ========================================================================
+-    messages = {
+-      enabled = true,
+-      view = "notify",
+-      view_error = "notify",
+-      view_warn = "notify",
+-      view_history = "messages",
+-      view_search = "virtualtext",
+-    },
++			-- 消息
++			message = {
++				enabled = true,
++				view = "notify",
++			},
+ 
+-    -- ========================================================================
+-    -- 弹出菜单配置
+-    -- ========================================================================
+-    popupmenu = {
+-      enabled = true,
+-      backend = "nui", -- 使用 nui 后端
+-    },
++			-- 文档
++			documentation = {
++				view = "hover",
++				opts = {
++					lang = "markdown",
++					replace = true,
++					render = "plain",
++					format = { "{message}" },
++					win_options = { concealcursor = "n", conceallevel = 3 },
++				},
++			},
++		},
+ 
+-    -- ========================================================================
+-    -- 通知配置
+-    -- ========================================================================
+-    notify = {
+-      enabled = true,
+-      view = "notify",
+-    },
++		-- ========================================================================
++		-- 预设配置
++		-- ========================================================================
++		presets = {
++			bottom_search = false, -- 搜索不在底部
++			command_palette = true, -- 命令面板居中
++			long_message_to_split = true, -- 长消息发送到分割窗口
++			inc_rename = false, -- 不使用 inc_rename
++			lsp_doc_border = true, -- LSP 文档边框
++		},
+ 
+-    -- ========================================================================
+-    -- 路由配置（过滤不重要的消息）
+-    -- ========================================================================
+-    routes = {
+-      {
+-        filter = {
+-          event = "msg_show",
+-          kind = "",
+-          find = "written",
+-        },
+-        opts = { skip = true },
+-      },
+-      {
+-        filter = {
+-          event = "msg_show",
+-          kind = "",
+-          find = "more line",
+-        },
+-        opts = { skip = true },
+-      },
+-      {
+-        filter = {
+-          event = "msg_show",
+-          kind = "",
+-          find = "fewer line",
+-        },
+-        opts = { skip = true },
+-      },
+-      {
+-        filter = {
+-          event = "msg_show",
+-          kind = "",
+-          find = "lines yanked",
+-        },
+-        opts = { skip = true },
+-      },
+-      {
+-        filter = {
+-          event = "msg_show",
+-          kind = "search_count",
+-        },
+-        opts = { skip = true },
+-      },
+-    },
++		-- ========================================================================
++		-- 命令行配置
++		-- ========================================================================
++		cmdline = {
++			enabled = true,
++			view = "cmdline_popup", -- 居中弹出式命令行
++			format = {
++				cmdline = { pattern = "^:", icon = "", lang = "vim" },
++				search_down = { kind = "search", pattern = "^/", icon = " ", lang = "regex" },
++				search_up = { kind = "search", pattern = "^%?", icon = " ", lang = "regex" },
++				filter = { pattern = "^:%s*!", icon = "$", lang = "bash" },
++				lua = { pattern = { "^:%s*lua%s+", "^:%s*lua%s*=%s*", "^:%s*=%s*" }, icon = "", lang = "lua" },
++				help = { pattern = "^:%s*he?l?p?%s+", icon = "" },
++			},
++		},
+ 
+-    -- ========================================================================
+-    -- 视图配置
+-    -- ========================================================================
+-    views = {
+-      cmdline_popup = {
+-        position = {
+-          row = "50%",
+-          col = "50%",
+-        },
+-        size = {
+-          width = 60,
+-          height = "auto",
+-        },
+-        border = {
+-          style = "rounded",
+-          padding = { 0, 1 },
+-        },
+-        win_options = {
+-          winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
+-        },
+-      },
+-      popupmenu = {
+-        relative = "editor",
+-        position = {
+-          row = "50%",
+-          col = "50%",
+-        },
+-        size = {
+-          width = 60,
+-          height = 10,
+-        },
+-        border = {
+-          style = "rounded",
+-          padding = { 0, 1 },
+-        },
+-        win_options = {
+-          winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
+-        },
+-      },
+-    },
+-  },
++		-- ========================================================================
++		-- 消息配置
++		-- ========================================================================
++		messages = {
++			enabled = true,
++			view = "notify",
++			view_error = "notify",
++			view_warn = "notify",
++			view_history = "messages",
++			view_search = "virtualtext",
++		},
+ 
+-  -- ========================================================================
+-  -- 快捷键配置
+-  -- ========================================================================
+-  keys = {
+-    {
+-      "<leader>nl",
+-      function()
+-        require("noice").cmd("last")
+-      end,
+-      desc = "Noice: 显示最后一条消息",
+-    },
+-    {
+-      "<leader>nh",
+-      function()
+-        require("noice").cmd("history")
+-      end,
+-      desc = "Noice: 显示消息历史",
+-    },
+-    {
+-      "<leader>na",
+-      function()
+-        require("noice").cmd("all")
+-      end,
+-      desc = "Noice: 显示所有消息",
+-    },
+-    {
+-      "<leader>nd",
+-      function()
+-        require("noice").cmd("dismiss")
+-      end,
+-      desc = "Noice: 关闭所有通知",
+-    },
+-    {
+-      "<C-f>",
+-      function()
+-        if not require("noice.lsp").scroll(4) then
+-          return "<C-f>"
+-        end
+-      end,
+-      silent = true,
+-      expr = true,
+-      desc = "Noice: 向下滚动",
+-      mode = { "i", "n", "s" },
+-    },
+-    {
+-      "<C-b>",
+-      function()
+-        if not require("noice.lsp").scroll(-4) then
+-          return "<C-b>"
+-        end
+-      end,
+-      silent = true,
+-      expr = true,
+-      desc = "Noice: 向上滚动",
+-      mode = { "i", "n", "s" },
+-    },
+-  },
++		-- ========================================================================
++		-- 弹出菜单配置
++		-- ========================================================================
++		popupmenu = {
++			enabled = true,
++			backend = "nui", -- 使用 nui 后端
++		},
++
++		-- ========================================================================
++		-- 通知配置
++		-- ========================================================================
++		notify = {
++			enabled = true,
++			view = "notify",
++		},
++
++		-- ========================================================================
++		-- 路由配置（过滤不重要的消息）
++		-- ========================================================================
++		routes = {
++			{
++				filter = {
++					event = "msg_show",
++					kind = "",
++					find = "written",
++				},
++				opts = { skip = true },
++			},
++			{
++				filter = {
++					event = "msg_show",
++					kind = "",
++					find = "more line",
++				},
++				opts = { skip = true },
++			},
++			{
++				filter = {
++					event = "msg_show",
++					kind = "",
++					find = "fewer line",
++				},
++				opts = { skip = true },
++			},
++			{
++				filter = {
++					event = "msg_show",
++					kind = "",
++					find = "lines yanked",
++				},
++				opts = { skip = true },
++			},
++			{
++				filter = {
++					event = "msg_show",
++					kind = "search_count",
++				},
++				opts = { skip = true },
++			},
++		},
++
++		-- ========================================================================
++		-- 视图配置
++		-- ========================================================================
++		views = {
++			cmdline_popup = {
++				position = {
++					row = "50%",
++					col = "50%",
++				},
++				size = {
++					width = 60,
++					height = "auto",
++				},
++				border = {
++					style = "rounded",
++					padding = { 0, 1 },
++				},
++				win_options = {
++					winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
++				},
++			},
++			popupmenu = {
++				relative = "editor",
++				position = {
++					row = "50%",
++					col = "50%",
++				},
++				size = {
++					width = 60,
++					height = 10,
++				},
++				border = {
++					style = "rounded",
++					padding = { 0, 1 },
++				},
++				win_options = {
++					winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
++				},
++			},
++		},
++	},
++
++	-- ========================================================================
++	-- 快捷键配置
++	-- ========================================================================
++	keys = {
++		{
++			"<leader>nl",
++			function()
++				require("noice").cmd("last")
++			end,
++			desc = "Noice: 显示最后一条消息",
++		},
++		{
++			"<leader>nh",
++			function()
++				-- require("noice").cmd("history")
++				local message = require("noice").cmd("history")
++				if message then
++					vim.schedule(function()
++						Snacks.win({
++							buf = vim.api.nvim_create_buf(false, true),
++							title = "消息历史",
++							width = 0.8,
++							height = 0.8,
++						})
++						vim.cmd("messages")
++					end)
++				end
++			end,
++			desc = "Noice: 显示消息历史",
++		},
++		{
++			"<leader>na",
++			function()
++				require("noice").cmd("all")
++			end,
++			desc = "Noice: 显示所有消息",
++		},
++		{
++			"<leader>nd",
++			function()
++				require("noice").cmd("dismiss")
++			end,
++			desc = "Noice: 关闭所有通知",
++		},
++		{
++			"<C-f>",
++			function()
++				if not require("noice.lsp").scroll(4) then
++					return "<C-f>"
++				end
++			end,
++			silent = true,
++			expr = true,
++			desc = "Noice: 向下滚动",
++			mode = { "i", "n", "s" },
++		},
++		{
++			"<C-b>",
++			function()
++				if not require("noice.lsp").scroll(-4) then
++					return "<C-b>"
++				end
++			end,
++			silent = true,
++			expr = true,
++			desc = "Noice: 向上滚动",
++			mode = { "i", "n", "s" },
++		},
++	},
+ }
+diff --git a/lua/plugins/configs/snacks.lua b/lua/plugins/configs/snacks.lua
+index 92be9d4..2bbb1e6 100644
+--- a/lua/plugins/configs/snacks.lua
++++ b/lua/plugins/configs/snacks.lua
+@@ -3,28 +3,28 @@
+ -- ============================================================================
+ 
+ return {
+-  "folke/snacks.nvim",
+-  priority = 1000,
+-  lazy = false,
+-  opts = {
+-    -- ===== 1. 大文件优化 =====
+-    bigfile = {
+-      enabled = true,
+-      size = 1024 * 1024, -- 1MB
+-      setup = function(ctx)
+-        vim.opt_local.swapfile = false
+-        vim.opt_local.foldmethod = "manual"
+-        vim.opt_local.undolevels = -1
+-        vim.opt_local.undoreload = 0
+-        vim.opt_local.list = false
+-      end,
+-    },
++	"folke/snacks.nvim",
++	priority = 1000,
++	lazy = false,
++	opts = {
++		-- ===== 1. 大文件优化 =====
++		bigfile = {
++			enabled = true,
++			size = 1024 * 1024, -- 1MB
++			setup = function(ctx)
++				vim.opt_local.swapfile = false
++				vim.opt_local.foldmethod = "manual"
++				vim.opt_local.undolevels = -1
++				vim.opt_local.undoreload = 0
++				vim.opt_local.list = false
++			end,
++		},
+ 
+-    -- ===== 2. 启动页（Dashboard）=====
+-    dashboard = {
+-      enabled = true,
+-      preset = {
+-        header = [[
++		-- ===== 2. 启动页（Dashboard）=====
++		dashboard = {
++			enabled = true,
++			preset = {
++				header = [[
+ ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗
+ ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║
+ ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║
+@@ -32,208 +32,259 @@ return {
+ ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║
+ ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝
+         ]],
+-        keys = {
+-          { icon = " ", key = "f", desc = "查找文件", action = ":lua Snacks.dashboard.pick('files')" },
+-          { icon = " ", key = "n", desc = "新建文件", action = ":ene | startinsert" },
+-          { icon = " ", key = "g", desc = "全局搜索", action = ":lua Snacks.dashboard.pick('live_grep')" },
+-          { icon = " ", key = "r", desc = "最近文件", action = ":lua Snacks.dashboard.pick('oldfiles')" },
+-          { icon = " ", key = "c", desc = "编辑配置", action = ":e $MYVIMRC" },
+-          { icon = "󰒲 ", key = "l", desc = "Lazy 插件", action = ":Lazy" },
+-          { icon = " ", key = "q", desc = "退出", action = ":qa" },
+-        },
+-      },
+-      sections = {
+-        { section = "header" },
+-        { section = "keys", gap = 1, padding = 1 },
+-        { section = "startup" },
+-      },
+-    },
++				keys = {
++					{ icon = " ", key = "f", desc = "查找文件", action = ":lua Snacks.dashboard.pick('files')" },
++					{ icon = " ", key = "n", desc = "新建文件", action = ":ene | startinsert" },
++					{
++						icon = " ",
++						key = "g",
++						desc = "全局搜索",
++						action = ":lua Snacks.dashboard.pick('live_grep')",
++					},
++					{ icon = " ", key = "r", desc = "最近文件", action = ":lua Snacks.dashboard.pick('oldfiles')" },
++					{ icon = " ", key = "c", desc = "编辑配置", action = ":e $MYVIMRC" },
++					{ icon = "󰒲 ", key = "l", desc = "Lazy 插件", action = ":Lazy" },
++					{ icon = " ", key = "q", desc = "退出", action = ":qa" },
++				},
++			},
++			sections = {
++				{ section = "header" },
++				{
++					pane = 2,
++					section = "terminal",
++					-- cmd = "colorscript -e square",
++					cmd = "date '+%A, %B %d, %Y' && echo '' && fortune -s",
++					height = 5,
++					padding = 1,
++				},
+ 
+-    -- ===== 3. 缩进可视化 =====
+-    indent = {
+-      enabled = true,
+-      indent = {
+-        enabled = true,
+-        char = "│",
+-      },
+-      scope = {
+-        enabled = true,
+-        char = "│",
+-      },
+-    },
++				{ section = "keys", gap = 1, padding = 1 },
++				{ pane = 2, icon = " ", title = "最近文件", section = "recent_files", indent = 2, padding = 1 },
++				{ pane = 2, icon = " ", title = "项目", section = "projects", indent = 2, padding = 1 },
++				{
++					pane = 2,
++					icon = " ",
++					title = "Git Status",
++					section = "terminal",
++					enabled = function()
++						return Snacks.git.get_root() ~= nil
++					end,
++					cmd = "git status --short --branch --renames",
++					height = 5,
++					padding = 1,
++					ttl = 5 * 60,
++					indent = 3,
++				},
++				{ section = "startup" },
++			},
++		},
+ 
+-    -- ===== 4. 快速文件操作 =====
+-    quickfile = {
+-      enabled = true,
+-    },
++		-- ===== 3. 缩进可视化 =====
++		indent = {
++			enabled = true,
++			indent = {
++				enabled = true,
++				char = "│",
++			},
++			scope = {
++				enabled = true,
++				char = "│",
++			},
++		},
++		-- ===== Explorer 文件树 =====
++		explorer = {
++			enabled = true,
++			git_status = true, -- 显示 Git 状态
++			diagnostics = true, -- 显示诊断信息
++		},
+ 
+-    -- ===== 5. 平滑滚动 =====
+-    scroll = {
+-      enabled = true,
+-    },
++		-- ===== 4. 快速文件操作 =====
++		quickfile = {
++			enabled = true,
++		},
+ 
+-    -- ===== 6. 状态栏列 =====
+-    statuscolumn = {
+-      enabled = false, -- 使用默认状态列
+-    },
++		-- ===== 5. 平滑滚动 =====
++		scroll = {
++			enabled = true,
++		},
+ 
+-    -- ===== 7. 光标下单词引用高亮 =====
+-    words = {
+-      enabled = true,
+-      debounce = 200,
+-    },
++		-- ===== 6. 状态栏列 =====
++		statuscolumn = {
++			enabled = false, -- 使用默认状态列
++		},
+ 
+-    -- ===== 8. 样式配置 =====
+-    styles = {
+-      notification = {
+-        wo = { wrap = true },
+-      },
+-    },
+-  },
++		-- ===== 7. 光标下单词引用高亮 =====
++		words = {
++			enabled = true,
++			debounce = 200,
++		},
+ 
+-  -- ===== 快捷键配置 =====
+-  keys = {
+-    -- 文件搜索
+-    {
+-      "<leader>ff",
+-      function()
+-        Snacks.picker.files()
+-      end,
+-      desc = "查找文件",
+-    },
+-    -- 全局搜索
+-    {
+-      "<leader>fg",
+-      function()
+-        Snacks.picker.grep()
+-      end,
+-      desc = "全局搜索",
+-    },
+-    -- 搜索光标下的单词
+-    {
+-      "<leader>fw",
+-      function()
+-        Snacks.picker.grep_word()
+-      end,
+-      desc = "搜索光标下的单词",
+-    },
+-    -- Buffer 搜索
+-    {
+-      "<leader>fb",
+-      function()
+-        Snacks.picker.buffers()
+-      end,
+-      desc = "查找 Buffer",
+-    },
+-    -- 最近文件
+-    {
+-      "<leader>fr",
+-      function()
+-        Snacks.picker.recent()
+-      end,
+-      desc = "最近文件",
+-    },
+-    -- 帮助文档
+-    {
+-      "<leader>fh",
+-      function()
+-        Snacks.picker.help()
+-      end,
+-      desc = "搜索帮助文档",
+-    },
+-    -- 快捷键搜索
+-    {
+-      "<leader>fk",
+-      function()
+-        Snacks.picker.keymaps()
+-      end,
+-      desc = "搜索快捷键",
+-    },
+-    -- 命令历史
+-    {
+-      "<leader>fc",
+-      function()
+-        Snacks.picker.command_history()
+-      end,
+-      desc = "命令历史",
+-    },
+-    -- 浮动终端
+-    {
+-      "<leader>ft",
+-      function()
+-        Snacks.terminal()
+-      end,
+-      desc = "浮动终端",
+-    },
+-    -- 终端快捷切换
+-    {
+-      "<C-\\>",
+-      function()
+-        Snacks.terminal()
+-      end,
+-      desc = "切换终端",
+-      mode = { "n", "t" },
+-    },
+-    -- 临时笔记
+-    {
+-      "<leader>sn",
+-      function()
+-        Snacks.scratch()
+-      end,
+-      desc = "临时笔记",
+-    },
+-    -- 选择临时笔记
+-    {
+-      "<leader>sN",
+-      function()
+-        Snacks.scratch.select()
+-      end,
+-      desc = "选择临时笔记",
+-    },
+-    -- Git blame 行
+-    {
+-      "<leader>gB",
+-      function()
+-        Snacks.git.blame_line()
+-      end,
+-      desc = "Git Blame 行",
+-    },
+-    -- 通知历史
+-    {
+-      "<leader>nh",
+-      function()
+-        Snacks.notifier.show_history()
+-      end,
+-      desc = "通知历史",
+-    },
+-    -- 关闭所有通知
+-    {
+-      "<leader>nd",
+-      function()
+-        Snacks.notifier.hide()
+-      end,
+-      desc = "关闭所有通知",
+-    },
+-  },
++		-- ===== 8. 样式配置 =====
++		styles = {
++			notification = {
++				wo = { wrap = true },
++			},
++		},
++	},
+ 
+-  -- ===== 初始化配置 =====
+-  init = function()
+-    vim.api.nvim_create_autocmd("User", {
+-      pattern = "VeryLazy",
+-      callback = function()
+-        -- 设置缩进高亮颜色
+-        vim.api.nvim_set_hl(0, "SnacksIndent1", { fg = "#E06C75" })
+-        vim.api.nvim_set_hl(0, "SnacksIndent2", { fg = "#E5C07B" })
+-        vim.api.nvim_set_hl(0, "SnacksIndent3", { fg = "#98C379" })
+-        vim.api.nvim_set_hl(0, "SnacksIndent4", { fg = "#56B6C2" })
+-        vim.api.nvim_set_hl(0, "SnacksIndent5", { fg = "#61AFEF" })
+-        vim.api.nvim_set_hl(0, "SnacksIndent6", { fg = "#C678DD" })
++	-- ===== 快捷键配置 =====
++	keys = {
++		-- 文件搜索
++		{
++			"<leader>ff",
++			function()
++				Snacks.picker.files()
++			end,
++			desc = "查找文件",
++		},
++		-- 全局搜索
++		{
++			"<leader>fg",
++			function()
++				Snacks.picker.grep()
++			end,
++			desc = "全局搜索",
++		},
++		-- 搜索光标下的单词
++		{
++			"<leader>fw",
++			function()
++				Snacks.picker.grep_word()
++			end,
++			desc = "搜索光标下的单词",
++		},
++		-- Buffer 搜索
++		{
++			"<leader>fb",
++			function()
++				Snacks.picker.buffers()
++			end,
++			desc = "查找 Buffer",
++		},
++		-- 最近文件
++		{
++			"<leader>fr",
++			function()
++				Snacks.picker.recent()
++			end,
++			desc = "最近文件",
++		},
++		-- 帮助文档
++		{
++			"<leader>fh",
++			function()
++				Snacks.picker.help()
++			end,
++			desc = "搜索帮助文档",
++		},
++		-- 快捷键搜索
++		{
++			"<leader>fk",
++			function()
++				Snacks.picker.keymaps()
++			end,
++			desc = "搜索快捷键",
++		},
++		-- 命令历史
++		{
++			"<leader>fc",
++			function()
++				Snacks.picker.command_history()
++			end,
++			desc = "命令历史",
++		},
++		-- 浮动终端
++		{
++			"<leader>ft",
++			function()
++				Snacks.terminal()
++			end,
++			desc = "浮动终端",
++		},
++		-- 终端快捷切换
++		{
++			"<C-\\>",
++			function()
++				Snacks.terminal()
++			end,
++			desc = "切换终端",
++			mode = { "n", "t" },
++		},
++		-- 临时笔记
++		{
++			"<leader>sn",
++			function()
++				Snacks.scratch()
++			end,
++			desc = "临时笔记",
++		},
++		-- 选择临时笔记
++		{
++			"<leader>sN",
++			function()
++				Snacks.scratch.select()
++			end,
++			desc = "选择临时笔记",
++		},
++		-- Git blame 行
++		{
++			"<leader>gB",
++			function()
++				Snacks.git.blame_line()
++			end,
++			desc = "Git Blame 行",
++		},
++		-- 通知历史
++		{
++			"<leader>nh",
++			function()
++				Snacks.notifier.show_history()
++			end,
++			desc = "通知历史",
++		},
++		-- 关闭所有通知
++		{
++			"<leader>nd",
++			function()
++				Snacks.notifier.hide()
++			end,
++			desc = "关闭所有通知",
++		},
++		-- 文件树
++		{
++			"<leader>e",
++			function()
++				Snacks.explorer()
++			end,
++			desc = "文件树（Explorer）",
++		},
++		{
++			"<leader>E",
++			function()
++				Snacks.explorer({ cwd = vim.fn.getcwd() })
++			end,
++			desc = "文件树（根目录）",
++		},
++	},
+ 
+-        -- 创建一些实用命令
+-        vim.api.nvim_create_user_command("Notifications", function()
+-          Snacks.notifier.show_history()
+-        end, { desc = "显示通知历史" })
+-      end,
+-    })
+-  end,
++	-- ===== 初始化配置 =====
++	init = function()
++		vim.api.nvim_create_autocmd("User", {
++			pattern = "VeryLazy",
++			callback = function()
++				-- 设置缩进高亮颜色
++				vim.api.nvim_set_hl(0, "SnacksIndent1", { fg = "#E06C75" })
++				vim.api.nvim_set_hl(0, "SnacksIndent2", { fg = "#E5C07B" })
++				vim.api.nvim_set_hl(0, "SnacksIndent3", { fg = "#98C379" })
++				vim.api.nvim_set_hl(0, "SnacksIndent4", { fg = "#56B6C2" })
++				vim.api.nvim_set_hl(0, "SnacksIndent5", { fg = "#61AFEF" })
++				vim.api.nvim_set_hl(0, "SnacksIndent6", { fg = "#C678DD" })
++
++				-- 创建一些实用命令
++				vim.api.nvim_create_user_command("Notifications", function()
++					Snacks.notifier.show_history()
++				end, { desc = "显示通知历史" })
++			end,
++		})
++	end,
+ }
+diff --git a/lua/plugins/configs/todo-comments.lua b/lua/plugins/configs/todo-comments.lua
+index ef73d99..36de582 100644
+--- a/lua/plugins/configs/todo-comments.lua
++++ b/lua/plugins/configs/todo-comments.lua
+@@ -1,87 +1,71 @@
+ -- ============================================================================
+--- TODO 高亮与诊断列表美化
++-- todo-comments.nvim - TODO 注释高亮
+ -- ============================================================================
+ 
+ return {
+   "folke/todo-comments.nvim",
+-  event = { "BufReadPre", "BufNewFile" },
+   dependencies = { "nvim-lua/plenary.nvim" },
++  event = { "BufReadPost", "BufNewFile" },
++  cmd = { "TodoTrouble", "TodoLocList", "TodoQuickFix" },
+   keys = {
+-    { "]t", function() require("todo-comments").jump_next() end, desc = "Next todo comment" },
+-    { "[t", function() require("todo-comments").jump_prev() end, desc = "Previous todo comment" },
+-    { "<leader>ft", "<cmd>TodoSnacks<cr>", desc = "Find TODOs" },
+-    { "<leader>xt", "<cmd>TodoTrouble<cr>", desc = "TODOs (Trouble)" },
++    {
++      "]t",
++      function()
++        require("todo-comments").jump_next()
++      end,
++      desc = "下一个 TODO",
++    },
++    {
++      "[t",
++      function()
++        require("todo-comments").jump_prev()
++      end,
++      desc = "上一个 TODO",
++    },
++    {
++      "<leader>ft",
++      "<cmd>TodoQuickFix<cr>",  -- ✅ 简化为命令
++      desc = "搜索 TODO",
++    },
++    {
++      "<leader>xt",
++      "<cmd>TodoTrouble<cr>",
++      desc = "TODO 列表（Trouble）",
++    },
+   },
+   opts = {
+-    -- ========================================================================
+-    -- TODO 关键词配置
+-    -- ========================================================================
+-    signs = true, -- 在 sign column 显示图标
+-    sign_priority = 8, -- sign 优先级
++    signs = true,
++    sign_priority = 8,
+     keywords = {
+       FIX = {
+-        icon = " ", -- 错误图标
++        icon = " ",
+         color = "error",
+         alt = { "FIXME", "BUG", "FIXIT", "ISSUE" },
+       },
+-      TODO = {
+-        icon = " ", -- 待办图标
+-        color = "info",
+-      },
+-      HACK = {
+-        icon = " ", -- 骇客图标
+-        color = "warning",
+-      },
+-      WARN = {
+-        icon = " ", -- 警告图标
+-        color = "warning",
+-        alt = { "WARNING", "XXX" },
+-      },
+-      PERF = {
+-        icon = " ", -- 性能图标
+-        color = "default",
+-        alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" },
+-      },
+-      NOTE = {
+-        icon = " ", -- 笔记图标
+-        color = "hint",
+-        alt = { "INFO" },
+-      },
+-      TEST = {
+-        icon = "⏲ ", -- 测试图标
+-        color = "test",
+-        alt = { "TESTING", "PASSED", "FAILED" },
+-      },
++      TODO = { icon = " ", color = "info" },
++      HACK = { icon = " ", color = "warning" },
++      WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX" } },
++      PERF = { icon = " ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
++      NOTE = { icon = " ", color = "hint", alt = { "INFO" } },
++      TEST = { icon = "⏲ ", color = "test", alt = { "TESTING", "PASSED", "FAILED" } },
+     },
+-
+-    -- ========================================================================
+-    -- GUI 样式配置
+-    -- ========================================================================
+     gui_style = {
+-      fg = "NONE", -- 前景色样式
+-      bg = "BOLD", -- 背景色样式（NONE, BOLD, ITALIC, UNDERLINE）
++      fg = "NONE",
++      bg = "BOLD",
+     },
+-    merge_keywords = true, -- 合并默认关键词
+-
+-    -- ========================================================================
+-    -- 高亮配置
+-    -- ========================================================================
++    merge_keywords = true,
+     highlight = {
+-      multiline = true, -- 启用多行 TODO 注释
+-      multiline_pattern = "^.", -- Lua 模式匹配多行注释
+-      multiline_context = 10, -- 额外显示的上下文行数
+-      before = "", -- 关键词前的高亮
+-      keyword = "wide", -- 关键词高亮模式（fg, bg, wide, wide_bg, wide_fg）
+-      after = "fg", -- 关键词后的高亮
+-      pattern = [[.*<(KEYWORDS)\s*:]], -- 匹配模式
+-      comments_only = true, -- 仅在注释中查找
+-      max_line_len = 400, -- 忽略超长行
+-      exclude = {}, -- 排除的文件类型
++      multiline = true,
++      multiline_pattern = "^.",
++      multiline_context = 10,
++      before = "",
++      keyword = "wide",
++      after = "fg",
++      pattern = [[.*<(KEYWORDS)\s*:]],
++      comments_only = true,
++      max_line_len = 400,
++      exclude = {},
+     },
+-
+-    -- ========================================================================
+-    -- 颜色配置
+-    -- ========================================================================
+     colors = {
+       error = { "DiagnosticError", "ErrorMsg", "#DC2626" },
+       warning = { "DiagnosticWarn", "WarningMsg", "#FBBF24" },
+@@ -90,10 +74,6 @@ return {
+       default = { "Identifier", "#7C3AED" },
+       test = { "Identifier", "#FF00FF" },
+     },
+-
+-    -- ========================================================================
+-    -- 搜索配置
+-    -- ========================================================================
+     search = {
+       command = "rg",
+       args = {
+@@ -103,40 +83,7 @@ return {
+         "--line-number",
+         "--column",
+       },
+-      pattern = [[\b(KEYWORDS):]], -- ripgrep 正则表达式
++      pattern = [[\b(KEYWORDS):]],
+     },
+   },
+-  config = function(_, opts)
+-    require("todo-comments").setup(opts)
+-
+-    -- ========================================================================
+-    -- 自定义命令
+-    -- ========================================================================
+-
+-    -- 使用 Snacks picker 搜索 TODO（如果 Snacks 可用）
+-    vim.api.nvim_create_user_command("TodoSnacks", function()
+-      local has_snacks, snacks = pcall(require, "snacks")
+-      if has_snacks and snacks.picker then
+-        snacks.picker.todo_comments()
+-      else
+-        -- 回退到 Telescope（如果可用）
+-        local has_telescope, telescope = pcall(require, "telescope")
+-        if has_telescope then
+-          telescope.extensions["todo-comments"].todo()
+-        else
+-          vim.notify("Neither Snacks nor Telescope available for TODO search", vim.log.levels.WARN)
+-        end
+-      end
+-    end, { desc = "Search TODOs with Snacks" })
+-
+-    -- Trouble 集成
+-    vim.api.nvim_create_user_command("TodoTrouble", function()
+-      local has_trouble, trouble = pcall(require, "trouble")
+-      if has_trouble then
+-        trouble.toggle("todo")
+-      else
+-        vim.notify("Trouble not available", vim.log.levels.WARN)
+-      end
+-    end, { desc = "Show TODOs in Trouble" })
+-  end,
+ }
+diff --git a/lua/plugins/configs/treesitter.lua b/lua/plugins/configs/treesitter.lua
+index 4e23a23..b554b74 100644
+--- a/lua/plugins/configs/treesitter.lua
++++ b/lua/plugins/configs/treesitter.lua
+@@ -3,147 +3,147 @@
+ -- ============================================================================
+ 
+ return {
+-  "nvim-treesitter/nvim-treesitter",
+-  build = ":TSUpdate",
+-   branch = "master", --新添加
++	"nvim-treesitter/nvim-treesitter",
++	build = ":TSUpdate",
++	branch = "master", --新添加
+ 	main = "nvim-treesitter.config", --新添加
+-  event = { "BufReadPost", "BufNewFile" },
+-  dependencies = {
+-    "nvim-treesitter/nvim-treesitter-textobjects",
+-  },
+-  cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
+-  keys = {
+-    { "<C-space>", desc = "增量选择" },
+-    { "<bs>", desc = "减量选择", mode = "x" },
+-  },
+-  opts = {
+-    ensure_installed = {
+-      -- 前端
+-      "javascript",
+-      "typescript",
+-      "tsx",
+-      "vue",
+-      "html",
+-      "css",
+-      "scss",
+-      "json",
+-      "jsonc",
++	event = { "BufReadPost", "BufNewFile" },
++	dependencies = {
++		"nvim-treesitter/nvim-treesitter-textobjects",
++	},
++	cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
++	keys = {
++		{ "<C-space>", desc = "增量选择" },
++		{ "<bs>", desc = "减量选择", mode = "x" },
++	},
++	opts = {
++		ensure_installed = {
++			-- 前端
++			"javascript",
++			"typescript",
++			"tsx",
++			"vue",
++			"html",
++			"css",
++			"scss",
++			"json",
++			"jsonc",
+ 
+-      -- Lua
+-      "lua",
+-      "luadoc",
+-      "luap",
++			-- Lua
++			"lua",
++			"luadoc",
++			"luap",
+ 
+-      -- C/C++
+-      "c",
+-      "cpp",
++			-- C/C++
++			"c",
++			"cpp",
+ 
+-      -- Rust ✅ 新增
+-      "rust",
+-      "toml",  -- Cargo.toml
++			-- Rust ✅ 新增
++			"rust",
++			"toml", -- Cargo.toml
+ 
+-      -- Markdown
+-      "markdown",
+-      "markdown_inline",
++			-- Markdown
++			"markdown",
++			"markdown_inline",
+ 
+-      -- 其他
+-      "bash",
+-      "regex",
+-      "vim",
+-      "vimdoc",
+-      "yaml",
+-      "git_config",
+-      "gitcommit",
+-      "gitignore",
+-      "diff",
+-      "comment",
+-    },
++			-- 其他
++			"bash",
++			"regex",
++			"vim",
++			"vimdoc",
++			"yaml",
++			"git_config",
++			"gitcommit",
++			"gitignore",
++			"diff",
++			"comment",
++		},
+ 
+-    auto_install = true,
++		auto_install = true,
+ 
+-    highlight = {
+-      enable = true,
+-      additional_vim_regex_highlighting = false,
+-      disable = function(lang, buf)
+-        local max_filesize = 100 * 1024
+-        local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+-        if ok and stats and stats.size > max_filesize then
+-          return true
+-        end
+-      end,
+-    },
++		highlight = {
++			enable = true,
++			additional_vim_regex_highlighting = false,
++			disable = function(lang, buf)
++				local max_filesize = 100 * 1024
++				local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
++				if ok and stats and stats.size > max_filesize then
++					return true
++				end
++			end,
++		},
+ 
+-    indent = {
+-      enable = true,
+-      disable = { "python", "yaml" },
+-    },
++		indent = {
++			enable = true,
++			disable = { "python", "yaml" },
++		},
+ 
+-    incremental_selection = {
+-      enable = true,
+-      keymaps = {
+-        init_selection = "<C-space>",
+-        node_incremental = "<C-space>",
+-        scope_incremental = false,
+-        node_decremental = "<bs>",
+-      },
+-    },
++		incremental_selection = {
++			enable = true,
++			keymaps = {
++				init_selection = "<C-space>",
++				node_incremental = "<C-space>",
++				scope_incremental = false,
++				node_decremental = "<bs>",
++			},
++		},
+ 
+-    textobjects = {
+-      select = {
+-        enable = true,
+-        lookahead = true,
+-        keymaps = {
+-          ["af"] = "@function.outer",
+-          ["if"] = "@function.inner",
+-          ["ac"] = "@class.outer",
+-          ["ic"] = "@class.inner",
+-          ["aa"] = "@parameter.outer",
+-          ["ia"] = "@parameter.inner",
+-          ["ai"] = "@conditional.outer",
+-          ["ii"] = "@conditional.inner",
+-          ["al"] = "@loop.outer",
+-          ["il"] = "@loop.inner",
+-        },
+-      },
++		textobjects = {
++			select = {
++				enable = true,
++				lookahead = true,
++				keymaps = {
++					["af"] = "@function.outer",
++					["if"] = "@function.inner",
++					["ac"] = "@class.outer",
++					["ic"] = "@class.inner",
++					["aa"] = "@parameter.outer",
++					["ia"] = "@parameter.inner",
++					["ai"] = "@conditional.outer",
++					["ii"] = "@conditional.inner",
++					["al"] = "@loop.outer",
++					["il"] = "@loop.inner",
++				},
++			},
+ 
+-      move = {
+-        enable = true,
+-        set_jumps = true,
+-        goto_next_start = {
+-          ["]f"] = "@function.outer",
+-          ["]c"] = "@class.outer",
+-        },
+-        goto_next_end = {
+-          ["]F"] = "@function.outer",
+-          ["]C"] = "@class.outer",
+-        },
+-        goto_previous_start = {
+-          ["[f"] = "@function.outer",
+-          ["[c"] = "@class.outer",
+-        },
+-        goto_previous_end = {
+-          ["[F"] = "@function.outer",
+-          ["[C"] = "@class.outer",
+-        },
+-      },
++			move = {
++				enable = true,
++				set_jumps = true,
++				goto_next_start = {
++					["]f"] = "@function.outer",
++					["]c"] = "@class.outer",
++				},
++				goto_next_end = {
++					["]F"] = "@function.outer",
++					["]C"] = "@class.outer",
++				},
++				goto_previous_start = {
++					["[f"] = "@function.outer",
++					["[c"] = "@class.outer",
++				},
++				goto_previous_end = {
++					["[F"] = "@function.outer",
++					["[C"] = "@class.outer",
++				},
++			},
+ 
+-      swap = {
+-        enable = true,
+-        swap_next = {
+-          ["<leader>swa"] = "@parameter.inner",
+-        },
+-        swap_previous = {
+-          ["<leader>swA"] = "@parameter.inner",
+-        },
+-      },
+-    },
+-  },
++			swap = {
++				enable = true,
++				swap_next = {
++					["<leader>swa"] = "@parameter.inner",
++				},
++				swap_previous = {
++					["<leader>swA"] = "@parameter.inner",
++				},
++			},
++		},
++	},
+ 
+-  config = function(_, opts)
+-    require("nvim-treesitter.config").setup(opts)
++	config = function(_, opts)
++		require("nvim-treesitter.configs").setup(opts)
+ 
+-    vim.opt.foldmethod = "expr"
+-    vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+-    vim.opt.foldenable = false
+-  end,
++		vim.opt.foldmethod = "expr"
++		vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
++		vim.opt.foldenable = false
++	end,
+ }
+diff --git a/lua/plugins/configs/ui.lua b/lua/plugins/configs/ui.lua
+index d905c35..fd8ef0d 100644
+--- a/lua/plugins/configs/ui.lua
++++ b/lua/plugins/configs/ui.lua
+@@ -3,138 +3,173 @@
+ -- ============================================================================
+ 
+ return {
+-  -- ===== 1. lualine - 状态栏 =====
+-  {
+-    "nvim-lualine/lualine.nvim",
+-    dependencies = { "nvim-tree/nvim-web-devicons" },
+-    event = "VeryLazy",
+-    opts = function()
+-      return {
+-        options = {
+-          theme = "auto", -- 自动适配主题
+-          component_separators = { left = "", right = "" },
+-          section_separators = { left = "", right = "" },
+-          disabled_filetypes = {
+-            statusline = { "alpha", "dashboard", "snacks_dashboard" },
+-            winbar = {},
+-          },
+-          globalstatus = true,
+-          refresh = {
+-            statusline = 1000,
+-            tabline = 1000,
+-            winbar = 1000,
+-          },
+-        },
+-        sections = {
+-          lualine_a = { "mode" },
+-          lualine_b = { "branch", "diff", "diagnostics" },
+-          lualine_c = {
+-            {
+-              "filename",
+-              path = 1, -- 0 = 仅文件名，1 = 相对路径，2 = 绝对路径
+-              shorting_target = 40,
+-            },
+-          },
+-          lualine_x = {
+-            -- Copilot 状态（阶段 3 启用）
+-            -- function()
+-            --   local status = vim.g.copilot_status or ""
+-            --   if status == "Normal" then
+-            --     return ""
+-            --   elseif status == "InProgress" then
+-            --     return "󰚩"
+-            --   else
+-            --     return ""
+-            --   end
+-            -- end,
+-            "encoding",
+-            "fileformat",
+-            "filetype",
+-          },
+-          lualine_y = { "progress" },
+-          lualine_z = { "location" },
+-        },
+-        inactive_sections = {
+-          lualine_a = {},
+-          lualine_b = {},
+-          lualine_c = { "filename" },
+-          lualine_x = { "location" },
+-          lualine_y = {},
+-          lualine_z = {},
+-        },
+-        tabline = {},
+-        winbar = {},
+-        inactive_winbar = {},
+-        extensions = { "lazy", "oil", "quickfix" },
+-      }
+-    end,
+-    config = function(_, opts)
+-      require("lualine").setup(opts)
+-    end,
+-  },
++	-- ===== 1. lualine - 状态栏 =====
++	{
++		"nvim-lualine/lualine.nvim",
++		dependencies = { "nvim-tree/nvim-web-devicons" },
++		event = "VeryLazy",
++		opts = function()
++			return {
++				options = {
++					theme = "auto", -- 自动适配主题
+ 
+-  -- ===== 2. bufferline - 标签栏 =====
+-  {
+-    "akinsho/bufferline.nvim",
+-    dependencies = { "nvim-tree/nvim-web-devicons" },
+-    event = "VeryLazy",
+-    version = "*",
+-    opts = {
+-      options = {
+-        mode = "buffers",
+-        themable = true, -- 允许主题自定义
+-        numbers = "none",
+-        close_command = "bdelete! %d",
+-        right_mouse_command = "bdelete! %d",
+-        left_mouse_command = "buffer %d",
+-        middle_mouse_command = nil,
+-        indicator = {
+-          icon = "▎",
+-          style = "icon",
+-        },
+-        buffer_close_icon = "󰅖",
+-        modified_icon = "●",
+-        close_icon = "",
+-        left_trunc_marker = "",
+-        right_trunc_marker = "",
+-        max_name_length = 18,
+-        max_prefix_length = 15,
+-        truncate_names = true,
+-        tab_size = 18,
+-        diagnostics = "nvim_lsp",
+-        diagnostics_update_in_insert = false,
+-        diagnostics_indicator = function(count, level, diagnostics_dict, context)
+-          local icon = level:match("error") and " " or " "
+-          return " " .. icon .. count
+-        end,
+-        offsets = {
+-          {
+-            filetype = "oil",
+-            text = "File Explorer",
+-            text_align = "center",
+-            separator = true,
+-          },
+-        },
+-        color_icons = true,
+-        show_buffer_icons = true,
+-        show_buffer_close_icons = true,
+-        show_close_icon = true,
+-        show_tab_indicators = true,
+-        show_duplicate_prefix = true,
+-        persist_buffer_sort = true,
+-        separator_style = "thin",
+-        enforce_regular_tabs = false,
+-        always_show_bufferline = true,
+-        hover = {
+-          enabled = true,
+-          delay = 200,
+-          reveal = { "close" },
+-        },
+-        sort_by = "insert_after_current",
+-      },
+-    },
+-    config = function(_, opts)
+-      require("bufferline").setup(opts)
+-    end,
+-  },
++					component_separators = "|",
++					section_separators = { left = "", right = "" },
++					globalstatus = true,
++					-- 始终只在底部显示一个全局状态栏
++					-- component_separators = { left = "", right = "" },
++					-- section_separators = { left = "", right = "" },
++					disabled_filetypes = {
++						statusline = { "alpha", "dashboard", "snacks_dashboard" },
++						winbar = {},
++					},
++					refresh = {
++						statusline = 1000,
++						tabline = 1000,
++						winbar = 1000,
++					},
++				},
++				sections = {
++					lualine_a = {
++						"mode",
++						-- separator = { left = "" },
++						-- right_padding = 2
++					},
++					lualine_b = { "branch", "diff", "diagnostics" },
++					lualine_c = {
++						{
++							"filename",
++							path = 1, -- 0 = 仅文件名，1 = 相对路径，2 = 绝对路径
++							shorting_target = 40,
++						},
++					},
++					lualine_x = {
++						-- Copilot 状态（阶段 3 启用）
++
++						{
++							function()
++								local ok, copilot_api = pcall(require, "copilot.api")
++								if not ok then
++									return ""
++								end
++
++								local status = copilot_api.status.data
++								if not status or not status.status then
++									return " "
++								end
++
++								if status.status == "Normal" then
++									return "" -- Copilot 正常
++								elseif status.status == "InProgress" then
++									return "" -- 正在生成
++								else
++									return "" -- 错误或离线
++								end
++							end,
++							color = { fg = "#6CC644" },
++						}, -- function()
++						-- 	local status = vim.g.copilot_status or ""
++						-- 	if status == "Normal" then
++						-- 		return ""
++						-- 	elseif status == "InProgress" then
++						-- 		return "󰚩"
++						-- 	else
++						-- 		return ""
++						-- 	end
++						-- end,
++						-- "encoding",
++
++						"fileformat",
++						"filetype",
++					},
++					lualine_y = { "progress" },
++					lualine_z = {
++						"location",
++						-- specifier = { right = "" },
++						-- left_padding = 2
++					},
++				},
++				inactive_sections = {
++					lualine_a = {},
++					lualine_b = {},
++					lualine_c = { "filename" },
++					lualine_x = { "location" },
++					lualine_y = {},
++					lualine_z = {},
++				},
++				tabline = {},
++				winbar = {},
++				inactive_winbar = {},
++				extensions = { "lazy", "oil", "quickfix" },
++			}
++		end,
++		config = function(_, opts)
++			require("lualine").setup(opts)
++		end,
++	},
++
++	-- ===== 2. bufferline - 标签栏 =====
++	{
++		"akinsho/bufferline.nvim",
++		dependencies = { "nvim-tree/nvim-web-devicons" },
++		event = "VeryLazy",
++		version = "*",
++		opts = {
++			options = {
++				mode = "buffers",
++				themable = true, -- 允许主题自定义
++				numbers = "none",
++				close_command = "bdelete! %d",
++				right_mouse_command = "bdelete! %d",
++				left_mouse_command = "buffer %d",
++				middle_mouse_command = nil,
++				indicator = {
++					icon = "▎",
++					style = "icon",
++				},
++				buffer_close_icon = "󰅖",
++				modified_icon = "●",
++				close_icon = "",
++				left_trunc_marker = "",
++				right_trunc_marker = "",
++				max_name_length = 18,
++				max_prefix_length = 15,
++				truncate_names = true,
++				tab_size = 18,
++				diagnostics = "nvim_lsp",
++				diagnostics_update_in_insert = false,
++				diagnostics_indicator = function(count, level, diagnostics_dict, context)
++					local icon = level:match("error") and " " or " "
++					return " " .. icon .. count
++				end,
++				offsets = {
++					{
++						filetype = "oil",
++						text = "File Explorer",
++						text_align = "center",
++						separator = true,
++					},
++				},
++				color_icons = true,
++				show_buffer_icons = true,
++				show_buffer_close_icons = true,
++				show_close_icon = true,
++				show_tab_indicators = true,
++				show_duplicate_prefix = true,
++				persist_buffer_sort = true,
++				separator_style = "thin",
++				enforce_regular_tabs = false,
++				always_show_bufferline = true,
++				hover = {
++					enabled = true,
++					delay = 200,
++					reveal = { "close" },
++				},
++				sort_by = "insert_after_current",
++			},
++		},
++		config = function(_, opts)
++			require("bufferline").setup(opts)
++		end,
++	},
+ }
+diff --git a/lua/plugins/configs/which-key.lua b/lua/plugins/configs/which-key.lua
+index 0ae15ea..7ede375 100644
+--- a/lua/plugins/configs/which-key.lua
++++ b/lua/plugins/configs/which-key.lua
+@@ -3,172 +3,175 @@
+ -- ============================================================================
+ 
+ return {
+-  "folke/which-key.nvim",
+-  event = "VeryLazy",
+-  opts = {
+-    -- ========================================================================
+-    -- 基础配置
+-    -- ========================================================================
+-    preset = "modern", -- 使用现代化 UI 风格
+-    delay = 300, -- 延迟显示时间（毫秒）
+-    
+-    -- ========================================================================
+-    -- 插件配置
+-    -- ========================================================================
+-    plugins = {
+-      marks = true, -- 显示标记
+-      registers = true, -- 显示寄存器
+-      spelling = {
+-        enabled = true, -- 拼写建议
+-        suggestions = 20, -- 建议数量
+-      },
+-      presets = {
+-        operators = true, -- 操作符帮助
+-        motions = true, -- 移动帮助
+-        text_objects = true, -- 文本对象帮助
+-        windows = true, -- 窗口命令
+-        nav = true, -- 导航命令
+-        z = true, -- z 命令
+-        g = true, -- g 命令
+-      },
+-    },
+-
+-    -- ========================================================================
+-    -- 窗口配置
+-    -- ========================================================================
+-    win = {
+-      border = "rounded", -- 边框样式
+-      padding = { 1, 2 }, -- 内边距
+-      title = true, -- 显示标题
+-      title_pos = "center", -- 标题位置
+-      zindex = 1000, -- z-index
+-      wo = {
+-        winblend = 0, -- 透明度
+-      },
+-    },
+-
+-    -- ========================================================================
+-    -- 布局配置
+-    -- ========================================================================
+-    layout = {
+-      width = { min = 20, max = 50 }, -- 宽度
+-      height = { min = 4, max = 25 }, -- 高度
+-      spacing = 3, -- 列间距
+-      align = "left", -- 对齐方式
+-    },
+-
+-    -- ========================================================================
+-    -- 过滤器配置
+-    -- ========================================================================
+-    filter = function(mapping)
+-      -- 排除某些映射
+-      return true
+-    end,
+-
+-    -- ========================================================================
+-    -- 图标配置
+-    -- ========================================================================
+-    icons = {
+-      breadcrumb = "»", -- 面包屑分隔符
+-      separator = "➜", -- 键值分隔符
+-      group = "+", -- 组前缀
+-      ellipsis = "…", -- 省略号
+-      mappings = true, -- 显示映射图标
+-      rules = {}, -- 自定义图标规则
+-      colors = true, -- 使用颜色
+-      keys = {
+-        Up = " ",
+-        Down = " ",
+-        Left = " ",
+-        Right = " ",
+-        C = "󰘴 ",
+-        M = "󰘵 ",
+-        S = "󰘶 ",
+-        CR = "󰌑 ",
+-        Esc = "󱊷 ",
+-        ScrollWheelDown = "󱕐 ",
+-        ScrollWheelUp = "󱕑 ",
+-        NL = "󰌑 ",
+-        BS = "⌫",
+-        Space = "󱁐 ",
+-        Tab = "󰌒 ",
+-      },
+-    },
+-
+-    -- ========================================================================
+-    -- 显示配置
+-    -- ========================================================================
+-    show_help = true, -- 显示帮助信息
+-    show_keys = true, -- 显示按键
+-    disable = {
+-      buftypes = {},
+-      filetypes = { "TelescopePrompt" },
+-    },
+-  },
+-  config = function(_, opts)
+-    local wk = require("which-key")
+-    wk.setup(opts)
+-
+-    -- ========================================================================
+-    -- 快捷键分组配置（使用 v3 API）
+-    -- ========================================================================
+-    wk.add({
+-      -- 基础分组
+-      { "<leader>f", group = "Find/Telescope" },
+-      { "<leader>g", group = "Git" },
+-      { "<leader>x", group = "Diagnostics/Trouble" },
+-      { "<leader>m", group = "Markdown" },
+-      { "<leader>c", group = "Code" },
+-      { "<leader>l", group = "LSP" },
+-      { "<leader>s", group = "Search" },
+-      { "<leader>t", group = "Terminal/Toggle" },
+-      { "<leader>w", group = "Window" },
+-      { "<leader>b", group = "Buffer" },
+-      { "<leader>q", group = "Quit/Session" },
+-
+-      -- Git 子分组
+-      { "<leader>gg", desc = "LazyGit" },
+-      { "<leader>gf", desc = "LazyGit Current File" },
+-      { "<leader>gc", desc = "LazyGit Config" },
+-
+-      -- 查找子分组
+-      { "<leader>ff", desc = "Find Files" },
+-      { "<leader>fg", desc = "Live Grep" },
+-      { "<leader>fb", desc = "Find Buffers" },
+-      { "<leader>fh", desc = "Find Help" },
+-      { "<leader>ft", desc = "Find TODOs" },
+-
+-      -- 诊断子分组
+-      { "<leader>xx", desc = "Diagnostics List" },
+-      { "<leader>xX", desc = "Buffer Diagnostics" },
+-      { "<leader>xs", desc = "Symbols" },
+-      { "<leader>xl", desc = "LSP Definitions/References" },
+-      { "<leader>xL", desc = "Location List" },
+-      { "<leader>xQ", desc = "Quickfix List" },
+-      { "<leader>xt", desc = "TODOs" },
+-
+-      -- Markdown 子分组
+-      { "<leader>mp", desc = "Markdown Preview" },
+-
+-      -- 代码子分组
+-      { "<leader>f", desc = "Format", mode = { "n", "v" } },
+-
+-      -- LSP 子分组
+-      { "gd", desc = "Go to Definition" },
+-      { "gD", desc = "Go to Declaration" },
+-      { "gr", desc = "References" },
+-      { "gi", desc = "Go to Implementation" },
+-      { "K", desc = "Hover" },
+-      { "<leader>ca", desc = "Code Action" },
+-      { "<leader>rn", desc = "Rename" },
+-
+-      -- TODO 导航
+-      { "]t", desc = "Next TODO" },
+-      { "[t", desc = "Previous TODO" },
+-
+-      -- 诊断导航
+-      { "]d", desc = "Next Diagnostic" },
+-      { "[d", desc = "Previous Diagnostic" },
+-    })
+-  end,
++	"folke/which-key.nvim",
++	event = "VeryLazy",
++	opts = {
++		-- ========================================================================
++		-- 基础配置
++		-- ========================================================================
++		preset = "modern", -- 使用现代化 UI 风格
++		delay = 300, -- 延迟显示时间（毫秒）
++
++		-- ========================================================================
++		-- 插件配置
++		-- ========================================================================
++		plugins = {
++			marks = true, -- 显示标记
++			registers = true, -- 显示寄存器
++			spelling = {
++				enabled = true, -- 拼写建议
++				suggestions = 20, -- 建议数量
++			},
++			presets = {
++				operators = true, -- 操作符帮助
++				motions = true, -- 移动帮助
++				text_objects = true, -- 文本对象帮助
++				windows = true, -- 窗口命令
++				nav = true, -- 导航命令
++				z = true, -- z 命令
++				g = true, -- g 命令
++			},
++		},
++
++		-- ========================================================================
++		-- 窗口配置
++		-- ========================================================================
++		win = {
++			border = "rounded", -- 边框样式
++			padding = { 1, 2 }, -- 内边距
++			title = true, -- 显示标题
++			title_pos = "center", -- 标题位置
++			zindex = 1000, -- z-index
++			wo = {
++				winblend = 0, -- 透明度
++			},
++		},
++
++		-- ========================================================================
++		-- 布局配置
++		-- ========================================================================
++		layout = {
++			width = { min = 20, max = 50 }, -- 宽度
++			height = { min = 4, max = 25 }, -- 高度
++			spacing = 3, -- 列间距
++			align = "left", -- 对齐方式
++		},
++
++		-- ========================================================================
++		-- 过滤器配置
++		-- ========================================================================
++		filter = function(mapping)
++			-- 排除某些映射
++			return true
++		end,
++
++		-- ========================================================================
++		-- 图标配置
++		-- ========================================================================
++		icons = {
++			breadcrumb = "»", -- 面包屑分隔符
++			separator = "➜", -- 键值分隔符
++			group = "+", -- 组前缀
++			ellipsis = "…", -- 省略号
++			mappings = true, -- 显示映射图标
++			rules = {}, -- 自定义图标规则
++			colors = true, -- 使用颜色
++			keys = {
++				Up = " ",
++				Down = " ",
++				Left = " ",
++				Right = " ",
++				C = "󰘴 ",
++				M = "󰘵 ",
++				S = "󰘶 ",
++				CR = "󰌑 ",
++				Esc = "󱊷 ",
++				ScrollWheelDown = "󱕐 ",
++				ScrollWheelUp = "󱕑 ",
++				NL = "󰌑 ",
++				BS = "⌫",
++				Space = "󱁐 ",
++				Tab = "󰌒 ",
++			},
++		},
++
++		-- ========================================================================
++		-- 显示配置
++		-- ========================================================================
++		show_help = true, -- 显示帮助信息
++		show_keys = true, -- 显示按键
++		disable = {
++			buftypes = {},
++			filetypes = { "TelescopePrompt" },
++		},
++	},
++	config = function(_, opts)
++		local wk = require("which-key")
++		wk.setup(opts)
++
++		-- ========================================================================
++		-- 快捷键分组配置（使用 v3 API）
++		-- ========================================================================
++		wk.add({
++			-- 基础分组
++			{ "<leader>a", group = "AI" },
++			{ "<leader>f", group = "Find/Telescope" },
++			{ "<leader>g", group = "Git" },
++			{ "<leader>x", group = "Diagnostics/Trouble" },
++			{ "<leader>m", group = "Markdown" },
++			{ "<leader>c", group = "Code" },
++			{ "<leader>l", group = "LSP" },
++			{ "<leader>s", group = "Window" },
++			{ "<leader>t", group = "Terminal/Toggle" },
++			{ "<leader>n", group = "notify" },
++			{ "<leader>w", group = "Window" },
++			{ "<leader>b", group = "Buffer" },
++			{ "<leader>q", group = "Quit/Session" },
++			{ "<leader>z", group = "代码折叠" },
++
++			-- Git 子分组
++			{ "<leader>gg", desc = "LazyGit" },
++			{ "<leader>gf", desc = "LazyGit Current File" },
++			{ "<leader>gc", desc = "LazyGit Config" },
++
++			-- 查找子分组
++			{ "<leader>ff", desc = "Find Files" },
++			{ "<leader>fg", desc = "Live Grep" },
++			{ "<leader>fb", desc = "Find Buffers" },
++			{ "<leader>fh", desc = "Find Help" },
++			{ "<leader>ft", desc = "Find TODOs" },
++
++			-- 诊断子分组
++			{ "<leader>xx", desc = "Diagnostics List" },
++			{ "<leader>xX", desc = "Buffer Diagnostics" },
++			{ "<leader>xs", desc = "Symbols" },
++			{ "<leader>xl", desc = "LSP Definitions/References" },
++			{ "<leader>xL", desc = "Location List" },
++			{ "<leader>xQ", desc = "Quickfix List" },
++			{ "<leader>xt", desc = "TODOs" },
++
++			-- Markdown 子分组
++			{ "<leader>mp", desc = "Markdown Preview" },
++
++			-- 代码子分组
++			-- { "<leader>f", desc = "Format", mode = { "n", "v" } },
++
++			-- LSP 子分组
++			{ "gd", desc = "Go to Definition" },
++			{ "gD", desc = "Go to Declaration" },
++			{ "gr", desc = "References" },
++			{ "gi", desc = "Go to Implementation" },
++			{ "K", desc = "Hover" },
++			{ "<leader>la", desc = "Code Action" },
++			{ "<leader>lr", desc = "Rename" },
++
++			-- TODO 导航
++			{ "]t", desc = "Next TODO" },
++			{ "[t", desc = "Previous TODO" },
++
++			-- 诊断导航
++			{ "]d", desc = "Next Diagnostic" },
++			{ "[d", desc = "Previous Diagnostic" },
++		})
++	end,
+ }
+diff --git a/lua/plugins/init.lua b/lua/plugins/init.lua
+index 6b25dc3..4a45485 100644
+--- a/lua/plugins/init.lua
++++ b/lua/plugins/init.lua
+@@ -5,46 +5,46 @@
+ 
+ -- lazy.nvim 配置选项
+ local lazy_config = {
+-  -- 性能优化
+-  performance = {
+-    cache = {
+-      enabled = true,
+-    },
+-    rtp = {
+-      disabled_plugins = {
+-        "gzip",
+-        "matchit",
+-        "matchparen",
+-        "netrwPlugin",
+-        "tarPlugin",
+-        "tohtml",
+-        "tutor",
+-        "zipPlugin",
+-      },
+-    },
+-  },
+-  -- UI 配置
+-  ui = {
+-    border = "rounded",
+-    icons = {
+-      cmd = "⌘",
+-      config = "🛠",
+-      event = "📅",
+-      ft = "📂",
+-      init = "⚙",
+-      keys = "🗝",
+-      plugin = "🔌",
+-      runtime = "💻",
+-      source = "📄",
+-      start = "🚀",
+-      task = "📌",
+-    },
+-  },
+-  -- 检测配置文件更改时自动重载
+-  change_detection = {
+-    enabled = true,
+-    notify = true,
+-  },
++	-- 性能优化
++	performance = {
++		cache = {
++			enabled = true,
++		},
++		rtp = {
++			disabled_plugins = {
++				"gzip",
++				"matchit",
++				"matchparen",
++				"netrwPlugin",
++				"tarPlugin",
++				"tohtml",
++				"tutor",
++				"zipPlugin",
++			},
++		},
++	},
++	-- UI 配置
++	ui = {
++		border = "rounded",
++		icons = {
++			cmd = "⌘",
++			config = "🛠",
++			event = "📅",
++			ft = "📂",
++			init = "⚙",
++			keys = "🗝",
++			plugin = "🔌",
++			runtime = "💻",
++			source = "📄",
++			start = "🚀",
++			task = "📌",
++		},
++	},
++	-- 检测配置文件更改时自动重载
++	change_detection = {
++		enabled = true,
++		notify = true,
++	},
+ }
+ 
+ -- ============================================================================
+@@ -52,133 +52,133 @@ local lazy_config = {
+ -- ============================================================================
+ 
+ local plugins = {
+-  -- ========================================================================
+-  -- 主题插件（8 个主题）
+-  -- ========================================================================
+-  {
+-    "ellisonleao/gruvbox.nvim",
+-    priority = 1000,
+-    lazy = false,
+-    config = function()
+-      require("gruvbox").setup({
+-        contrast = "hard",
+-        transparent_mode = false,
+-      })
+-    end,
+-  },
+-
+-  {
+-    "shaunsingh/nord.nvim",
+-    priority = 1000,
+-    lazy = true,
+-  },
+-
+-  {
+-    "navarasu/onedark.nvim",
+-    priority = 1000,
+-    lazy = true,
+-    config = function()
+-      require("onedark").setup({
+-        style = "dark",
+-      })
+-    end,
+-  },
+-
+-  {
+-    "catppuccin/nvim",
+-    name = "catppuccin",
+-    priority = 1000,
+-    lazy = true,
+-    config = function()
+-      require("catppuccin").setup({
+-        flavour = "mocha",
+-      })
+-    end,
+-  },
+-
+-  {
+-    "folke/tokyonight.nvim",
+-    priority = 1000,
+-    lazy = true,
+-    config = function()
+-      require("tokyonight").setup({
+-        style = "night",
+-      })
+-    end,
+-  },
+-
+-  {
+-    "Mofiqul/dracula.nvim",
+-    priority = 1000,
+-    lazy = true,
+-  },
+-
+-  {
+-    "projekt0n/github-nvim-theme",
+-    priority = 1000,
+-    lazy = true,
+-  },
+-
+-  {
+-    "neanias/everforest-nvim",
+-    priority = 1000,
+-    lazy = true,
+-    config = function()
+-      require("everforest").setup({
+-        background = "hard",
+-      })
+-    end,
+-  },
+-
+-  -- ========================================================================
+-  -- 基础依赖
+-  -- ========================================================================
+-  { "nvim-lua/plenary.nvim", lazy = true },
+-  { "nvim-tree/nvim-web-devicons", lazy = true },
+-
+-  -- ========================================================================
+-  -- 阶段 2：核心插件配置 + UI 增强
+-  -- ========================================================================
+-  require("plugins.configs.snacks"),     -- snacks.nvim 多功能工具集
+-  require("plugins.configs.mini"),       -- mini.nvim 编辑增强套件
+-  require("plugins.configs.oil"),        -- Oil.nvim 文件系统编辑器（主文件树）✅ 已更新
+-  require("plugins.configs.flash"),      -- Flash.nvim 快速跳转
+-  require("plugins.configs.colors"),     -- nvim-highlight-colors 颜色可视化
+-  require("plugins.configs.ui"),         -- lualine + bufferline UI 组件
+-  require("plugins.configs.nui"),        -- ✅ 新增：nui.nvim UI 组件库
+-  require("plugins.configs.notify"),     -- ✅ 新增：nvim-notify 通知系统
+-  require("plugins.configs.noice"),      -- ✅ 新增：noice.nvim 美化系统
+-
+-  -- ========================================================================
+-  -- 阶段 3：补全与 AI 系统
+-  -- ========================================================================
+-  require("plugins.configs.completion"),    -- blink.cmp 现代化补全引擎
+-  require("plugins.configs.copilot"),       -- GitHub Copilot AI 补全
+-  require("plugins.configs.snippets"),      -- LuaSnip 代码片段引擎
+-  require("plugins.configs.treesitter"),    -- Treesitter 语法高亮与解析
+-  require("plugins.configs.codecompanion"), -- CodeCompanion AI 助手
+-
+-  -- ========================================================================
+-  -- 阶段 4：原生 LSP 配置
+-  -- ========================================================================
+-  require("plugins.configs.lsp"),        -- Mason + LSP 系统
+-
+-  -- ========================================================================
+-  -- 阶段 5：工具增强
+-  -- ========================================================================
+-  require("plugins.configs.markdown"),      -- Markdown 增强
+-  require("plugins.configs.lazygit"),       -- LazyGit
+-  require("plugins.configs.conform"),       -- 格式化工具
+-  require("plugins.configs.lint"),          -- Linting 工具
+-  require("plugins.configs.todo-comments"), -- TODO 高亮
+-  require("plugins.configs.trouble"),       -- 诊断列表
+-  require("plugins.configs.which-key"),     -- 快捷键提示
+-
+-  -- ========================================================================
+-  -- 说明
+-  -- ========================================================================
+-  -- 最后阶段：
+-  -- - 阶段 6: 最终优化、性能调整、文档完善
++	-- ========================================================================
++	-- 主题插件（8 个主题）
++	-- ========================================================================
++	{
++		"ellisonleao/gruvbox.nvim",
++		priority = 1000,
++		lazy = false,
++		config = function()
++			require("gruvbox").setup({
++				contrast = "hard",
++				transparent_mode = false,
++			})
++		end,
++	},
++
++	{
++		"shaunsingh/nord.nvim",
++		priority = 1000,
++		lazy = true,
++	},
++
++	{
++		"navarasu/onedark.nvim",
++		priority = 1000,
++		lazy = true,
++		config = function()
++			require("onedark").setup({
++				style = "dark",
++			})
++		end,
++	},
++
++	{
++		"catppuccin/nvim",
++		name = "catppuccin",
++		priority = 1000,
++		lazy = true,
++		config = function()
++			require("catppuccin").setup({
++				flavour = "mocha",
++			})
++		end,
++	},
++
++	{
++		"folke/tokyonight.nvim",
++		priority = 1000,
++		lazy = true,
++		config = function()
++			require("tokyonight").setup({
++				style = "night",
++			})
++		end,
++	},
++
++	{
++		"Mofiqul/dracula.nvim",
++		priority = 1000,
++		lazy = true,
++	},
++
++	{
++		"projekt0n/github-nvim-theme",
++		priority = 1000,
++		lazy = true,
++	},
++
++	{
++		"neanias/everforest-nvim",
++		priority = 1000,
++		lazy = true,
++		config = function()
++			require("everforest").setup({
++				background = "hard",
++			})
++		end,
++	},
++
++	-- ========================================================================
++	-- 基础依赖
++	-- ========================================================================
++	{ "nvim-lua/plenary.nvim", lazy = true },
++	{ "nvim-tree/nvim-web-devicons", lazy = true },
++
++	-- ========================================================================
++	-- 阶段 2：核心插件配置 + UI 增强
++	-- ========================================================================
++	require("plugins.configs.snacks"), -- snacks.nvim 多功能工具集
++	require("plugins.configs.mini"), -- mini.nvim 编辑增强套件
++	-- require("plugins.configs.oil"), -- Oil.nvim 文件系统编辑器（主文件树）✅ 已更新
++	require("plugins.configs.flash"), -- Flash.nvim 快速跳转
++	require("plugins.configs.colors"), -- nvim-highlight-colors 颜色可视化
++	require("plugins.configs.ui"), -- lualine + bufferline UI 组件
++	require("plugins.configs.nui"), -- ✅ 新增：nui.nvim UI 组件库
++	require("plugins.configs.notify"), -- ✅ 新增：nvim-notify 通知系统
++	require("plugins.configs.noice"), -- ✅ 新增：noice.nvim 美化系统
++
++	-- ========================================================================
++	-- 阶段 3：补全与 AI 系统
++	-- ========================================================================
++	require("plugins.configs.completion"), -- blink.cmp 现代化补全引擎
++	require("plugins.configs.copilot"), -- GitHub Copilot AI 补全
++	require("plugins.configs.snippets"), -- LuaSnip 代码片段引擎
++	require("plugins.configs.treesitter"), -- Treesitter 语法高亮与解析
++	require("plugins.configs.codecompanion"), -- CodeCompanion AI 助手
++
++	-- ========================================================================
++	-- 阶段 4：原生 LSP 配置
++	-- ========================================================================
++	require("plugins.configs.lsp"), -- Mason + LSP 系统
++
++	-- ========================================================================
++	-- 阶段 5：工具增强
++	-- ========================================================================
++	require("plugins.configs.markdown"), -- Markdown 增强
++	require("plugins.configs.lazygit"), -- LazyGit
++	require("plugins.configs.conform"), -- 格式化工具
++	require("plugins.configs.lint"), -- Linting 工具
++	require("plugins.configs.todo-comments"), -- TODO 高亮
++	require("plugins.configs.trouble"), -- 诊断列表
++	require("plugins.configs.which-key"), -- 快捷键提示
++
++	-- ========================================================================
++	-- 说明
++	-- ========================================================================
++	-- 最后阶段：
++	-- - 阶段 6: 最终优化、性能调整、文档完善
+ }
+ 
+ -- ============================================================================
+@@ -186,4 +186,3 @@ local plugins = {
+ -- ============================================================================
+ 
+ require("lazy").setup(plugins, lazy_config)
+-

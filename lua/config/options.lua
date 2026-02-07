@@ -53,15 +53,15 @@ opt.cmdheight = 1
 -- 显示不可见字符
 opt.list = true
 opt.listchars = {
-  tab = "→ ",
-  trail = "·",
-  extends = "»",
-  precedes = "«",
-  nbsp = "␣",
+	tab = "→ ",
+	trail = "·",
+	extends = "»",
+	precedes = "«",
+	nbsp = "␣",
 }
 
 -- 始终显示状态栏
-opt.laststatus = 3  -- 全局状态栏
+opt.laststatus = 3 -- 全局状态栏
 
 -- 更好的补全体验
 opt.completeopt = "menu,menuone,noselect"
@@ -76,29 +76,29 @@ opt.splitbelow = true
 -- 折叠设置
 opt.foldmethod = "expr"
 opt.foldexpr = "nvim_treesitter#foldexpr()"
-opt.foldenable = false  -- 默认不折叠
+opt.foldenable = false -- 默认不折叠
 
 -- ============================================================================
 -- 编辑行为
 -- ============================================================================
 
 -- 缩进设置
-opt.tabstop = 4         -- Tab 宽度
-opt.shiftwidth = 4      -- 自动缩进宽度
-opt.expandtab = true    -- 使用空格替代 Tab
-opt.smartindent = true  -- 智能缩进
-opt.autoindent = true   -- 自动缩进
+opt.tabstop = 4 -- Tab 宽度
+opt.shiftwidth = 4 -- 自动缩进宽度
+opt.expandtab = true -- 使用空格替代 Tab
+opt.smartindent = true -- 智能缩进
+opt.autoindent = true -- 自动缩进
 
 -- 搜索设置
-opt.ignorecase = true   -- 搜索忽略大小写
-opt.smartcase = true    -- 智能大小写（有大写字母时区分）
-opt.hlsearch = true     -- 高亮搜索结果
-opt.incsearch = true    -- 增量搜索
+opt.ignorecase = true -- 搜索忽略大小写
+opt.smartcase = true -- 智能大小写（有大写字母时区分）
+opt.hlsearch = true -- 高亮搜索结果
+opt.incsearch = true -- 增量搜索
 
 -- 行为设置
-opt.wrap = false        -- 不自动换行
-opt.scrolloff = 8       -- 垂直滚动时保持 8 行边距
-opt.sidescrolloff = 8   -- 水平滚动时保持 8 列边距
+opt.wrap = false -- 不自动换行
+opt.scrolloff = 8 -- 垂直滚动时保持 8 行边距
+opt.sidescrolloff = 8 -- 水平滚动时保持 8 列边距
 
 -- 自动换行在单词边界
 opt.linebreak = true
@@ -119,7 +119,11 @@ opt.hidden = true
 -- 性能优化
 -- ============================================================================
 
+<<<<<<< Updated upstream
 -- 禁用 lazyredraw（与 Noice 冲突）
+=======
+-- 减少重绘
+>>>>>>> Stashed changes
 opt.lazyredraw = false
 
 -- 更快的宏执行
