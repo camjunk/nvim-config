@@ -1,5 +1,5 @@
 -- ============================================================================
--- nvim-lint 统一 Linting 系统
+-- nvim-lint - Linting 工具配置
 -- ============================================================================
 
 return {
@@ -8,11 +8,9 @@ return {
   config = function()
     local lint = require("lint")
 
-    -- ========================================================================
     -- Linter 配置
-    -- ========================================================================
     lint.linters_by_ft = {
-      -- JavaScript / TypeScript / Vue
+      -- JavaScript/TypeScript
       javascript = { "eslint_d" },
       javascriptreact = { "eslint_d" },
       typescript = { "eslint_d" },
@@ -22,7 +20,7 @@ return {
       -- Markdown
       markdown = { "markdownlint" },
 
-      -- Shell
+      -- Bash
       sh = { "shellcheck" },
       bash = { "shellcheck" },
 
@@ -32,79 +30,52 @@ return {
       -- YAML
       yaml = { "yamllint" },
 
-      -- Dockerfile
+      -- Docker
       dockerfile = { "hadolint" },
     }
 
-    -- ========================================================================
-    -- 自动触发 Linting
-    -- ========================================================================
+    -- ✅ 修复：不要在这里修改 linter 配置
+    -- eslint_d 会自动处理 stdin 文件名
 
     -- 创建自动命令组
     local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
 
-    -- 定义触发 Linting 的函数（带错误处理）
-    local function try_lint()
-      local ok, err = pcall(function()
-        lint.try_lint()
-      end)
-      
-      if not ok then
-        -- 静默处理错误，避免干扰用户
-        vim.schedule(function()
-          vim.notify(
-            string.format("Linting error: %s", tostring(err)),
-            vim.log.levels.DEBUG
-          )
-        end)
-      end
-    end
-
-    -- 在以下事件触发 Linting
+    -- 自动触发 lint（带错误处理）
     vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
       group = lint_augroup,
       callback = function()
-        try_lint()
+        -- 只在有 linter 的文件类型中运行
+        if lint.linters_by_ft[vim.bo.filetype] then
+          -- 添加错误处理
+          local ok, err = pcall(lint.try_lint)
+          if not ok then
+            -- 静默失败，不打扰用户
+            vim.notify(
+              string.format("Lint 失败: %s", err),
+              vim.log.levels.DEBUG,  -- ✅ 改为 DEBUG 级别
+              { title = "nvim-lint" }
+            )
+          end
+        end
       end,
-      desc = "Trigger linting",
     })
 
-    -- ========================================================================
-    -- 用户命令
-    -- ========================================================================
-
-    -- 手动运行 Linter
+    -- 创建命令
     vim.api.nvim_create_user_command("Lint", function()
-      local ok, err = pcall(function()
-        lint.try_lint()
-      end)
-      
-      if ok then
-        vim.notify("Linting completed", vim.log.levels.INFO)
-      else
-        vim.notify(
-          string.format("Linting failed: %s", tostring(err)),
-          vim.log.levels.ERROR
-        )
-      end
-    end, { desc = "Trigger linting for current file" })
+      lint.try_lint()
+    end, { desc = "手动运行 Linter" })
 
-    -- 显示 Linter 信息
     vim.api.nvim_create_user_command("LintInfo", function()
-      local ft = vim.bo.filetype
-      local linters = lint.linters_by_ft[ft] or {}
-      
+      local filetype = vim.bo.filetype
+      local linters = lint.linters_by_ft[filetype] or {}
       if #linters == 0 then
-        vim.notify(
-          string.format("No linters configured for filetype: %s", ft),
-          vim.log.levels.INFO
-        )
+        vim.notify(string.format("没有为文件类型 '%s' 配置 linter", filetype), vim.log.levels.INFO)
       else
         vim.notify(
-          string.format("Linters for %s: %s", ft, table.concat(linters, ", ")),
+          string.format("文件类型 '%s' 的 linters: %s", filetype, table.concat(linters, ", ")),
           vim.log.levels.INFO
         )
       end
-    end, { desc = "Show linter info for current filetype" })
+    end, { desc = "显示当前文件的 Linter 信息" })
   end,
 }

@@ -62,53 +62,53 @@ nvim
 
 ### 基础操作
 
-| 快捷键 | 功能 | 模式 |
-|--------|------|------|
-| `<Space>` | Leader 键 | - |
-| `jk` | 退出插入模式 | Insert |
-| `<leader>w` | 保存文件 | Normal |
-| `<leader>qq` | 关闭窗口 | Normal |
+| 快捷键       | 功能         | 模式   |
+| ------------ | ------------ | ------ |
+| `<Space>`    | Leader 键    | -      |
+| `jk`         | 退出插入模式 | Insert |
+| `<leader>w`  | 保存文件     | Normal |
+| `<leader>qq` | 关闭窗口     | Normal |
 
 ### 文件管理
 
-| 快捷键 | 功能 |
-|--------|------|
-| `<leader>e` | 切换文件树（snacks） |
-| `-` | Oil.nvim 编辑目录 |
-| `<leader>ff` | 查找文件 |
-| `<leader>fg` | 全局搜索 |
-| `<leader>fb` | 查找 Buffer |
+| 快捷键       | 功能                 |
+| ------------ | -------------------- |
+| `<leader>e`  | 切换文件树（snacks） |
+| `-`          | Oil.nvim 编辑目录    |
+| `<leader>ff` | 查找文件             |
+| `<leader>fg` | 全局搜索             |
+| `<leader>fb` | 查找 Buffer          |
 
 ### Git 操作
 
-| 快捷键 | 功能 |
-|--------|------|
-| `<leader>gg` | 打开 LazyGit |
+| 快捷键       | 功能            |
+| ------------ | --------------- |
+| `<leader>gg` | 打开 LazyGit    |
 | `<leader>gd` | Git diff 覆盖层 |
-| `<leader>gb` | Git blame |
+| `<leader>gb` | Git blame       |
 
 ### 主题切换
 
-| 快捷键 | 功能 |
-|--------|------|
+| 快捷键       | 功能       |
+| ------------ | ---------- |
 | `<leader>tn` | 下一个主题 |
 | `<leader>tp` | 上一个主题 |
-| `<leader>ts` | 选择主题 |
+| `<leader>ts` | 选择主题   |
 
 ### LSP 快捷键
 
-| 快捷键 | 功能 |
-|--------|------|
-| `gd` | 跳转到定义 |
-| `gr` | 查找引用 |
-| `K` | 悬停文档 |
-| `<leader>rn` | 重命名 |
-| `<leader>ca` | 代码操作 |
+| 快捷键       | 功能       |
+| ------------ | ---------- |
+| `gd`         | 跳转到定义 |
+| `gr`         | 查找引用   |
+| `K`          | 悬停文档   |
+| `<leader>rn` | 重命名     |
+| `<leader>ca` | 代码操作   |
 
 ### AI 助手
 
-| 快捷键 | 功能 |
-|--------|------|
+| 快捷键       | 功能         |
+| ------------ | ------------ |
 | `<leader>aa` | 打开 AI 对话 |
 | `<leader>at` | 切换 AI 建议 |
 
@@ -165,8 +165,9 @@ map("n", "<leader>custom", ":YourCommand<CR>", { desc = "Custom command" })
 
 ## 🤝 贡献
 
-欢迎提交 Issue 和 Pull Request！
+e迎提交 Issue 和 Pull Request！
 
 ## 📄 许可证
 
 MIT License
+
