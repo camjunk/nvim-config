@@ -144,6 +144,9 @@ local plugins = {
 	-- require("plugins.configs.oil"), -- Oil.nvim 文件系统编辑器（主文件树）✅ 已更新
 	require("plugins.configs.flash"), -- Flash.nvim 快速跳转
 	require("plugins.configs.colors"), -- nvim-highlight-colors 颜色可视化
+	require("plugins.configs.colorizer"), --Colorizer 颜色高亮插件（已更新）
+	require("plugins.configs.live-server"), -- ✅ 添加 Live Server
+	require("plugins.configs.browser-sync"), -- ✅ BrowserSync（强大）
 	require("plugins.configs.ui"), -- lualine + bufferline UI 组件
 	require("plugins.configs.nui"), -- ✅ 新增：nui.nvim UI 组件库
 	require("plugins.configs.notify"), -- ✅ 新增：nvim-notify 通知系统

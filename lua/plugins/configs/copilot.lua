@@ -44,7 +44,8 @@ return {
 			require("copilot").setup(opts)
 
 			vim.api.nvim_set_hl(0, "CopilotSuggestion", {
-				fg = "#555555",
+				-- fg = "#555555",
+				fg = "royalblue",
 				ctermfg = 8,
 				italic = true,
 			})

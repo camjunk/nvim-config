@@ -125,6 +125,11 @@ return {
 				wo = { wrap = true },
 			},
 		},
+
+		-- ===== 9. 选择器 =====
+		picker = {
+			enabled = true,
+		},
 	},
 
 	-- ===== 快捷键配置 =====
