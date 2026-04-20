@@ -1,12 +1,12 @@
 # 🚀 Neovim 一体化开发环境配置
 
-> 基于 Neovim 0.11 构建的现代化多语言开发环境，支持前端（TS/JS/React/Vue）、Lua、C、Markdown
+> 基于 Neovim 0.12 构建的现代化多语言开发环境，支持前端（TS/JS/React/Vue）、Lua、C、Markdown
 
 ## ✨ 特性
 
 - 🎨 **8 个主流主题**：一键切换 gruvbox、nord、catppuccin 等
 - ⚡ **性能优化**：启动时间 < 50ms
-- 🔧 **原生 LSP**：无 nvim-lspconfig，完全基于 Neovim 0.11 原生 API
+- 🔧 **原生 LSP**：无 nvim-lspconfig，完全基于 Neovim 0.12 原生 API
 - 🎯 **snacks.nvim + mini.nvim**：轻量高效的插件生态
 - 🤖 **AI 集成**：GitHub Copilot + CodeCompanion
 - 📝 **Markdown 增强**：渲染美化 + AI 辅助
@@ -32,7 +32,7 @@ nvim/
 
 ### 前置要求
 
-- Neovim >= 0.11.0
+- Neovim >= 0.12.0
 - Git
 - Node.js >= 18（前端 LSP）
 - GCC/Clang（C LSP）
@@ -170,4 +170,3 @@ e迎提交 Issue 和 Pull Request！
 ## 📄 许可证
 
 MIT License
-

@@ -1,6 +1,6 @@
 -- ============================================================================
 -- Neovim 配置主入口文件
--- 基于 Neovim 0.11+ 构建的现代化开发环境
+-- 基于 Neovim 0.12+ 构建的现代化开发环境
 -- ============================================================================
 
 -- 设置 Leader 键为空格（必须在加载插件之前设置）
@@ -14,7 +14,8 @@ require("config.autocmds")   -- 自动命令
 
 -- 初始化 lazy.nvim 插件管理器
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
+local uv = vim.uv or vim.loop
+if not uv.fs_stat(lazypath) then
   vim.fn.system({
     "git",
     "clone",
