@@ -4,6 +4,7 @@
 
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
+local uv = vim.uv or vim.loop
 
 -- ============================================================================
 -- 通用自动命令组
@@ -52,7 +53,7 @@ autocmd("BufWritePre", {
   group = general,
   pattern = "*",
   callback = function(event)
-    local file = vim.loop.fs_realpath(event.match) or event.match
+    local file = uv.fs_realpath(event.match) or event.match
     vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
   end,
   desc = "Auto create dir when saving file",
@@ -164,7 +165,7 @@ autocmd("BufReadPre", {
   group = performance,
   pattern = "*",
   callback = function(args)
-    local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(args.buf))
+    local ok, stats = pcall(uv.fs_stat, vim.api.nvim_buf_get_name(args.buf))
     if ok and stats and stats.size > 1024 * 1024 then -- 1MB
       vim.b.large_file = true
       vim.opt_local.foldmethod = "manual"
