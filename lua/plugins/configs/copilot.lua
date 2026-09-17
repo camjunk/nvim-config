@@ -68,13 +68,20 @@ return {
 				end
 
 				if blink.config and blink.config.sources then
-					table.insert(blink.config.sources.default, "copilot")
-					blink.config.sources.providers.copilot = {
-						name = "copilot",
-						module = "blink-copilot",
-						score_offset = 100,
-						async = true,
-					}
+					if not vim.tbl_contains(blink.config.sources.default, "copilot") then
+						table.insert(blink.config.sources.default, "copilot")
+					end
+
+					blink.config.sources.providers.copilot = vim.tbl_deep_extend(
+						"force",
+						blink.config.sources.providers.copilot or {},
+						{
+							name = "copilot",
+							module = "blink-copilot",
+							score_offset = 100,
+							async = true,
+						}
+					)
 				end
 			end
 

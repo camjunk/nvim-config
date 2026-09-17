@@ -75,7 +75,7 @@ opt.splitbelow = true
 
 -- 折叠设置
 opt.foldmethod = "expr"
-opt.foldexpr = "nvim_treesitter#foldexpr()"
+opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 opt.foldenable = false -- 默认不折叠
 
 -- ============================================================================

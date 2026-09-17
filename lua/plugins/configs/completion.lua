@@ -7,9 +7,9 @@ return {
 	lazy = false,
 	dependencies = {
 		"rafamadriz/friendly-snippets",
-		"fang2hou/blink-copilot",
 		"j-hui/fidget.nvim",
 		"folke/lazydev.nvim",
+		"saghen/blink.lib",
 	},
 	version = "v0.*",
 	opts = {
@@ -74,7 +74,7 @@ return {
 
 		-- ===== 补全源配置 =====
 		sources = {
-			default = { "lsp", "path", "snippets", "buffer", "lazydev", "copilot" },
+			default = { "lsp", "path", "snippets", "buffer", "lazydev" },
 			providers = {
 				lsp = {
 					name = "LSP",
@@ -123,16 +123,6 @@ return {
 					},
 				},
 				lazydev = { module = "lazydev.integrations.blink", score_offset = 85 },
-				copilot = {
-					name = "copilot",
-					module = "blink-copilot",
-					score_offset = 90,
-					async = true,
-					opts = {
-						kind_icon = "",
-						kind_hl = "DevIconCopilot",
-					},
-				},
 			},
 		},
 
