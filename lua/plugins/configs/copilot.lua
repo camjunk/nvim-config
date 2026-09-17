@@ -72,12 +72,16 @@ return {
 						table.insert(blink.config.sources.default, "copilot")
 					end
 
-					blink.config.sources.providers.copilot = vim.tbl_deep_extend("force", {
-						name = "copilot",
-						module = "blink-copilot",
-						score_offset = 100,
-						async = true,
-					}, blink.config.sources.providers.copilot or {})
+					blink.config.sources.providers.copilot = vim.tbl_deep_extend(
+						"force",
+						blink.config.sources.providers.copilot or {},
+						{
+							name = "copilot",
+							module = "blink-copilot",
+							score_offset = 100,
+							async = true,
+						}
+					)
 				end
 			end
 
